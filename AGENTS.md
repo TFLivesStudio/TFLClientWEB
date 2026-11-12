@@ -16,6 +16,10 @@ El propietario autorizó explícitamente crear la web en Next.js para Vercel, co
 
 Estado actual: implementación inicial en español con App Router, TypeScript, CSS con tokens, Manrope/Inter locales, Lucide y Pattern Waves. Se usa npm y package-lock.json para reproducibilidad; pnpm era una propuesta. Inicio, características, Selection/Core, descargas, novedades, ayuda, comunidad y créditos tienen rutas propias. No hay CMS ni catálogo Selection verificado, ni despliegue realizado. Core se presenta como alpha. No fabricar capturas in-game; las capturas del launcher muestran el frontend oficial con puente nativo simulado y sin cuenta. Véase README.md para comandos y límites.
 
+## Dirección visual actual — 12 de noviembre de 2026
+
+El propietario solicita rediseño premium exclusivamente oscuro y autoriza trabajar y subir directamente a main. Se adopta negro, plata y azul TFL como acento. Esta dirección sustituye el fondo azul anterior; el modo claro queda fuera del alcance. Pattern Waves debe usar la fuente TS-TW del registro oficial con silk, blanco sobre negro e interacción (cursor 50, fuerza 0.6).
+
 ## 0. Instrucciones prioritarias para agentes
 
 1. **Leer este archivo completo antes de actuar** y revisar el estado real del repositorio y la tarea solicitada.

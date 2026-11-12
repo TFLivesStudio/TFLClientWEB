@@ -17,7 +17,7 @@ const shots = [
   },
 ];
 export function Gallery() {
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(1);
   const dialog = useRef<HTMLDialogElement>(null);
   const shot = shots[index];
   useEffect(() => {

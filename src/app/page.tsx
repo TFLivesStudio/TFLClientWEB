@@ -1,17 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
+  Code2,
   ArrowRight,
   ArrowUpRight,
   Boxes,
   SlidersHorizontal,
   ShieldCheck,
   Layers3,
-  MoveUpRight,
   Sparkles,
   MousePointer2,
   Monitor,
-  Code2,
 } from "lucide-react";
 import { Ambient } from "@/components/ambient";
 import { Gallery } from "@/components/gallery";
@@ -25,21 +24,20 @@ export default function Home() {
         <div className="hero-content shell">
           <Link href="/selection" className="announcement">
             <span className="live-dot" />
-            CONOCE EL ECOSISTEMA TFL
+            TFL CLIENT / MINECRAFT JAVA
             <span className="announcement-divider" />
-            Launcher. Selection. Core.
+            Por TFLives
             <ArrowUpRight size={14} />
           </Link>
           <h1>
             Tu Minecraft.
             <br />
-            <span>Tu universo.</span>
-            <i className="hero-star">✦</i>
+            <span>Con carácter propio.</span>
           </h1>
           <p>
-            Más que abrir el juego. Un lugar para tus mundos,
-            <br className="desktop-break" /> tus instalaciones y tu próxima gran
-            aventura.
+            Un launcher que se adapta a tu forma de jugar.
+            <br className="desktop-break" /> Tus instalaciones. Tu estilo. Tu
+            siguiente mundo.
           </p>
           <div className="hero-actions">
             <DownloadCTA />
@@ -56,8 +54,10 @@ export default function Home() {
             <Gallery />
           </div>
         </div>
-        <div className="hero-coordinate left">TFL / NEXT WORLD</div>
-        <div className="hero-coordinate right">SCROLL TO EXPLORE ↓</div>
+        <div className="hero-coordinate left">EST. TFLIVES / JAVA EDITION</div>
+        <div className="hero-coordinate right">
+          DESCUBRE LO QUE HAY DENTRO ↓
+        </div>
       </section>
       <div className="principles shell">
         <span>
@@ -89,79 +89,40 @@ export default function Home() {
             <ArrowUpRight size={17} />
           </Link>
         </div>
-        <div className="feature-grid">
-          <article className="feature-card feature-main">
-            <span className="card-icon">
-              <Boxes />
-            </span>
-            <h3>
-              Cada mundo,
-              <br />
-              su propio espacio.
-            </h3>
-            <p>
-              Organiza instalaciones independientes. Mantén tus mods, shaders y
-              ajustes donde pertenecen.
-            </p>
-            <div className="instance-art" aria-hidden="true">
+        <div className="product-stories">
+          {[
+            {
+              n: "01",
+              icon: Boxes,
+              title: "Un lugar para cada mundo.",
+              text: "Instalaciones independientes, con sus propios mods, shaders y ajustes. Tu biblioteca de Minecraft, sin mezclarlo todo.",
+              detail: "ORGANIZACIÓN",
+            },
+            {
+              n: "02",
+              icon: SlidersHorizontal,
+              title: "Se nota que es tuyo.",
+              text: "Dos estilos de interfaz. Superficies, tipografías y acentos. Decide cómo se ve tu launcher y cuánto movimiento quieres.",
+              detail: "PERSONALIZACIÓN",
+            },
+            {
+              n: "03",
+              icon: ShieldCheck,
+              title: "Entra. A tu manera.",
+              text: "Inicia sesión con Microsoft dentro del launcher y prepara tu próxima instalación. La web nunca te pedirá tu contraseña.",
+              detail: "TU CUENTA, EN LA APP",
+            },
+          ].map(({ n, icon: Icon, title, text, detail }) => (
+            <article className="product-story" key={n}>
+              <span className="story-number">{n}</span>
               <div>
-                <span className="cube cube-blue" />
-                <i>INSTALACIONES</i>
-                <span className="art-line" />
-                <Boxes size={18} />
+                <span className="eyebrow">{detail}</span>
+                <h3>{title}</h3>
+                <p>{text}</p>
               </div>
-              <div>
-                <span className="cube cube-green" />
-                <i>MODS & SHADERS</i>
-                <span className="art-line" />
-                <Layers3 size={18} />
-              </div>
-              <div>
-                <span className="cube cube-purple" />
-                <i>TUS CONFIGURACIONES</i>
-                <span className="art-line" />
-                <SlidersHorizontal size={18} />
-              </div>
-            </div>
-            <span className="card-foot">
-              TU BIBLIOTECA, BIEN ORGANIZADA <MoveUpRight size={17} />
-            </span>
-          </article>
-          <article className="feature-card">
-            <span className="card-icon">
-              <SlidersHorizontal />
-            </span>
-            <div className="palette-art" aria-hidden="true">
-              <i />
-              <i />
-              <i />
-              <i />
-              <i />
-            </div>
-            <h3>Que se sienta tuyo.</h3>
-            <p>
-              Elige el estilo, la superficie y el color de acento. También
-              puedes reducir el movimiento y los efectos.
-            </p>
-            <span className="card-foot">TU ESTILO. TUS REGLAS.</span>
-          </article>
-          <article className="feature-card">
-            <span className="card-icon">
-              <ShieldCheck />
-            </span>
-            <div className="auth-art" aria-hidden="true">
-              <span />
-              <span />
-              <span />
-              <span />
-            </div>
-            <h3>Tu cuenta, en el launcher.</h3>
-            <p>
-              Inicia sesión con Microsoft dentro de TFL Client. Aquí solo
-              necesitas elegir por dónde empezar.
-            </p>
-            <span className="card-foot">SIN CONTRASEÑAS EN LA WEB</span>
-          </article>
+              <Icon size={38} strokeWidth={1} />
+            </article>
+          ))}
         </div>
       </section>
       <section className="selection-section shell">
@@ -177,7 +138,8 @@ export default function Home() {
             EL UNIVERSO TFL
           </span>
           <div className="selection-wordmark">
-            TFL<span>SELECTION</span>
+            <Image src="/images/tfl.svg" alt="TFL" width={100} height={80} />
+            <span>SELECTION</span>
           </div>
           <small>Arte ambiental del launcher</small>
         </div>
