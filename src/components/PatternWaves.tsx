@@ -674,7 +674,6 @@ const PatternWaves = ({
       })
     });
 
-    const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
 
     let width = 1;
     let height = 1;
@@ -775,14 +774,14 @@ const PatternWaves = ({
       last = now;
       if (!s) return;
 
-      const moving = !s.paused && !reducedMotion && s.speed !== 0;
+      const moving = !s.paused && s.speed !== 0;
       if (moving) time += dt * s.speed;
-      introClock = s.intro && !reducedMotion ? Math.min(1, introClock + dt / INTRO_SECONDS) : 1;
+      introClock = s.intro ? Math.min(1, introClock + dt / INTRO_SECONDS) : 1;
       const appear = 1 - Math.pow(1 - clamp(introClock / 0.75, 0, 1), 3);
       const rise = clamp((introClock - 0.1) / 0.9, 0, 1);
       const amp = rise * rise * (3 - 2 * rise);
 
-      const rippling = s.interactive && !reducedMotion && !!ripple && s.cursorStrength > 0;
+      const rippling = s.interactive && !!ripple && s.cursorStrength > 0;
       if (rippling && pointer.inside && !pointer.placed) {
         pointer.lastX = pointer.x;
         pointer.lastY = pointer.y;

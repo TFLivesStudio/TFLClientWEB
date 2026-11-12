@@ -50,11 +50,11 @@ test("all local pages render and downloads allow manual platform selection", asy
   await page.goto("/a-page-that-does-not-exist");
   await expect(page.locator("h1")).toContainText("Este mundo no existe");
 });
-test("mobile menu, reduced motion and layout", async ({ page }) => {
+test("mobile menu and layout keep animation despite OS motion preference", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  await expect(page.locator(".ambient canvas")).toHaveCount(0);
+  await expect(page.locator(".ambient canvas")).toBeVisible();
   await page.getByRole("button", { name: "Abrir menú" }).click();
   await expect(page.getByRole("navigation")).toBeVisible();
   await page

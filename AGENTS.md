@@ -20,6 +20,10 @@ Estado actual: implementación inicial en español con App Router, TypeScript, C
 
 El propietario solicita rediseño premium exclusivamente oscuro y autoriza trabajar y subir directamente a main. Se adopta negro, plata y azul TFL como acento. Esta dirección sustituye el fondo azul anterior; el modo claro queda fuera del alcance. Pattern Waves debe usar la fuente TS-TW del registro oficial con silk, blanco sobre negro e interacción (cursor 50, fuerza 0.6).
 
+## Regla permanente de movimiento — 12 de noviembre de 2026
+
+Por instrucción explícita del propietario, no implementar soporte de `prefers-reduced-motion` en ninguna página, componente o CSS. No ocultar, detener ni simplificar animaciones por esa preferencia del sistema. Esta regla se aplica también a dependencias y componentes de registro: revisar sus controles internos al incorporarlos o actualizarlos. No reintroducir este comportamiento sin una nueva instrucción explícita del propietario. Conservar las protecciones por ausencia de WebGL y las pausas cuando la pestaña o el componente no sean visibles: estas no dependen de preferencias de movimiento.
+
 ## 0. Instrucciones prioritarias para agentes
 
 1. **Leer este archivo completo antes de actuar** y revisar el estado real del repositorio y la tarea solicitada.
@@ -141,12 +145,12 @@ Centralizar colores mediante CSS custom properties/Tailwind; no dispersar hex re
 - Secciones: aparición discreta al desplazarse.
 - Hero: iluminación ambiental y profundidad, sin autoplay de vídeos pesados.
 - Preferir CSS para microinteracciones; Motion para transiciones donde aporte valor.
-- Respetar `prefers-reduced-motion`, rendimiento móvil y accesibilidad.
+- Mantener rendimiento móvil y accesibilidad; aplicar la regla de animación vigente indicada abajo.
 - No usar WebGL/canvas intensivo por defecto, neones excesivos, scroll bloqueado ni movimientos constantes.
 
 ### 3.6 Responsive y accesibilidad
 
-La versión móvil debe **reorganizar** el contenido, no reducirlo a escala. Header compacto y accesible, captura del hero legible, CTA visible, tarjetas apiladas, sin overflow horizontal. Probar teclado, lector de pantalla, foco visible, contraste, zoom, tamaños táctiles y comportamiento con movimiento reducido.
+La versión móvil debe **reorganizar** el contenido, no reducirlo a escala. Header compacto y accesible, captura del hero legible, CTA visible, tarjetas apiladas, sin overflow horizontal. Probar teclado, lector de pantalla, foco visible, contraste, zoom, tamaños táctiles y comportamiento de las animaciones.
 
 ## 4. Repositorio y trabajo local [CONFIRMADO]
 
@@ -508,7 +512,7 @@ Objetivos aspiracionales (NO mediciones actuales):
 - Optimizar imágenes (WebP/AVIF, responsive, lazy donde corresponda), preload solo de críticos.
 - Evitar vídeos automáticos pesados, fondos de partículas, JavaScript masivo y dependencias excesivas.
 - Fuentes optimizadas, SSR/SSG cuando corresponda, Server Components como base.
-- Animaciones respetan `prefers-reduced-motion`.
+- Animaciones independientes de las preferencias de movimiento del sistema.
 
 ### Accesibilidad
 
@@ -635,7 +639,7 @@ Es un esquema orientativo; ajustar a Next.js y `next-intl` reales y no generar c
 | Noticias | Separación editorial/changelog, fechas reales, drafts invisibles |
 | Ayuda | Guías, búsqueda/FAQ funcional, sin pedir login Minecraft web |
 | Idiomas | ES/EN cuando alcance final se confirme; rutas y metadata correctas |
-| Accesibilidad | Foco, teclado, semántica y movimiento reducido |
+| Accesibilidad | Foco, teclado y semántica |
 | Seguridad | Secretos fuera de repo/cliente; validaciones y límites |
 | SEO | Sitemap, canonical, OG, hreflang y previews no indexadas |
 | Hosting | Build y preview comprobados; producción solo autorizada |

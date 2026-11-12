@@ -1,6 +1,6 @@
 # Validación
 
-Las pruebas unitarias validan releases estables, rechazo de borradores/prereleases, URLs ajenas, plataformas, tamaños inválidos y errores de red. Las pruebas Playwright ejercitan rutas, descarga por plataforma, FAQ, galería, diálogo, teclado, navegación móvil, ausencia de desbordamiento y movimiento reducido.
+Las pruebas unitarias validan releases estables, rechazo de borradores/prereleases, URLs ajenas, plataformas, tamaños inválidos y errores de red. Las pruebas Playwright ejercitan rutas, descarga por plataforma, FAQ, galería, diálogo, teclado, navegación móvil, ausencia de desbordamiento y animación visible incluso cuando el sistema solicita reducir movimiento.
 
 Las capturas del launcher son vistas del frontend con un puente nativo de prueba, no pruebas de la aplicación de escritorio. No se ha ejecutado Minecraft ni capturado TFL Core en partida.
 
