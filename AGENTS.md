@@ -7,7 +7,14 @@
 > **Repositorio:** https://github.com/TFLivesStudio/TFLClientWEB  
 > **Fecha de consolidación:** 9 de noviembre de 2026  
 > **Idioma de trabajo:** español  
-> **Etapa:** planificación y definición; **NO se ha autorizado todavía desarrollar la aplicación.**
+> **Etapa actual:** implementación autorizada el 10 de noviembre de 2026. Las decisiones históricas de planificación se conservan debajo.
+
+
+## Actualización de autorización — 10 de noviembre de 2026
+
+El propietario autorizó explícitamente crear la web en Next.js para Vercel, con fondo React Pattern Waves, iconos Lucide e imágenes del producto. Esta instrucción posterior sustituye las restricciones históricas de «no programar» para el trabajo solicitado. El resto del documento conserva su carácter de especificación y sus estados históricos; no implica que todo el roadmap esté implementado.
+
+Estado actual: implementación inicial en español con App Router, TypeScript, CSS con tokens, Manrope/Inter locales, Lucide y Pattern Waves. Se usa npm y package-lock.json para reproducibilidad; pnpm era una propuesta. Inicio, características, Selection/Core, descargas, novedades, ayuda, comunidad y créditos tienen rutas propias. No hay CMS ni catálogo Selection verificado, ni despliegue realizado. Core se presenta como alpha. No fabricar capturas in-game; las capturas del launcher muestran el frontend oficial con puente nativo simulado y sin cuenta. Véase README.md para comandos y límites.
 
 ## 0. Instrucciones prioritarias para agentes
 
