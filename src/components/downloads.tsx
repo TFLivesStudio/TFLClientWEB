@@ -1,14 +1,11 @@
 "use client";
 import { useState, useSyncExternalStore } from "react";
+import { Download, ArrowUpRight, CircleAlert } from "lucide-react";
 import {
-  Download,
-  Monitor,
-  Apple,
-  Terminal,
-  ArrowUpRight,
-  CircleAlert,
-} from "lucide-react";
-import { platformAssets, type Release } from "@/lib/releases";
+  assetDetails,
+  platformAssets,
+  type Release,
+} from "@/lib/release-model";
 const subscribe = () => () => {};
 const detectPlatform = () => {
   const ua = navigator.userAgent;
@@ -18,18 +15,21 @@ const detectPlatform = () => {
       ? "Linux"
       : "Windows";
 };
-const systems = [
-  { name: "Windows", Icon: Monitor },
-  { name: "macOS", Icon: Apple },
-  { name: "Linux", Icon: Terminal },
-];
+import { PlatformIcon } from "./platform-icon";
+import Link from "next/link";
+import { releasePath } from "@/lib/release-model";
+const systems = [{ name: "Windows" }, { name: "macOS" }, { name: "Linux" }];
 export function Downloads({
   release,
   status,
+  beta,
 }: {
   release: Release | null;
   status: string;
+  beta?: Release | null;
 }) {
+  const [channel, setChannel] = useState("stable");
+  const selected = channel === "beta" ? beta : release;
   const [chosen, setPlatform] = useState<string | null>(null);
   const detected = useSyncExternalStore(
     subscribe,
@@ -37,21 +37,35 @@ export function Downloads({
     () => "Windows",
   );
   const platform = chosen ?? detected;
-  const assets = platformAssets(release?.assets ?? [], platform);
+  const assets = platformAssets(selected?.assets ?? [], platform);
   return (
     <div className="download-panel">
+      <div className="filter-bar" role="group" aria-label="Canal de descarga">
+        <button
+          aria-pressed={channel === "stable"}
+          onClick={() => setChannel("stable")}
+        >
+          Estable · recomendada
+        </button>
+        <button
+          aria-pressed={channel === "beta"}
+          onClick={() => setChannel("beta")}
+        >
+          Beta · pruebas
+        </button>
+      </div>
       <div
         className="system-tabs"
         role="group"
         aria-label="Elige tu sistema operativo"
       >
-        {systems.map(({ name, Icon }) => (
+        {systems.map(({ name }) => (
           <button
             key={name}
             onClick={() => setPlatform(name)}
             aria-pressed={platform === name}
           >
-            <Icon size={22} />
+            <PlatformIcon name={name as "Windows" | "macOS" | "Linux"} />
             {name}
           </button>
         ))}
@@ -60,37 +74,53 @@ export function Downloads({
         <span className="eyebrow">
           TFL CLIENT PARA {platform.toUpperCase()}
         </span>
-        <h2>Nos vemos en el launcher.</h2>
-        {release ? (
+        <h2>Descarga para {platform}</h2>
+        {selected ? (
           <p>
-            {release.name} · Publicada el{" "}
+            {selected.tag} · Publicada el{" "}
             {new Intl.DateTimeFormat("es", {
               dateStyle: "medium",
               timeZone: "UTC",
-            }).format(new Date(release.date))}
+            }).format(new Date(selected.date))}
           </p>
         ) : (
           <p>
             <CircleAlert size={17} />
-            {status === "empty"
-              ? "No hay una versión estable publicada disponible."
-              : "No pudimos consultar la versión estable en este momento."}
+            {status === "empty" || status === "ok"
+              ? "No hay una publicación disponible en este canal."
+              : "No pudimos consultar las publicaciones en este momento."}
           </p>
         )}
         {assets.length ? (
           assets.map((a) => (
-            <a className="button" key={a.url} href={a.url}>
+            <a className="download-file" key={a.url} href={a.url}>
               <Download size={18} />
-              {a.name}
-              <small>{(a.size / 1024 / 1024).toFixed(1)} MB</small>
+              <span>
+                {a.name}
+                <small>
+                  {assetDetails(a.name)} · {(a.size / 1024 / 1024).toFixed(1)}{" "}
+                  MB
+                </small>
+              </span>
             </a>
           ))
         ) : (
           <div className="notice">
-            {release
+            {selected
               ? `Esta versión no incluye instalador para ${platform}.`
               : "Puedes revisar las publicaciones oficiales y sus requisitos directamente en GitHub."}
           </div>
+        )}
+        {selected && (
+          <Link className="text-link" href={releasePath(selected.tag)}>
+            Leer notas de {selected.tag} →
+          </Link>
+        )}
+        {channel === "beta" && (
+          <p className="notice">
+            Una beta puede incluir funciones aún en revisión. Haz una copia de
+            tus instalaciones antes de probarla.
+          </p>
         )}
         <a
           href="https://github.com/TFLivesStudio/TFLClient/releases"

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowUpRight, ArrowRight, Download, Code2, Plus } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Download, Plus } from "lucide-react";
+import { PlatformIcon } from "./platform-icon";
 import { Brand } from "./header";
 export function DownloadCTA({
   label = "Descargar TFL Client",
@@ -57,7 +58,7 @@ export function PageTitle({
 export const questions = [
   [
     "¿Qué es TFL Client?",
-    "Es el launcher de Minecraft de TFLives: el lugar desde el que gestionas tus instalaciones y accedes al ecosistema TFL.",
+    "Es el launcher de Minecraft de TFLives: el lugar desde el que gestionas versiones, mods y configuraciones de Minecraft Java.",
   ],
   [
     "¿Necesito una cuenta de Minecraft?",
@@ -94,16 +95,14 @@ export function FAQ() {
 export function EndCTA() {
   return (
     <section className="end-cta shell">
-      <span className="eyebrow">TU PRÓXIMA PARTIDA EMPIEZA AQUÍ</span>
-      <h2>
-        Hazlo tuyo.
-        <br />
-        <span>Juega con TFL.</span>
-      </h2>
-      <p>Un launcher. Tu mundo de posibilidades.</p>
+      <h2>Instaladores y notas de versión</h2>
+      <p>
+        Elige el archivo de tu plataforma y revisa los cambios publicados antes
+        de actualizar.
+      </p>
       <DownloadCTA />
-      <Link href="/ayuda" className="text-link">
-        ¿Primera vez? Te ayudamos <ArrowRight size={16} />
+      <Link className="text-link" href="/ayuda">
+        Consultar la documentación <ArrowRight size={16} />
       </Link>
     </section>
   );
@@ -117,7 +116,7 @@ export function Footer() {
           <p>
             Hecho por TFLives.
             <br />
-            Para quienes viven Minecraft.
+            Launcher y proyectos de Minecraft Java.
           </p>
         </div>
         <div>
@@ -135,7 +134,7 @@ export function Footer() {
         <div>
           <span>CÓDIGO ABIERTO</span>
           <a href="https://github.com/TFLivesStudio/TFLClient">
-            <Code2 size={15} /> Launcher <ArrowUpRight size={14} />
+            <PlatformIcon name="GitHub" /> Launcher <ArrowUpRight size={14} />
           </a>
           <a href="https://github.com/TFLivesStudio/TFLClientMOD">
             TFL Core <ArrowUpRight size={14} />

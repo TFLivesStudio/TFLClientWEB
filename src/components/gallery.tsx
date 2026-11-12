@@ -5,13 +5,13 @@ import { Expand, X, ArrowLeft, ArrowRight } from "lucide-react";
 const shots = [
   {
     src: "/images/launcher-welcome.webp",
-    label: "Bienvenido a tu próximo mundo",
+    label: "Inicio del launcher · instalación sin perfiles",
     tag: "EL LAUNCHER",
     alt: "Interfaz oficial del launcher TFL Client, pantalla de bienvenida",
   },
   {
     src: "/images/launcher-settings.webp",
-    label: "Tu espacio, a tu manera",
+    label: "Panel de apariencia y configuración",
     tag: "PERSONALIZACIÓN",
     alt: "Panel de apariencia de la interfaz oficial de TFL Client",
   },

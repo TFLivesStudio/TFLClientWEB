@@ -7,16 +7,27 @@ import "@fontsource/inter/latin-400.css";
 import "@fontsource/inter/latin-500.css";
 import "@fontsource/inter/latin-600.css";
 import "./globals.css";
-import "./premium.css";
+
 import { Header } from "@/components/header";
 import { Footer } from "@/components/ui";
 export const metadata: Metadata = {
+  metadataBase: new URL("https://launcher.tflives.com"),
+  openGraph: {
+    images: [
+      {
+        url: "/images/launcher-settings.webp",
+        width: 1440,
+        height: 900,
+        alt: "Configuración de TFL Client",
+      },
+    ],
+  },
   title: {
-    default: "TFL Client — Tu Minecraft. Tu universo.",
-    template: "%s · TFL Client",
+    default: "TFL Client | Launcher de Minecraft Java",
+    template: "%s | TFL Client",
   },
   description:
-    "Descubre TFL Client, el launcher de Minecraft de TFLives. Tus instalaciones, TFL Selection y TFL Core, en un mismo ecosistema.",
+    "Instala Minecraft, organiza tus versiones y gestiona tus mods desde un mismo launcher.",
   robots: {
     index: process.env.VERCEL_ENV === "production",
     follow: process.env.VERCEL_ENV === "production",

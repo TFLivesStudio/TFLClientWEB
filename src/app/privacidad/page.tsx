@@ -1,5 +1,10 @@
 import { PageTitle } from "@/components/ui";
-export const metadata = { title: "Privacidad y créditos" };
+import { seo } from "@/lib/seo";
+export const metadata = seo(
+  "Privacidad y créditos",
+  "Información de la web, servicios externos, recursos y marcas.",
+  "/privacidad",
+);
 export default function Privacy() {
   return (
     <>
@@ -11,10 +16,17 @@ export default function Privacy() {
       <article className="shell prose section">
         <h2>Una web informativa</h2>
         <p>
-          Esta versión no incluye cuentas, formularios, analítica ni cookies
-          propias. La autenticación de Minecraft se realiza dentro del launcher.
-          El proveedor de alojamiento puede procesar datos técnicos de las
-          solicitudes para servir y proteger el sitio.
+          El código de esta web no incorpora cuentas de usuarios, formularios ni
+          bibliotecas de analítica. El sitio se aloja en Vercel, cuyo
+          tratamiento de datos técnicos se describe en su política de
+          privacidad. La autenticación de Minecraft se realiza dentro del
+          launcher. El proveedor de alojamiento puede procesar datos técnicos de
+          las solicitudes para servir y proteger el sitio.
+        </p>
+        <p>
+          <a href="https://vercel.com/legal/privacy-policy">
+            Política de privacidad de Vercel
+          </a>
         </p>
         <h2>Enlaces externos</h2>
         <p>
@@ -33,7 +45,13 @@ export default function Privacy() {
           El fondo Pattern Waves es de David Haz / React Bits, bajo MIT +
           Commons Clause.{" "}
           <a href="/licenses/react-bits.txt">Consultar licencia</a>. Los iconos
-          son de Lucide y las tipografías Manrope e Inter se sirven localmente.
+          generales son de Lucide; las marcas de plataformas proceden de Simple
+          Icons (CC0, sujetos a las directrices de cada marca; no implica
+          patrocinio).{" "}
+          <a href="/licenses/simple-icons.txt">
+            Licencia de los iconos de marca
+          </a>
+          . Las tipografías Manrope e Inter se sirven localmente.
         </p>
         <h2>Marcas</h2>
         <p>

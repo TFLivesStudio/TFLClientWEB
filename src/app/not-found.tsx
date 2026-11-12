@@ -5,8 +5,8 @@ export default function NotFound() {
     <>
       <PageTitle
         label="404 / FUERA DEL MAPA"
-        title="Este mundo no existe."
-        description="La página que buscas no está aquí. Volvamos al punto de aparición."
+        title="Página no encontrada"
+        description="La dirección no corresponde a una página publicada. Consulta la navegación o vuelve al inicio."
       />
       <div className="shell section">
         <Link href="/" className="button">

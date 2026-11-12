@@ -1,223 +1,183 @@
-import Image from "next/image";
 import Link from "next/link";
-import {
-  Code2,
-  ArrowRight,
-  ArrowUpRight,
-  Boxes,
-  SlidersHorizontal,
-  ShieldCheck,
-  Layers3,
-  Sparkles,
-  MousePointer2,
-  Monitor,
-} from "lucide-react";
+import Image from "next/image";
 import { Ambient } from "@/components/ambient";
 import { Gallery } from "@/components/gallery";
-import { DownloadCTA, SectionTitle, FAQ, EndCTA } from "@/components/ui";
-export default function Home() {
+import { DownloadCTA, FAQ } from "@/components/ui";
+import { getReleases, releasePath } from "@/lib/releases";
+import { seo } from "@/lib/seo";
+export const metadata = {
+  ...seo(
+    "TFL Client | Launcher de Minecraft Java",
+    "Instala Minecraft, organiza tus versiones y gestiona tus mods desde un mismo launcher.",
+    "/",
+  ),
+  title: { absolute: "TFL Client | Launcher de Minecraft Java" },
+};
+export default async function Home() {
+  const { releases } = await getReleases();
+  const stable = releases.find((r) => r.channel === "stable");
   return (
     <>
       <section className="hero">
         <Ambient />
-        <div className="hero-halo" />
-        <div className="hero-content shell">
-          <Link href="/selection" className="announcement">
-            <span className="live-dot" />
-            TFL CLIENT / MINECRAFT JAVA
-            <span className="announcement-divider" />
-            Por TFLives
-            <ArrowUpRight size={14} />
-          </Link>
-          <h1>
-            Tu Minecraft.
-            <br />
-            <span>Con carácter propio.</span>
-          </h1>
+        <div className="shell hero-content">
+          <span className="eyebrow">LAUNCHER DE MINECRAFT JAVA · TFLIVES</span>
+          <h1>TFL Client</h1>
           <p>
-            Un launcher que se adapta a tu forma de jugar.
-            <br className="desktop-break" /> Tus instalaciones. Tu estilo. Tu
-            siguiente mundo.
+            Instala Minecraft, organiza tus versiones y gestiona tus mods desde
+            un mismo launcher.
           </p>
           <div className="hero-actions">
             <DownloadCTA />
             <Link href="/caracteristicas" className="button secondary">
-              Descubre el launcher
-              <ArrowRight size={17} />
+              Ver características →
             </Link>
           </div>
-          <div className="platform-note">
-            <Monitor size={13} /> Windows, macOS y Linux <span>·</span>{" "}
-            Disponibilidad según versión
-          </div>
+          <p className="platform-note">
+            Windows, macOS y Linux · Instaladores según publicación
+          </p>
           <div className="hero-gallery">
             <Gallery />
           </div>
         </div>
-        <div className="hero-coordinate left">EST. TFLIVES / JAVA EDITION</div>
-        <div className="hero-coordinate right">
-          DESCUBRE LO QUE HAY DENTRO ↓
-        </div>
       </section>
-      <div className="principles shell">
-        <span>
-          <Boxes size={19} />
-          Tus instalaciones, en orden
-        </span>
-        <span>
-          <SlidersHorizontal size={19} />
-          Una experiencia personal
-        </span>
-        <span>
-          <Code2 size={19} />
-          Código abierto
-        </span>
-        <span>
-          <ShieldCheck size={19} />
-          Autenticación Microsoft
-        </span>
-      </div>
-      <section className="section shell" id="launcher">
-        <div className="heading-row">
-          <SectionTitle
-            label="TODO EMPIEZA EN EL LAUNCHER"
-            title="Menos vueltas. Más Minecraft."
-            description="De la primera instalación al próximo mundo. Todo tiene su lugar."
-          />
-          <Link href="/caracteristicas" className="text-link">
-            Explorar características
-            <ArrowUpRight size={17} />
-          </Link>
+      <section className="shell section overview">
+        <div>
+          <span className="eyebrow">QUÉ HACE TFL CLIENT</span>
+          <h2>Una biblioteca para tus instalaciones de Minecraft</h2>
         </div>
-        <div className="product-stories">
-          {[
-            {
-              n: "01",
-              icon: Boxes,
-              title: "Un lugar para cada mundo.",
-              text: "Instalaciones independientes, con sus propios mods, shaders y ajustes. Tu biblioteca de Minecraft, sin mezclarlo todo.",
-              detail: "ORGANIZACIÓN",
-            },
-            {
-              n: "02",
-              icon: SlidersHorizontal,
-              title: "Se nota que es tuyo.",
-              text: "Dos estilos de interfaz. Superficies, tipografías y acentos. Decide cómo se ve tu launcher y cuánto movimiento quieres.",
-              detail: "PERSONALIZACIÓN",
-            },
-            {
-              n: "03",
-              icon: ShieldCheck,
-              title: "Entra. A tu manera.",
-              text: "Inicia sesión con Microsoft dentro del launcher y prepara tu próxima instalación. La web nunca te pedirá tu contraseña.",
-              detail: "TU CUENTA, EN LA APP",
-            },
-          ].map(({ n, icon: Icon, title, text, detail }) => (
-            <article className="product-story" key={n}>
-              <span className="story-number">{n}</span>
-              <div>
-                <span className="eyebrow">{detail}</span>
-                <h3>{title}</h3>
-                <p>{text}</p>
-              </div>
-              <Icon size={38} strokeWidth={1} />
-            </article>
-          ))}
-        </div>
-      </section>
-      <section className="selection-section shell">
-        <div className="selection-image">
-          <Image
-            src="/images/forest.webp"
-            alt="Bosque nocturno, arte ambiental incluido en el launcher TFL Client"
-            fill
-            sizes="(max-width: 760px) 100vw, 55vw"
-          />
-          <span className="image-overline">
-            <span className="live-dot" />
-            EL UNIVERSO TFL
-          </span>
-          <div className="selection-wordmark">
-            <Image src="/images/tfl.svg" alt="TFL" width={100} height={80} />
-            <span>SELECTION</span>
-          </div>
-          <small>Arte ambiental del launcher</small>
-        </div>
-        <div className="selection-copy">
-          <span className="eyebrow">
-            <span />
-            MÁS ALLÁ DEL LAUNCHER
-          </span>
-          <h2>
-            Una selección.
-            <br />
-            Otra forma de jugar.
-          </h2>
+        <div>
           <p>
-            TFL Selection reúne la experiencia curada de TFLives. TFL Core lleva
-            la personalización al interior del juego.
+            Crea instalaciones separadas para cada versión o combinación de
+            mods. Desde el launcher puedes gestionar Java, contenido y ajustes
+            por instancia, sin intercambiar archivos entre perfiles.
           </p>
-          <ul>
-            <li>
-              <Sparkles size={17} />
-              Una distribución definida por el equipo
-            </li>
-            <li>
-              <MousePointer2 size={17} />
-              HUD y herramientas de TFL Core
-            </li>
-            <li>
-              <Layers3 size={17} />
-              Proyectos que crecen contigo
-            </li>
-          </ul>
-          <Link href="/selection" className="button secondary">
-            Conoce Selection & Core
-            <ArrowUpRight size={17} />
+          <p>
+            El inicio de sesión con Microsoft se realiza dentro de la
+            aplicación. Necesitas acceso a Minecraft Java Edition para jugar con
+            tu cuenta.
+          </p>
+          <Link className="text-link" href="/caracteristicas">
+            Funciones y compatibilidad →
           </Link>
-          <small>TFL Core está en alpha experimental.</small>
         </div>
       </section>
-      <section className="section shell">
-        <SectionTitle
-          label="DEL ESCRITORIO A TU MUNDO"
-          title="Tu próxima partida, en tres pasos."
+      <section className="shell section product-split">
+        <div className="product-description">
+          <span className="eyebrow">PERSONALIZACIÓN DEL LAUNCHER</span>
+          <h2>Estilo, superficie y densidad de la interfaz</h2>
+          <p>
+            Elige entre Modern y Pixel, cambia el color de acento, la tipografía
+            y la densidad. Los ajustes visuales del launcher son independientes
+            de los gráficos de Minecraft.
+          </p>
+          <Link href="/ayuda/instalaciones">Crear una instalación →</Link>
+        </div>
+        <Image
+          src="/images/launcher-settings.webp"
+          alt="Panel de apariencia del frontend oficial de TFL Client"
+          width={1440}
+          height={900}
+          sizes="(max-width:760px) 100vw, 60vw"
         />
-        <div className="steps">
-          {[
-            [
-              "01",
-              "Elige tu plataforma",
-              "Consulta la versión publicada para tu sistema y descarga el launcher.",
-            ],
-            [
-              "02",
-              "Hazlo tuyo",
-              "Inicia sesión dentro de TFL Client y prepara tu instalación de Minecraft.",
-            ],
-            [
-              "03",
-              "Entra en tu mundo",
-              "Abre tu instalación desde el launcher. La siguiente aventura la eliges tú.",
-            ],
-          ].map(([n, t, d]) => (
-            <article key={n}>
-              <span className="step-number">{n}</span>
-              <h3>{t}</h3>
-              <p>{d}</p>
-            </article>
-          ))}
+      </section>
+      <section className="shell section selection-overview">
+        <span className="eyebrow">DISTRIBUCIÓN OFICIAL</span>
+        <h2>TFL Selection: mods gestionados por TFLives</h2>
+        <p>
+          Selection se instala desde el launcher y utiliza un catálogo firmado.
+          Su conjunto de mods lo publica el equipo; una instalación normal te
+          permite gestionar tu propio contenido.
+        </p>
+        <div className="comparison-table">
+          <div>
+            <h3>Instalación normal</h3>
+            <p>
+              Eliges la versión, el loader y los mods que quieres mantener.
+              Revisa tú la compatibilidad del contenido.
+            </p>
+          </div>
+          <div>
+            <h3>TFL Selection</h3>
+            <p>
+              Eliges un target y un canal publicado. TFLives define la
+              composición y el launcher gestiona sus archivos oficiales.
+            </p>
+          </div>
+        </div>
+        <Link className="button secondary" href="/selection">
+          Consultar versiones y requisitos de Selection →
+        </Link>
+      </section>
+      <section className="shell section release-home">
+        <div>
+          <span className="eyebrow">PUBLICACIONES OFICIALES</span>
+          <h2>Última versión estable</h2>
+          <p>
+            Las betas se muestran por separado en el historial y en Descargas.
+          </p>
+        </div>
+        <div>
+          {stable ? (
+            <>
+              <span className="badge stable">Estable</span>
+              <h3>
+                <Link href={releasePath(stable.tag)}>{stable.tag}</Link>
+              </h3>
+              <p>
+                {stable.body
+                  ? stable.body.slice(0, 220) +
+                    (stable.body.length > 220 ? "…" : "")
+                  : "La publicación no incluye notas."}
+              </p>
+              <Link className="text-link" href={releasePath(stable.tag)}>
+                Notas y archivos →
+              </Link>
+            </>
+          ) : (
+            <p>
+              No pudimos consultar la versión estable.{" "}
+              <a href="https://github.com/TFLivesStudio/TFLClient/releases">
+                Ver releases oficiales
+              </a>
+            </p>
+          )}
+          <Link className="text-link" href="/novedades">
+            Historial completo →
+          </Link>
         </div>
       </section>
-      <section className="faq-section section shell">
-        <SectionTitle
-          label="SIN QUEDARTE CON DUDAS"
-          title="Antes de empezar."
-          description="Las respuestas rápidas. El resto, en nuestro centro de ayuda."
-        />
+      <section className="shell section">
+        <h2>Primeros pasos</h2>
+        <ol className="steps">
+          <li>
+            <h3>Descarga el instalador</h3>
+            <p>Selecciona tu sistema, arquitectura y canal en Descargas.</p>
+          </li>
+          <li>
+            <h3>Añade tu cuenta</h3>
+            <p>
+              Completa el inicio de sesión con Microsoft dentro de TFL Client.
+            </p>
+          </li>
+          <li>
+            <h3>Prepara una instalación</h3>
+            <p>
+              Crea una instancia normal o elige una publicación de Selection.
+            </p>
+          </li>
+        </ol>
+        <Link className="text-link" href="/ayuda">
+          Guías de instalación y ayuda →
+        </Link>
+      </section>
+      <section className="shell section faq-section">
+        <div>
+          <span className="eyebrow">ANTES DE DESCARGAR</span>
+          <h2>Preguntas frecuentes</h2>
+        </div>
         <FAQ />
       </section>
-      <EndCTA />
     </>
   );
 }
