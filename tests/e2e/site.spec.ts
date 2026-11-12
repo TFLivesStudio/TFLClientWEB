@@ -50,15 +50,11 @@ test("all local pages render and downloads allow manual platform selection", asy
   await page.goto("/a-page-that-does-not-exist");
   await expect(page.locator("h1")).toContainText("Este mundo no existe");
 });
-test("mobile menu and layout retain a static background for reduced motion", async ({
-  page,
-}) => {
+test("mobile menu and layout keep animation despite OS motion preference", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  await expect(
-    page.locator('.ambient canvas[data-renderer="canvas2d"]'),
-  ).toBeVisible();
+  await expect(page.locator(".ambient canvas")).toBeVisible();
   await page.getByRole("button", { name: "Abrir menú" }).click();
   await expect(page.getByRole("navigation")).toBeVisible();
   await page
@@ -110,48 +106,7 @@ test("devices without WebGL retain the page and navigation", async ({
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
     "Tu Minecraft.",
   );
-  const canvas = page.locator('canvas[data-renderer="canvas2d"]');
-  await expect(canvas).toBeVisible();
-  const before = await canvas.evaluate((c: HTMLCanvasElement) => c.toDataURL());
-  await expect
-    .poll(() => canvas.evaluate((c: HTMLCanvasElement) => c.toDataURL()))
-    .not.toBe(before);
   await page.getByRole("link", { name: "Descubre el launcher" }).click();
   await expect(page).toHaveURL("/caracteristicas");
   expect(errors).toEqual([]);
-});
-
-test("WebGL1-only device gets an animated fallback and reduced motion keeps it static", async ({
-  page,
-}) => {
-  await page.addInitScript(() => {
-    const original = HTMLCanvasElement.prototype.getContext;
-    HTMLCanvasElement.prototype.getContext = function (
-      this: HTMLCanvasElement,
-      type: string,
-      ...args: unknown[]
-    ) {
-      return type === "webgl2"
-        ? null
-        : Reflect.apply(original, this, [type, ...args]);
-    } as typeof original;
-  });
-  await page.goto("/");
-  const canvas = page.locator('canvas[data-renderer="canvas2d"]');
-  await expect(canvas).toBeVisible();
-  const data = () => canvas.evaluate((c: HTMLCanvasElement) => c.toDataURL());
-  const before = await data();
-  await expect.poll(data).not.toBe(before);
-  await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.waitForTimeout(200);
-  const still = await data();
-  await page.waitForTimeout(250);
-  expect(await data()).toBe(still);
-});
-
-test('lost GPU context switches to the animated Canvas 2D renderer',async({page})=>{
- await page.goto('/');const gpu=page.locator('.silk-gpu canvas');await expect(gpu).toBeVisible();
- await gpu.dispatchEvent('webglcontextlost');
- const fallback=page.locator('canvas[data-renderer="canvas2d"]');await expect(fallback).toBeVisible();
- const before=await fallback.evaluate((c:HTMLCanvasElement)=>c.toDataURL());await expect.poll(()=>fallback.evaluate((c:HTMLCanvasElement)=>c.toDataURL())).not.toBe(before);
 });

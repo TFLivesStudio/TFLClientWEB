@@ -1,6 +1,6 @@
 # TFL Client Web
 
-Web de TFL Client en Next.js App Router y TypeScript. Dirección visual oscura en negro y plata, con azul TFL como acento, Manrope/Inter locales, iconos Lucide y fondo Pattern Waves de React Bits. Interfaz en español, responsive con preferencias de movimiento y alternativa gráfica para equipos sin WebGL2.
+Web de TFL Client en Next.js App Router y TypeScript. Dirección visual oscura en negro y plata, con azul TFL como acento, Manrope/Inter locales, iconos Lucide y fondo Pattern Waves de React Bits. Interfaz en español, responsive y sin reducción de movimiento por preferencias del sistema.
 
 ## Desarrollo
 
@@ -40,7 +40,7 @@ Las rutas de descargas y novedades consultan la última release estable pública
 - Capturas: frontend Svelte oficial del mismo commit, renderizado en Chromium a 1440×900 con un puente Tauri de pruebas que entrega ajustes y colecciones vacías. Sin cuentas ni instalaciones ficticias. No validan el ejecutable, autenticación ni lanzamiento de Minecraft. La configuración azul es una preferencia del frontend.
 - No había capturas oficiales in-game de TFL Core en el repositorio inspeccionado. Se evita reemplazarlas por imágenes inventadas. Se pueden añadir capturas reales a la galería cuando estén disponibles.
 - TFL Core: documentación de `TFLivesStudio/TFLClientMOD`, commit `caadad2c9681364b811edc61ff39d5c237429262`; se presenta explícitamente como alpha experimental sin validación en partida.
-- El fondo React Bits conserva su licencia en `public/licenses/react-bits.txt`; la variante TS-TW se importa exactamente desde el registro oficial. Ambient comprueba WebGL2 y mantiene una alternativa Canvas 2D; Pattern Waves informa de su primer frame y de pérdidas de contexto. Si el dispositivo no lo soporta, está fuera de la sección visible  no se fuerza la animación. También se desmonta al ocultar la pestaña.
+- El fondo React Bits conserva su licencia en `public/licenses/react-bits.txt`; la variante TS-TW se importa exactamente desde el registro oficial. La comprobación de soporte WebGL está en el contenedor Ambient, y la fuente se adapta para no consultar preferencias de movimiento. Si el dispositivo no lo soporta, está fuera de la sección visible  no se fuerza la animación. También se desmonta al ocultar la pestaña.
 
 Los recursos oficiales se usan con la autorización del propietario para este sitio. Deben conservarse las licencias de sus fuentes al distribuirlos. Las tipografías de Fontsource conservan sus licencias OFL en sus paquetes; Lucide usa ISC. No hay imágenes de LabyMod ni copias de su interfaz.
 
@@ -50,10 +50,6 @@ Sitio funcional inicial. No incluye CMS, artículos inventados, catálogo Select
 
 ## Rediseño oscuro
 
-La fuente de `src/components/PatternWaves.tsx` se basa en `https://reactbits.dev/r/PatternWaves-TS-TW.json` consultado el 12 de noviembre de 2026, con notificaciones de disponibilidad y pérdida de contexto para mantener el fondo alternativo. La preferencia de movimiento se gestiona en Ambient. Dependencia declarada: `ogl@^1.0.11`, instalada como 1.0.11. Tailwind se compila mediante `@tailwindcss/postcss`. Configuración: silk, blanco sobre negro, fade edges, interactive, cursorSize 50 y cursorStrength 0.6. El contenedor tiene 600 px de alto; la opacidad de la capa decorativa preserva la legibilidad.
+La fuente de `src/components/PatternWaves.tsx` se basa en `https://reactbits.dev/r/PatternWaves-TS-TW.json` consultado el 12 de noviembre de 2026, con los controles de movimiento reducido eliminados por instrucción del propietario. Dependencia declarada: `ogl@^1.0.11`, instalada como 1.0.11. Tailwind se compila mediante `@tailwindcss/postcss`. Configuración: silk, blanco sobre negro, fade edges, interactive, cursorSize 50 y cursorStrength 0.6. El contenedor tiene 600 px de alto; la opacidad de la capa decorativa preserva la legibilidad.
 
 `premium.css` contiene la dirección visual oscura compartida. Inicio usa una composición editorial, el símbolo oficial y una galería con la vista de personalización como primera imagen. No se ha implementado modo claro.
-
-## Compatibilidad del fondo (decisión vigente)
-
-Se restaura el respeto de movimiento reducido: el fondo se conserva estático. Pattern Waves requiere WebGL2, no solo WebGL1. Ambient conserva un renderer Canvas 2D animado a 24 FPS hasta que el shader confirma su primer frame sin errores; también lo usa cuando no hay WebGL2 o se pierde su contexto. Canvas 2D reproduce la misma familia de puntos y ondas, con interacción, sin prometer identidad exacta del shader. Ambos motores pausan fuera de pantalla o con la pestaña oculta. No se ha reproducido físicamente el fallo del PC AMD del propietario; las rutas de compatibilidad se prueban simulando ausencia de WebGL y WebGL2. El informe aportado del PC identifica Thorium/Chromium con WebGL acelerado en Radeon R7; no confirma la causa concreta del fallo en esa máquina.

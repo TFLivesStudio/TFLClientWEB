@@ -498,5 +498,3 @@ h2 {
     color: #b1b1ba;
   }
 }
-.silk-fallback,.silk-gpu{position:absolute;inset:0;width:100%;height:100%}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
