@@ -594,7 +594,6 @@ const PatternWaves = ({
     }
     gl.clearColor(0, 0, 0, 0);
     let reportedReady = false;
-    let verifiedInk = false;
     const canvas = gl.canvas;
     canvas.style.display = "block";
     canvas.style.width = "100%";
@@ -943,34 +942,11 @@ const PatternWaves = ({
         .map((channel) => channel + (tint - channel) * blend);
       markUniforms.uBackground.value = background;
       renderer.render({ scene: markMesh });
-      if (!verifiedInk && introClock >= 1) {
-        // A driver can accept a context yet render an empty shader result.
-        const side = Math.min(
-          64,
-          gl.drawingBufferWidth,
-          gl.drawingBufferHeight,
-        );
-        const pixels = new Uint8Array(side * side * 4);
-        gl.readPixels(
-          Math.floor((gl.drawingBufferWidth - side) / 2),
-          Math.floor((gl.drawingBufferHeight - side) / 2),
-          side,
-          side,
-          gl.RGBA,
-          gl.UNSIGNED_BYTE,
-          pixels,
-        );
-        const hasInk = pixels.some(
-          (value, index) => index % 4 !== 3 && value > 0,
-        );
-        if (!hasInk || gl.getError() !== gl.NO_ERROR) {
-          onFailure?.();
-          return;
-        }
-        verifiedInk = true;
-      }
       if (!reportedReady) {
-        if (gl.getError() !== gl.NO_ERROR) {
+        if (
+          !gl.getProgramParameter(fieldMesh.program.program, gl.LINK_STATUS) ||
+          !gl.getProgramParameter(markMesh.program.program, gl.LINK_STATUS)
+        ) {
           onFailure?.();
           return;
         }

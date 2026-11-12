@@ -1,194 +1,121 @@
-import { ArrowUpRight } from "lucide-react";
-import Link from "next/link";
+import { getTranslator } from "@/i18n/server";
+import Link from "@/components/locale-link";
 import { PageTitle, DownloadCTA } from "@/components/ui";
-import { getCatalog, getManifest } from "@/lib/selection";
+import { getCatalog } from "@/lib/selection";
 import { seo } from "@/lib/seo";
-export const metadata = seo(
-  "TFL Selection",
-  "Distribución oficial administrada desde TFL Client. Canales publicados y requisitos del catálogo firmado.",
-  "/selection",
-);
-export default async function Selection() {
-  const { catalog } = await getCatalog();
-  const published = catalog?.targets.filter(
-    (t) => Object.keys(t.channels).length,
+export async function generateMetadata() {
+  const tr = await getTranslator();
+  return seo(
+    "TFL Selection",
+    tr(
+      "Clientes oficiales de Minecraft de TFLives para diferentes formas de jugar.",
+    ),
+    "/selection",
+    tr.locale,
   );
+}
+export default async function Selection() {
+  const tr = await getTranslator();
+  const { catalog } = await getCatalog();
   return (
     <>
       <PageTitle
-        label="DISTRIBUCIÓN OFICIAL"
+        label={tr("CLIENTES OFICIALES")}
         title="TFL Selection"
-        description="Una instalación de Minecraft con un conjunto de mods definido por TFLives. Se instala y se administra desde TFL Client."
+        description={tr(
+          "Clientes de Minecraft preparados por TFLives para distintas formas de jugar: PvP, Minecraft técnico y otras experiencias del equipo.",
+        )}
       />
       <section className="shell section selection-intro">
         <div>
-          <h2>Una selección gestionada, no una lista editable de mods</h2>
+          <h2>{tr("Elige el cliente para tu partida")}</h2>
           <p>
-            En una instalación normal eliges qué mods añadir o quitar. En
-            Selection, TFLives publica el conjunto completo y sus
-            actualizaciones. El launcher usa esa distribución para mantener la
-            instalación alineada con los archivos oficiales.
+            {tr(
+              "TFL Selection reúne los clientes oficiales que puedes encontrar en TFL Client. Cada propuesta tiene una configuración y una selección de mods preparadas por el equipo, para que no tengas que reunirlos por separado.",
+            )}
+          </p>
+          <p>
+            {tr(
+              "Las propuestas disponibles dependen de lo que haya publicado TFLives. Consulta su descripción y su canal antes de instalar.",
+            )}
           </p>
           <DownloadCTA />
         </div>
         <div className="comparison">
-          <h3>¿Qué puedes cambiar?</h3>
+          <span className="eyebrow">{tr("IMPULSADO POR TFL CORE")}</span>
+          <h3>{tr("Herramientas dentro de Minecraft")}</h3>
           <p>
-            Puedes jugar y conservar tus mundos y ajustes de Minecraft. La
-            composición de mods de Selection está gestionada por el equipo; no
-            es un perfil para mezclar mods libremente.
+            {tr(
+              "TFL Core forma parte del trabajo del equipo para personalizar la experiencia dentro del juego. Las funciones incluidas dependen del cliente que elijas.",
+            )}
           </p>
-          <Link href="/caracteristicas">
-            Prefiero administrar mis propios mods →
-          </Link>
+          <a className="button secondary" href="https://discord.gg/tflives">
+            {tr("Consultar en Discord")}
+          </a>
         </div>
       </section>
       <section className="shell section">
-        <h2>Versiones publicadas</h2>
-        <p>
-          El catálogo se comprueba mediante su firma Ed25519 antes de mostrar
-          canales como verificados. Los requisitos adicionales se muestran solo
-          si también se verifica el manifiesto de la release.
-        </p>
-        {!catalog ? (
-          <div className="notice">
-            No pudimos verificar el catálogo oficial. No se muestran versiones
-            como disponibles.{" "}
-            <a href="https://github.com/TFLivesStudio/TFLClientSelection">
-              Consultar el repositorio
-            </a>
+        <h2>{tr("Clientes disponibles")}</h2>
+        {catalog ? (
+          <div className="catalog-grid">
+            {catalog.targets
+              .filter((t) => Object.keys(t.channels).length)
+              .map((t) => (
+                <article className="catalog-card" key={t.targetId}>
+                  <h3>{t.displayName || `Minecraft ${t.minecraftVersion}`}</h3>
+                  <p>Minecraft {t.minecraftVersion}</p>
+                  {Object.entries(t.channels).map(([channel, p]) => (
+                    <div
+                      key={channel}
+                      className={`channel-row channel-${channel}`}
+                    >
+                      <span className={`badge ${channel}`}>
+                        {channel === "stable"
+                          ? tr("Estable")
+                          : channel === "beta"
+                            ? tr("Beta")
+                            : tr("Desarrollo")}
+                      </span>
+                      <strong>{p.release}</strong>
+                      <p>
+                        {channel === "stable"
+                          ? tr("Versión publicada para uso habitual.")
+                          : tr(
+                              "Versión de prueba. Lee su descripción en el launcher antes de instalar.",
+                            )}
+                      </p>
+                    </div>
+                  ))}
+                </article>
+              ))}
           </div>
         ) : (
-          <>
-            <p className="verified">
-              Catálogo verificado · generación {catalog.generation}
-            </p>
-            <div className="catalog-grid">
-              {await Promise.all(
-                published!.map(async (t) => (
-                  <article className="catalog-card" key={t.targetId}>
-                    <h3>
-                      {t.displayName || `Minecraft ${t.minecraftVersion}`}
-                    </h3>
-                    <p>{t.summary}</p>
-                    <dl>
-                      <dt>Minecraft</dt>
-                      <dd>{t.minecraftVersion}</dd>
-                      <dt>Loader</dt>
-                      <dd>{t.loader}</dd>
-                    </dl>
-                    {await Promise.all(
-                      Object.entries(t.channels).map(async ([c, ch]) => {
-                        const m = await getManifest(t, ch);
-                        return (
-                          <div className="channel-row" key={c}>
-                            <span className={`badge ${c}`}>
-                              {
-                                (
-                                  {
-                                    stable: "Estable",
-                                    beta: "Beta",
-                                    dev: "Desarrollo",
-                                  } as Record<string, string>
-                                )[c]
-                              }
-                            </span>
-                            <strong>{ch.release}</strong>
-                            {m ? (
-                              <p>
-                                Java {m.java} · loader {m.loader} · TFL Client ≥{" "}
-                                {m.minimum}
-                              </p>
-                            ) : (
-                              <p>
-                                El catálogo está verificado. No pudimos
-                                verificar los requisitos del manifiesto;
-                                consúltalos en el launcher.
-                              </p>
-                            )}
-                            <a
-                              href={`https://github.com/TFLivesStudio/TFLClientSelection/releases/tag/${encodeURIComponent(ch.tag)}`}
-                            >
-                              Publicación oficial{" "}
-                              <ArrowUpRight className="inline-icon" size={15} />
-                            </a>
-                          </div>
-                        );
-                      }),
-                    )}
-                  </article>
-                )),
-              )}
-            </div>
-            {!published?.length && (
-              <p>El catálogo no contiene canales publicados.</p>
+          <div className="notice">
+            {tr(
+              "No pudimos consultar los clientes disponibles. Abre TFL Selection en el launcher para revisar su disponibilidad.",
             )}
-            <p className="notice">
-              {catalog.targets
-                .filter((t) => !Object.keys(t.channels).length)
-                .map(
-                  (t) =>
-                    `Minecraft ${t.minecraftVersion} (${t.loader}): sin canal publicado.`,
-                )
-                .join(" ")}{" "}
-              Estos targets no se ofrecen como versiones instalables.
-            </p>
-          </>
+          </div>
         )}
       </section>
       <section className="shell section">
-        <h2>Instalar desde el launcher</h2>
+        <h2>{tr("Cómo instalar un cliente")}</h2>
         <ol className="instruction-list">
           <li>
-            Actualiza TFL Client y abre TFL Selection dentro de la aplicación.
+            {tr("Descarga TFL Client e inicia sesión dentro de la aplicación.")}
           </li>
           <li>
-            Elige un target con un canal publicado. Beta y desarrollo son
-            versiones de prueba.
+            {tr("Abre TFL Selection y elige uno de los clientes publicados.")}
           </li>
           <li>
-            Revisa los requisitos que muestra el launcher y sigue su proceso de
-            instalación y verificación.
+            {tr(
+              "Revisa su descripción y canal. Confirma la instalación y espera a que termine.",
+            )}
           </li>
+          <li>{tr("Abre la instalación desde tu biblioteca para jugar.")}</li>
         </ol>
-        <p>
-          La web informa sobre las publicaciones. No instala mods ni sustituye
-          las comprobaciones del launcher.
-        </p>
-      </section>
-      <section className="shell section core-section">
-        <span className="eyebrow">MOD DENTRO DEL JUEGO</span>
-        <h2>TFL Core y Selection son proyectos distintos</h2>
-        <p>
-          Selection define la distribución. Core es un mod que aporta la
-          interfaz y herramientas dentro de Minecraft; su presencia depende de
-          la distribución publicada, no del nombre del launcher.
-        </p>
-        <h3>Estado documentado de Core</h3>
-        <p>
-          El README oficial consultado describe 0.3.0-alpha.1, una alpha para
-          Minecraft 26.3, Fabric y Java 25 sin validación en una partida real.
-          No debe confundirse con una versión estable de Selection.
-        </p>
-        <ul>
-          <li>
-            HUD configurable con widgets, anclas, escala y editor de posiciones.
-          </li>
-          <li>
-            Crosshair, zoom, toggle sprint y waypoints locales documentados en
-            la alpha.
-          </li>
-          <li>
-            Perfiles y diagnóstico de módulos; sin promesas de mejora de FPS.
-          </li>
-        </ul>
-        <a
-          className="text-link"
-          href="https://github.com/TFLivesStudio/TFLClientMOD#readme"
-        >
-          Estado y limitaciones en el repositorio de Core{" "}
-          <ArrowUpRight className="inline-icon" size={15} />
-        </a>
+        <Link className="text-link" href="/ayuda/selection">
+          {tr("Guía de instalación →")}
+        </Link>
       </section>
     </>
   );

@@ -8,11 +8,11 @@ export function SilkFallback({ paused }: { paused: boolean }) {
     const canvas = ref.current;
     const ctx = canvas?.getContext("2d");
     if (!canvas || !ctx) return;
+    const tint = getComputedStyle(canvas).getPropertyValue("--primary").trim();
     let raf = 0,
       last = -Infinity,
       time = 0,
       visible = true;
-    const pointer = { x: -1000, y: -1000 };
     const resize = () => {
       canvas.width = Math.max(1, Math.round(canvas.clientWidth));
       canvas.height = Math.max(1, Math.round(canvas.clientHeight));
@@ -31,10 +31,9 @@ export function SilkFallback({ paused }: { paused: boolean }) {
             0,
             Math.min(1, x / 120, (w - x) / 120, y / 90, (h - y) / 90),
           );
-          const distance = Math.hypot(x - pointer.x, y - pointer.y);
-          const ripple = paused ? 0 : Math.max(0, 1 - distance / 90) * 0.6;
-          const size = 1 + (wave + 1) * 1.1 + ripple;
-          ctx.fillStyle = `rgba(255,255,255,${(0.12 + (wave + 1) * 0.22 + ripple * 0.3) * edge})`;
+
+          const size = 1 + (wave + 1) * 1.1;
+          ctx.fillStyle = `hsl(${tint} / ${(0.12 + (wave + 1) * 0.22) * edge})`;
           ctx.beginPath();
           ctx.arc(x, y + wave * 5, size, 0, Math.PI * 2);
           ctx.fill();
@@ -62,11 +61,6 @@ export function SilkFallback({ paused }: { paused: boolean }) {
         raf = 0;
       } else start();
     };
-    const move = (e: PointerEvent) => {
-      const r = canvas.getBoundingClientRect();
-      pointer.x = e.clientX - r.left;
-      pointer.y = e.clientY - r.top;
-    };
     const resizeObserver = new ResizeObserver(resize);
     resizeObserver.observe(canvas);
     const observer = new IntersectionObserver(([entry]) => {
@@ -78,7 +72,6 @@ export function SilkFallback({ paused }: { paused: boolean }) {
     });
     observer.observe(canvas);
     document.addEventListener("visibilitychange", visibility);
-    window.addEventListener("pointermove", move, { passive: true });
     resize();
     start();
     return () => {
@@ -86,7 +79,6 @@ export function SilkFallback({ paused }: { paused: boolean }) {
       resizeObserver.disconnect();
       observer.disconnect();
       document.removeEventListener("visibilitychange", visibility);
-      window.removeEventListener("pointermove", move);
     };
   }, [paused]);
   return (

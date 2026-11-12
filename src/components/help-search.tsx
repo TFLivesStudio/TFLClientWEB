@@ -1,58 +1,65 @@
 "use client";
-import Link from "next/link";
+import { useT } from "@/i18n/provider";
+import Link from "@/components/locale-link";
 import { useState } from "react";
 import { articles } from "@/lib/help";
 const normalize = (s: string) =>
-  s
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase();
+  s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 export function HelpSearch() {
+  const tr = useT();
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState("Todas");
+  const [category, setCategory] = useState(tr("Todas"));
   const filtered = articles.filter(
     (a) =>
-      (category === "Todas" || a.category === category) &&
-      normalize([a.title, a.summary, ...a.sections.flat()].join(" ")).includes(
-        normalize(query),
-      ),
+      (category === tr("Todas") || a.category === category) &&
+      normalize(
+        [a.title, a.summary, ...a.sections.flat()].map(tr).join(" "),
+      ).includes(normalize(query)),
   );
   return (
     <>
       <label className="search-label" htmlFor="help-search">
-        Buscar en la ayuda
+        {tr("Buscar en la ayuda")}
       </label>
       <input
         id="help-search"
         type="search"
-        placeholder="Microsoft, mods, Java, logs…"
+        placeholder={tr("Microsoft, mods, Java, logs…")}
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <div className="filter-bar" role="group" aria-label="Categorías de ayuda">
-        {["Todas", ...new Set(articles.map((a) => a.category))].map((c) => (
+      <div
+        className="filter-bar"
+        role="group"
+        aria-label={tr("Categorías de ayuda")}
+      >
+        {[tr("Todas"), ...new Set(articles.map((a) => a.category))].map((c) => (
           <button
-            key={c}
+            key={tr(c)}
             aria-pressed={c === category}
             onClick={() => setCategory(c)}
           >
-            {c}
+            {tr(c)}
           </button>
         ))}
       </div>
-      <p aria-live="polite">{filtered.length} artículos</p>
+      <p aria-live="polite">
+        {filtered.length} {tr("artículos")}{" "}
+      </p>
       <div className="help-grid">
         {filtered.map((a) => (
           <Link key={a.slug} href={`/ayuda/${a.slug}`}>
-            <span className="eyebrow">{a.category}</span>
-            <h2>{a.title}</h2>
-            <p>{a.summary}</p>
-            <span>Leer guía →</span>
+            <span className="eyebrow">{tr(a.category)}</span>
+            <h2>{tr(a.title)}</h2>
+            <p>{tr(a.summary)}</p>
+            <span>{tr("Leer guía →")}</span>
           </Link>
         ))}
       </div>
       {!filtered.length && (
-        <p>No hay resultados. Prueba otra palabra o selecciona Todas.</p>
+        <p>
+          {tr("No hay resultados. Prueba otra palabra o selecciona Todas.")}
+        </p>
       )}
     </>
   );

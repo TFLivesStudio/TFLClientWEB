@@ -1,14 +1,22 @@
+"use client";
+import { useT } from "@/i18n/provider";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 export function safeMarkdownUrl(value: string) {
   try {
     const u = new URL(value, "https://github.com");
-    return ["https:", "http:"].includes(u.protocol) ? u.href : "";
+    return ["https:", "http:"].includes(u.protocol) &&
+      (u.hostname !== "github.com" ||
+        u.pathname === "/TFLivesStudio/TFLClient" ||
+        u.pathname.startsWith("/TFLivesStudio/TFLClient/"))
+      ? u.href
+      : "";
   } catch {
     return "";
   }
 }
 export function Markdown({ body }: { body: string }) {
+  const tr = useT();
   return (
     <div className="markdown">
       <ReactMarkdown
@@ -18,7 +26,7 @@ export function Markdown({ body }: { body: string }) {
         components={{
           img: ({ src, alt }) => (
             <a href={typeof src === "string" ? src : undefined}>
-              Imagen: {alt || "ver recurso original"}
+              {tr("Imagen:")} {alt || tr("ver recurso original")}
             </a>
           ),
           a: ({ href, children }) => (

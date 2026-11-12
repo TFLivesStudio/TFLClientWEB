@@ -7,6 +7,7 @@ const browser = await chromium.launch({
 const base = process.env.QA_BASE_URL || "http://127.0.0.1:3003";
 await mkdir("docs/qa", { recursive: true });
 const measurements = [];
+const english = process.env.QA_LOCALE === "en";
 for (const [device, width, height] of [
   ["desktop", 1440, 1000],
   ["mobile", 390, 844],
@@ -30,7 +31,8 @@ for (const [device, width, height] of [
     const errors = [];
     const onError = (e) => errors.push(e.message);
     page.on("pageerror", onError);
-    const response = await page.goto(base + path);
+    const route = english ? "/en" + (path === "/" ? "" : path) : path;
+    const response = await page.goto(base + route);
     await page.evaluate(() => document.fonts.ready);
     if (
       (await page
@@ -50,12 +52,12 @@ for (const [device, width, height] of [
     await page.evaluate(() => scrollTo(0, 0));
     await page.waitForTimeout(250);
     await page.screenshot({
-      path: `docs/qa/${name}-${device}.png`,
+      path: `docs/qa/${name}${english ? "-en" : ""}-${device}.png`,
       fullPage: true,
     });
     measurements.push({
       device,
-      path,
+      path: route,
       status: response.status(),
       overflow: await page.evaluate(
         () => document.documentElement.scrollWidth > innerWidth,
@@ -70,7 +72,7 @@ for (const [device, width, height] of [
   await context.close();
 }
 await browser.close();
-const combined=process.env.QA_PAGES ? [...JSON.parse(await readFile("docs/qa/measurements.json","utf8")).filter(old=>!measurements.some(m=>m.device===old.device&&m.path===old.path)),...measurements] : measurements;
+const combined=(process.env.QA_PAGES || english) ? [...JSON.parse(await readFile("docs/qa/measurements.json","utf8")).filter(old=>!measurements.some(m=>m.device===old.device&&m.path===old.path)),...measurements] : measurements;
 await writeFile(
   "docs/qa/measurements.json",
   JSON.stringify(combined, null, 2) + "\n",

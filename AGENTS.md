@@ -4,7 +4,7 @@ Idioma de trabajo: español. Repositorio: `TFLivesStudio/TFLClientWEB`. Dominio 
 
 ## Alcance y publicación
 
-El Production Refresh del propietario sustituye las instrucciones anteriores sobre colores, copy, páginas y movimiento. Está autorizada la implementación completa. Trabajar en una rama de actualización; no subir a `main`, cambiar DNS ni desplegar producción manualmente sin revisión posterior. El entorno ya está aislado: usar el checkout existente, no crear worktrees salvo petición explícita. Preservar cambios del usuario.
+El Production Refresh del propietario sustituye las instrucciones anteriores sobre colores, copy, páginas y movimiento. Está autorizada la implementación completa. La actualización del 12 de noviembre de 2026 tiene aprobación explícita del propietario para integrarse en `main` y activar el despliegue Git de Vercel. No cambiar DNS ni ejecutar despliegues manuales sin necesidad. Para futuras actualizaciones, seguir el alcance autorizado en la conversación. El entorno ya está aislado: usar el checkout existente, no crear worktrees salvo petición explícita. Preservar cambios del usuario.
 
 ## Identidad y contenido
 
@@ -13,9 +13,12 @@ El Production Refresh del propietario sustituye las instrucciones anteriores sob
 - Slate domina; azul TFL es acento. Solo modo oscuro. Manrope en títulos e Inter en texto, servidas localmente.
 - Copy descriptivo, preciso y humano. Cada título identifica su contenido y cada párrafo aporta información. No eslóganes genéricos, cifras inventadas, promesas de FPS, testimonios ficticios ni funcionalidades futuras presentadas como actuales.
 - Nombre protagonista: TFL Client. Título del inicio: `TFL Client | Launcher de Minecraft Java`.
-- Distinguir: launcher (instalaciones), Selection (distribución gestionada), Core (mod dentro del juego). Nunca intercambiar sus capacidades ni equiparar una alpha con un canal estable.
+- En la web pública, Selection explica clientes oficiales preparados por TFLives para PvP, Minecraft técnico y otros estilos, con guía breve. No exponer su arquitectura, firmas, loaders, manifiestos ni repositorios. Core solo como impulsor de la experiencia; no enlazar su GitHub. El único repositorio GitHub enlazado en la web es TFLivesStudio/TFLClient (launcher).
+- Español primario en `/`; inglés completo en `/en`. Mantener diccionario, metadatos, ayudas, etiquetas accesibles y enlaces locales en ambos idiomas. Notas de releases conservan su idioma original con aviso.
+- Discord oficial: https://discord.gg/tflives. Estables en verde y betas en naranja rust; siempre añadir texto además del color.
+- Comparativa de RAM: cifras aportadas por TFLives en AMD A10 PRO 8750B/Windows 10, sin método ni estado de las aplicaciones proporcionados. Identificar su procedencia y límites; no convertirlas en promesa universal. El núcleo nativo es Rust y la interfaz es Svelte: no afirmar que toda la aplicación es Rust.
 - Marcas: iconos oficiales reconocibles de GitHub, Windows, Apple y Linux; Lucide para acciones. Mantener licencias y atribución. No inventar logos ni usar material de LabyMod.
-- Las capturas disponibles proceden del frontend oficial con puente nativo simulado, sin cuenta ni instalaciones. No presentarlas como prueba de ejecución del juego. No inventar capturas de Core.
+- Las capturas disponibles proceden del frontend oficial con puente nativo simulado, sin cuenta; consola e instancia usan datos explícitos de demostración. No presentarlas como prueba de ejecución del juego. No inventar capturas de Core.
 
 ## Arquitectura y datos
 
@@ -32,7 +35,7 @@ Next.js App Router, React, TypeScript estricto, npm y `package-lock.json`. Sin b
 
 ## Accesibilidad y gráficos
 
-No ocultar el tratamiento visual por falta de WebGL2. Pattern Waves con alternativa animada Canvas 2D para contextos no soportados, fallidos o perdidos. Con movimiento reducido, conservar el fondo estático. Pausar efectos fuera de pantalla y en pestaña oculta. No prometer identidad píxel a píxel entre motores o equipos. Mantener contraste, foco, teclado, diálogos accesibles, zoom, etiquetas y ausencia de overflow móvil.
+No ocultar el tratamiento visual por falta de WebGL2. Pattern Waves con alternativa animada Canvas 2D para contextos no soportados, fallidos o perdidos. Fondo azul derivado de --primary, sin interacción del cursor. No descartar WebGL por una muestra oscura de píxeles durante la introducción: comprobar enlace de shaders y pérdida real de contexto. Probar que sigue activo tras la introducción. Con movimiento reducido, conservar el fondo estático. Pausar efectos fuera de pantalla y en pestaña oculta. No prometer identidad píxel a píxel entre motores o equipos. Mantener contraste, foco, teclado, diálogos accesibles, zoom, etiquetas y ausencia de overflow móvil.
 
 ## SEO y privacidad
 
@@ -44,4 +47,4 @@ Ejecutar `npm run build`, `npm run typecheck`, `npm run lint`, `npm test` y Play
 
 La máquina cloud necesita `NODE_USE_ENV_PROXY=1` al iniciar Node para respetar el proxy heredado. No desactivar TLS ni copiar credenciales en archivos. En Vercel no se requiere esta variable de infraestructura cloud.
 
-Al entregar: rama/commit y enlace de revisión, cambios, pruebas reales, capturas, límites y pasos para aprobar el despliegue. No mezclar cambios de otros repositorios ni reescribir historial.
+Al entregar: rama/commit integrado, cambios, pruebas reales, capturas, límites y estado del despliegue. No mezclar cambios de otros repositorios ni reescribir historial.

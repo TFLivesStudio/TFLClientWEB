@@ -1,4 +1,5 @@
 "use client";
+import { useT } from "@/i18n/provider";
 import { useState, useSyncExternalStore } from "react";
 import { Download, ArrowUpRight, CircleAlert } from "lucide-react";
 import {
@@ -16,7 +17,7 @@ const detectPlatform = () => {
       : "Windows";
 };
 import { PlatformIcon } from "./platform-icon";
-import Link from "next/link";
+import Link from "@/components/locale-link";
 import { releasePath } from "@/lib/release-model";
 const systems = [{ name: "Windows" }, { name: "macOS" }, { name: "Linux" }];
 export function Downloads({
@@ -28,6 +29,7 @@ export function Downloads({
   status: string;
   beta?: Release | null;
 }) {
+  const tr = useT();
   const [channel, setChannel] = useState("stable");
   const selected = channel === "beta" ? beta : release;
   const [chosen, setPlatform] = useState<string | null>(null);
@@ -39,25 +41,29 @@ export function Downloads({
   const platform = chosen ?? detected;
   const assets = platformAssets(selected?.assets ?? [], platform);
   return (
-    <div className="download-panel">
-      <div className="filter-bar" role="group" aria-label="Canal de descarga">
+    <div className={`download-panel channel-${channel}`}>
+      <div
+        className="filter-bar"
+        role="group"
+        aria-label={tr("Canal de descarga")}
+      >
         <button
           aria-pressed={channel === "stable"}
           onClick={() => setChannel("stable")}
         >
-          Estable · recomendada
+          {tr("Estable · recomendada")}
         </button>
         <button
           aria-pressed={channel === "beta"}
           onClick={() => setChannel("beta")}
         >
-          Beta · pruebas
+          {tr("Beta · pruebas")}
         </button>
       </div>
       <div
         className="system-tabs"
         role="group"
-        aria-label="Elige tu sistema operativo"
+        aria-label={tr("Elige tu sistema operativo")}
       >
         {systems.map(({ name }) => (
           <button
@@ -72,13 +78,15 @@ export function Downloads({
       </div>
       <div className="download-body">
         <span className="eyebrow">
-          TFL CLIENT PARA {platform.toUpperCase()}
+          {tr("TFL CLIENT PARA")} {platform.toUpperCase()}
         </span>
-        <h2>Descarga para {platform}</h2>
+        <h2>
+          {tr("Descarga para")} {platform}
+        </h2>
         {selected ? (
           <p>
-            {selected.tag} · Publicada el{" "}
-            {new Intl.DateTimeFormat("es", {
+            {selected.tag} {tr("· Publicada el")}{" "}
+            {new Intl.DateTimeFormat(tr("es"), {
               dateStyle: "medium",
               timeZone: "UTC",
             }).format(new Date(selected.date))}
@@ -87,8 +95,8 @@ export function Downloads({
           <p>
             <CircleAlert size={17} />
             {status === "empty" || status === "ok"
-              ? "No hay una publicación disponible en este canal."
-              : "No pudimos consultar las publicaciones en este momento."}
+              ? tr("No hay una publicación disponible en este canal.")
+              : tr("No pudimos consultar las publicaciones en este momento.")}
           </p>
         )}
         {assets.length ? (
@@ -98,8 +106,11 @@ export function Downloads({
               <span>
                 {a.name}
                 <small>
-                  {assetDetails(a.name)} · {(a.size / 1024 / 1024).toFixed(1)}{" "}
-                  MB
+                  {assetDetails(a.name).replace(
+                    "Arquitectura no indicada en el nombre",
+                    tr("Arquitectura no indicada en el nombre"),
+                  )}{" "}
+                  · {(a.size / 1024 / 1024).toFixed(1)} MB
                 </small>
               </span>
             </a>
@@ -107,32 +118,35 @@ export function Downloads({
         ) : (
           <div className="notice">
             {selected
-              ? `Esta versión no incluye instalador para ${platform}.`
-              : "Puedes revisar las publicaciones oficiales y sus requisitos directamente en GitHub."}
+              ? `${tr("Esta versión no incluye instalador para")} ${platform}.`
+              : tr(
+                  "Puedes revisar las publicaciones oficiales y sus requisitos directamente en GitHub.",
+                )}
           </div>
         )}
         {selected && (
           <Link className="text-link" href={releasePath(selected.tag)}>
-            Leer notas de {selected.tag} →
+            {tr("Leer notas de")} {selected.tag} →
           </Link>
         )}
         {channel === "beta" && (
           <p className="notice">
-            Una beta puede incluir funciones aún en revisión. Haz una copia de
-            tus instalaciones antes de probarla.
+            {tr(
+              "Una beta puede incluir funciones aún en revisión. Haz una copia de tus instalaciones antes de probarla.",
+            )}
           </p>
         )}
         <a
           href="https://github.com/TFLivesStudio/TFLClient/releases"
           className="text-link"
         >
-          Ver todas las publicaciones
+          {tr("Ver todas las publicaciones")}
           <ArrowUpRight size={16} />
         </a>
         <small>
-          Comprueba la arquitectura y los requisitos indicados en cada
-          publicación. Microsoft y Minecraft son marcas de sus respectivos
-          propietarios.
+          {tr(
+            "Comprueba la arquitectura y los requisitos indicados en cada publicación. Microsoft y Minecraft son marcas de sus respectivos propietarios.",
+          )}
         </small>
       </div>
     </div>

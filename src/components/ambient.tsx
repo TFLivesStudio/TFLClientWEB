@@ -20,6 +20,7 @@ class GraphicsBoundary extends Component<
 }
 export function Ambient() {
   const [active, setActive] = useState(false);
+  const [color, setColor] = useState("transparent");
   const [reduced, setReduced] = useState(true);
   const [gpu, setGpu] = useState(false);
   const [ready, setReady] = useState(false);
@@ -33,6 +34,9 @@ export function Ambient() {
     const supported = !!gl;
     gl?.getExtension("WEBGL_lose_context")?.loseContext();
     const update = () => {
+      const accent = getComputedStyle(document.documentElement)
+        .getPropertyValue("--primary").trim();
+      setColor(`hsl(${accent})`);
       setReduced(preference.matches);
       setActive(!document.hidden);
       setGpu(supported);
@@ -60,12 +64,12 @@ export function Ambient() {
           <div className="silk-gpu" style={{ opacity: ready ? 1 : 0 }}>
             <PatternWaves
               preset="silk"
-              color="#ffffff"
+              color={color}
               backgroundColor="transparent"
               fade="edges"
-              interactive
+              interactive={false}
               cursorSize={50}
-              cursorStrength={0.6}
+              cursorStrength={0}
               onReady={() => setReady(true)}
               onFailure={() => {
                 setReady(false);

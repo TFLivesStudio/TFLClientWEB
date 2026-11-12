@@ -63,19 +63,19 @@ export const articles = [
     slug: "selection",
     category: "Instalaciones",
     title: "Instalar TFL Selection",
-    summary: "Distribución gestionada y canales oficiales.",
+    summary: "Clientes oficiales disponibles en el launcher.",
     sections: [
       [
         "Qué es Selection",
-        "TFL Selection es una distribución oficial con mods definidos por TFLives. No es una instalación normal para añadir o quitar mods a voluntad. El launcher administra sus archivos y actualizaciones.",
+        "TFL Selection reúne los clientes oficiales preparados por TFLives. Cada propuesta incluye mods y ajustes elegidos por el equipo. Para gestionar tu propio conjunto de mods, utiliza una instalación normal.",
       ],
       [
         "Instalación",
-        "Abre TFL Selection dentro del launcher. Elige un target y un canal publicado, revisa sus requisitos y sigue las indicaciones de descarga y verificación. Un target sin canal publicado no es una versión disponible.",
+        "Abre TFL Selection en el launcher, elige un cliente publicado, lee su descripción y confirma la instalación. Espera a que termine y ábrelo desde la biblioteca.",
       ],
       [
         "Si no aparece una versión",
-        "Comprueba que usas un launcher actualizado y que el catálogo puede consultarse. La página Selection de esta web muestra solo datos cuya firma se ha verificado. No descargues archivos de drafts o ramas de desarrollo como sustituto de una release.",
+        "Comprueba que usas un launcher actualizado. No todos los clientes o versiones están disponibles a la vez. Consulta TFL Selection dentro de la aplicación o pregunta al equipo en Discord.",
       ],
     ],
   },
@@ -152,11 +152,11 @@ export const articles = [
       ],
       [
         "Minecraft y Selection",
-        "Cada versión puede requerir un Java, loader y conjunto de dependencias distintos. En Selection consulta los requisitos del manifiesto verificado y los avisos del launcher.",
+        "Los requisitos cambian según la versión de Minecraft o el cliente. Lee las indicaciones que muestra TFL Client antes de instalar un cliente de Selection.",
       ],
       [
         "Limitaciones conocidas",
-        "El README del launcher señala problemas de vista previa 3D de skin y capa en macOS. La documentación de Core describe una alpha experimental; su estado no es una garantía de compatibilidad general. Consulta las notas de la versión que uses.",
+        "El README del launcher señala problemas de vista previa 3D de skin y capa en macOS. Consulta las notas de la versión que uses antes de instalar o reportar un problema.",
       ],
     ],
   },

@@ -1,6 +1,6 @@
 # TFL Client Web
 
-Web oficial de TFL Client en Next.js App Router, React y TypeScript. El Production Refresh se revisa en una rama antes de integrarlo en producción. Dominio: https://launcher.tflives.com.
+Web oficial de TFL Client en Next.js App Router, React y TypeScript. Actualización aprobada por el propietario para integrarse en `main` y desplegarse mediante la integración Git de Vercel. Dominio: https://launcher.tflives.com.
 
 ## Desarrollo y validación
 
@@ -28,14 +28,18 @@ Esto no cambia la configuración de red de Vercel. No desactivar TLS para resolv
 
 ## Datos y páginas
 
-- `/`: producto, capturas, instalaciones, personalización, comparación Selection, release estable real y FAQ.
+- `/`: producto, carrusel automático de cuatro capturas con pausa y ampliación, instalaciones, comparativa HTML de memoria, Selection, última estable y FAQ.
 - `/caracteristicas`: capacidades verificadas contra el código del launcher, organizadas por responsabilidad.
-- `/selection`: catálogo Ed25519 v2 dinámico; solo canales publicados. Requisitos obtenidos de manifiestos con SHA-256, firma y esquema válidos.
+- `/selection`: presentación de clientes oficiales para distintas formas de jugar, canales publicados y guía de instalación. La validación de datos se realiza en el servidor; la UI no expone arquitectura, manifiestos ni repositorios de Selection/Core.
 - `/novedades`: historial completo paginado desde GitHub Releases, filtros estable/beta y páginas `/novedades/[tag]` con notas originales. Excluye drafts, preserva tags, señala inconsistencias y no convierte tags sueltos en entradas.
 - `/descargas`: estable recomendada y beta opcional, selector OS, archivos/arquitectura/tamaño publicados y notas.
 - `/ayuda`: búsqueda local sobre artículos, categorías y rutas `/ayuda/[slug]`.
-- `/comunidad`: proyectos oficiales y participación por GitHub.
+- `/comunidad`: repositorio del launcher y Discord https://discord.gg/tflives. Es el único repositorio GitHub enlazado por la web.
 - `/privacidad`, 404, sitemap y robots.
+
+### Idiomas
+
+Español primario en `/`, inglés en `/en` mediante `src/proxy.ts`, contexto compartido y diccionario `src/i18n/en.json`. Incluye guías, etiquetas accesibles, metadatos, canonical y hreflang. Las notas de releases conservan el idioma del autor, con aviso. Los enlaces internos mantienen el idioma y el selector ES/EN conserva la ruta.
 
 ### Releases y caché
 
@@ -51,19 +55,23 @@ Esquemas copiados de TFLClientSelection `8b6891092574fd13b7b8a9af54ef31525bf87e9
 
 ### Sistema visual
 
-Una única hoja `src/app/globals.css`, escala Slate HSL y tokens semánticos. Se consumen mediante `hsl(var(--token))`, alpha opcional, y `@theme inline` de Tailwind 4. No existe una segunda capa premium.css. Manrope e Inter locales. Fondo Pattern Waves con alternativa Canvas 2D a 24 FPS y versión estática con movimiento reducido; se pausa al ocultar pestaña/componente. No promete identidad exacta entre motores.
+Una única hoja `src/app/globals.css`, escala Slate HSL y tokens semánticos. Se consumen mediante `hsl(var(--token))`, alpha opcional, y `@theme inline` de Tailwind 4. No existe una segunda capa premium.css. Manrope e Inter locales. Fondo Pattern Waves con alternativa Canvas 2D a 24 FPS y versión estática con movimiento reducido; se pausa al ocultar pestaña/componente. Ambos renderers usan el acento azul del token `--primary`, sin interacción del cursor. La disponibilidad de WebGL se comprueba por enlace de programas/contexto, sin descartar frames legítimamente oscuros de la introducción. No promete identidad exacta entre motores.
+
+### Comparación de memoria
+
+Tabla HTML accesible: TFL Client 9 MB, Prism 100 MB, CMClient 150 MB, LabyMod 880 MB y Lunar 940 MB. Datos aportados por TFLives en AMD A10 PRO 8750B/Windows 10, sin método o estado de aplicación especificados, no verificados independientemente. No son requisitos ni predicen FPS. Núcleo nativo Rust, interfaz Svelte.
 
 ### Fuentes, imágenes y licencias
 
 - TFL Client: código/README en `4590afe229067265dc9cc20c94a2fa8459536a1f` y API de releases en vivo.
 - Core: README `caadad2c9681364b811edc61ff39d5c237429262`: 0.3.0-alpha.1 experimental, sin validación en partida; no confundir con Selection publicada.
-- Capturas disponibles: frontend oficial TFL Client del mismo commit, renderizado con puente Tauri simulado, colecciones vacías y sin cuenta; no verifican el ejecutable ni el juego. No se encontraron capturas in-game oficiales de Core. Sustituirlas por capturas nativas representativas cuando el equipo las facilite, sin inventarlas.
+- Capturas disponibles: frontend oficial TFL Client del mismo commit, renderizado con puente Tauri simulado, sin cuenta, con datos de demostración para consola e instancia; no verifican el ejecutable ni el juego. No se encontraron capturas in-game oficiales de Core. Sustituirlas por capturas nativas representativas cuando el equipo las facilite, sin inventarlas.
 - Pattern Waves TS-TW: React Bits, David Haz, MIT + Commons Clause en `public/licenses`. Adaptado con notificaciones de frame/contexto para la alternativa gráfica.
 - Marcas: Simple Icons, CC0. GitHub, Apple y Linux proceden de 11.15.0; Windows 11 de 9.21.0. Identifican plataformas, sin patrocinio. Las marcas conservan sus derechos y directrices: https://simpleicons.org/disclaimer y https://www.microsoft.com/legal/intellectualproperty/trademarks. Logos monocromáticos sin alteración de trazado; no son iconos Lucide inventados.
 - Lucide (acciones), Inter y Manrope conservan sus licencias en `public/licenses`.
 
 ## Revisión y despliegue
 
-No se ha desplegado producción ni cambiado DNS en esta actualización. Revisar `docs/QA.md`, las capturas y la rama; aprobar merge antes de publicar. Importación Vercel existente: raíz `./`, Next.js, Node 24, instalación `npm ci`, build `npm run build`. GitHub API pública puede limitar consultas anónimas; el sitio conserva estados explícitos y enlaces a la fuente. Si el proyecto exige una cuota mayor, diseñar una integración autenticada solo de servidor antes de añadir secretos.
+El propietario aprobó integrar esta actualización en `main`. La integración Git de Vercel publica ese cambio; no se cambian DNS ni se necesita un deploy manual. Evidencia de revisión y límites en `docs/QA.md`. Importación Vercel existente: raíz `./`, Next.js, Node 24, instalación `npm ci`, build `npm run build`. GitHub API pública puede limitar consultas anónimas; el sitio conserva estados explícitos y enlaces a la fuente. Si el proyecto exige una cuota mayor, diseñar una integración autenticada solo de servidor antes de añadir secretos.
 
 Canonical y sitemap usan `launcher.tflives.com`. La web actual respondió con `index, follow` durante la auditoría; la nueva versión conserva indexación solo con `VERCEL_ENV=production`. Previews y desarrollo tienen noindex y robots disallow. No se inspeccionaron las opciones privadas de métricas del proyecto Vercel: no se afirma ausencia de registros o cookies de servicios externos.

@@ -1,19 +1,28 @@
-import Link from "next/link";
+import { getTranslator } from "@/i18n/server";
+import { MemoryComparison } from "@/components/memory-comparison";
+import Link from "@/components/locale-link";
 import Image from "next/image";
 import { Ambient } from "@/components/ambient";
 import { Gallery } from "@/components/gallery";
 import { DownloadCTA, FAQ } from "@/components/ui";
 import { getReleases, releasePath } from "@/lib/releases";
 import { seo } from "@/lib/seo";
-export const metadata = {
-  ...seo(
-    "TFL Client | Launcher de Minecraft Java",
-    "Instala Minecraft, organiza tus versiones y gestiona tus mods desde un mismo launcher.",
-    "/",
-  ),
-  title: { absolute: "TFL Client | Launcher de Minecraft Java" },
-};
+export async function generateMetadata() {
+  const tr = await getTranslator();
+  return {
+    ...seo(
+      tr("TFL Client | Launcher de Minecraft Java"),
+      tr(
+        "Instala Minecraft, organiza tus versiones y gestiona tus mods desde un mismo launcher.",
+      ),
+      "/",
+      tr.locale,
+    ),
+    title: { absolute: tr("TFL Client | Launcher de Minecraft Java") },
+  };
+}
 export default async function Home() {
+  const tr = await getTranslator();
   const { releases } = await getReleases();
   const stable = releases.find((r) => r.channel === "stable");
   return (
@@ -21,20 +30,23 @@ export default async function Home() {
       <section className="hero">
         <Ambient />
         <div className="shell hero-content">
-          <span className="eyebrow">LAUNCHER DE MINECRAFT JAVA · TFLIVES</span>
+          <span className="eyebrow">
+            {tr("LAUNCHER DE MINECRAFT JAVA · TFLIVES")}
+          </span>
           <h1>TFL Client</h1>
           <p>
-            Instala Minecraft, organiza tus versiones y gestiona tus mods desde
-            un mismo launcher.
+            {tr(
+              "Instala Minecraft, organiza tus versiones y gestiona tus mods desde un mismo launcher.",
+            )}
           </p>
           <div className="hero-actions">
             <DownloadCTA />
             <Link href="/caracteristicas" className="button secondary">
-              Ver características →
+              {tr("Ver características →")}
             </Link>
           </div>
           <p className="platform-note">
-            Windows, macOS y Linux · Instaladores según publicación
+            {tr("Windows, macOS y Linux · Instaladores según publicación")}
           </p>
           <div className="hero-gallery">
             <Gallery />
@@ -43,84 +55,91 @@ export default async function Home() {
       </section>
       <section className="shell section overview">
         <div>
-          <span className="eyebrow">QUÉ HACE TFL CLIENT</span>
-          <h2>Una biblioteca para tus instalaciones de Minecraft</h2>
+          <span className="eyebrow">{tr("QUÉ HACE TFL CLIENT")}</span>
+          <h2>{tr("Una biblioteca para tus instalaciones de Minecraft")}</h2>
         </div>
         <div>
           <p>
-            Crea instalaciones separadas para cada versión o combinación de
-            mods. Desde el launcher puedes gestionar Java, contenido y ajustes
-            por instancia, sin intercambiar archivos entre perfiles.
+            {tr(
+              "Crea instalaciones separadas para cada versión o combinación de mods. Desde el launcher puedes gestionar Java, contenido y ajustes por instancia, sin intercambiar archivos entre perfiles.",
+            )}
           </p>
           <p>
-            El inicio de sesión con Microsoft se realiza dentro de la
-            aplicación. Necesitas acceso a Minecraft Java Edition para jugar con
-            tu cuenta.
+            {tr(
+              "El inicio de sesión con Microsoft se realiza dentro de la aplicación. Necesitas acceso a Minecraft Java Edition para jugar con tu cuenta.",
+            )}
           </p>
           <Link className="text-link" href="/caracteristicas">
-            Funciones y compatibilidad →
+            {tr("Funciones y compatibilidad →")}
           </Link>
         </div>
       </section>
       <section className="shell section product-split">
         <div className="product-description">
-          <span className="eyebrow">PERSONALIZACIÓN DEL LAUNCHER</span>
-          <h2>Estilo, superficie y densidad de la interfaz</h2>
+          <span className="eyebrow">{tr("PERSONALIZACIÓN DEL LAUNCHER")}</span>
+          <h2>{tr("Estilo, superficie y densidad de la interfaz")}</h2>
           <p>
-            Elige entre Modern y Pixel, cambia el color de acento, la tipografía
-            y la densidad. Los ajustes visuales del launcher son independientes
-            de los gráficos de Minecraft.
+            {tr(
+              "Elige entre Modern y Pixel, cambia el color de acento, la tipografía y la densidad. Los ajustes visuales del launcher son independientes de los gráficos de Minecraft.",
+            )}
           </p>
-          <Link href="/ayuda/instalaciones">Crear una instalación →</Link>
+          <Link href="/ayuda/instalaciones">
+            {tr("Crear una instalación →")}
+          </Link>
         </div>
         <Image
           src="/images/launcher-settings.webp"
-          alt="Panel de apariencia del frontend oficial de TFL Client"
+          alt={tr("Panel de apariencia del frontend oficial de TFL Client")}
           width={1440}
           height={900}
           sizes="(max-width:760px) 100vw, 60vw"
         />
       </section>
+      <MemoryComparison />
       <section className="shell section selection-overview">
-        <span className="eyebrow">DISTRIBUCIÓN OFICIAL</span>
-        <h2>TFL Selection: mods gestionados por TFLives</h2>
+        <span className="eyebrow">{tr("DISTRIBUCIÓN OFICIAL")}</span>
+        <h2>{tr("TFL Selection: clientes oficiales de Minecraft")}</h2>
         <p>
-          Selection se instala desde el launcher y utiliza un catálogo firmado.
-          Su conjunto de mods lo publica el equipo; una instalación normal te
-          permite gestionar tu propio contenido.
+          {tr(
+            "Selection se instala desde el launcher. El equipo prepara clientes oficiales para distintas formas de jugar.",
+          )}
         </p>
         <div className="comparison-table">
           <div>
-            <h3>Instalación normal</h3>
+            <h3>{tr("Instalación normal")}</h3>
             <p>
-              Eliges la versión, el loader y los mods que quieres mantener.
-              Revisa tú la compatibilidad del contenido.
+              {tr(
+                "Eliges la versión, el loader y los mods que quieres mantener. Revisa tú la compatibilidad del contenido.",
+              )}
             </p>
           </div>
           <div>
             <h3>TFL Selection</h3>
             <p>
-              Eliges un target y un canal publicado. TFLives define la
-              composición y el launcher gestiona sus archivos oficiales.
+              {tr(
+                "Eliges un cliente publicado por TFLives y sigues su instalación desde el launcher.",
+              )}
             </p>
           </div>
         </div>
         <Link className="button secondary" href="/selection">
-          Consultar versiones y requisitos de Selection →
+          {tr("Ver clientes de TFL Selection →")}
         </Link>
       </section>
       <section className="shell section release-home">
         <div>
-          <span className="eyebrow">PUBLICACIONES OFICIALES</span>
-          <h2>Última versión estable</h2>
+          <span className="eyebrow">{tr("PUBLICACIONES OFICIALES")}</span>
+          <h2>{tr("Última versión estable")}</h2>
           <p>
-            Las betas se muestran por separado en el historial y en Descargas.
+            {tr(
+              "Las betas se muestran por separado en el historial y en Descargas.",
+            )}
           </p>
         </div>
         <div>
           {stable ? (
             <>
-              <span className="badge stable">Estable</span>
+              <span className="badge stable">{tr("Estable")}</span>
               <h3>
                 <Link href={releasePath(stable.tag)}>{stable.tag}</Link>
               </h3>
@@ -128,53 +147,59 @@ export default async function Home() {
                 {stable.body
                   ? stable.body.slice(0, 220) +
                     (stable.body.length > 220 ? "…" : "")
-                  : "La publicación no incluye notas."}
+                  : tr("La publicación no incluye notas.")}
               </p>
               <Link className="text-link" href={releasePath(stable.tag)}>
-                Notas y archivos →
+                {tr("Notas y archivos →")}
               </Link>
             </>
           ) : (
             <p>
-              No pudimos consultar la versión estable.{" "}
+              {tr("No pudimos consultar la versión estable.")}{" "}
               <a href="https://github.com/TFLivesStudio/TFLClient/releases">
-                Ver releases oficiales
+                {tr("Ver releases oficiales")}
               </a>
             </p>
           )}
           <Link className="text-link" href="/novedades">
-            Historial completo →
+            {tr("Historial completo →")}
           </Link>
         </div>
       </section>
       <section className="shell section">
-        <h2>Primeros pasos</h2>
+        <h2>{tr("Primeros pasos")}</h2>
         <ol className="steps">
           <li>
-            <h3>Descarga el instalador</h3>
-            <p>Selecciona tu sistema, arquitectura y canal en Descargas.</p>
-          </li>
-          <li>
-            <h3>Añade tu cuenta</h3>
+            <h3>{tr("Descarga el instalador")}</h3>
             <p>
-              Completa el inicio de sesión con Microsoft dentro de TFL Client.
+              {tr("Selecciona tu sistema, arquitectura y canal en Descargas.")}
             </p>
           </li>
           <li>
-            <h3>Prepara una instalación</h3>
+            <h3>{tr("Añade tu cuenta")}</h3>
             <p>
-              Crea una instancia normal o elige una publicación de Selection.
+              {tr(
+                "Completa el inicio de sesión con Microsoft dentro de TFL Client.",
+              )}
+            </p>
+          </li>
+          <li>
+            <h3>{tr("Prepara una instalación")}</h3>
+            <p>
+              {tr(
+                "Crea una instancia normal o elige una publicación de Selection.",
+              )}
             </p>
           </li>
         </ol>
         <Link className="text-link" href="/ayuda">
-          Guías de instalación y ayuda →
+          {tr("Guías de instalación y ayuda →")}
         </Link>
       </section>
       <section className="shell section faq-section">
         <div>
-          <span className="eyebrow">ANTES DE DESCARGAR</span>
-          <h2>Preguntas frecuentes</h2>
+          <span className="eyebrow">{tr("ANTES DE DESCARGAR")}</span>
+          <h2>{tr("Preguntas frecuentes")}</h2>
         </div>
         <FAQ />
       </section>

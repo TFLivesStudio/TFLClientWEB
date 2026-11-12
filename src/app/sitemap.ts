@@ -4,7 +4,7 @@ import { articles } from "@/lib/help";
 import { origin } from "@/lib/seo";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const r = await getReleases();
-  return [
+  const pages = [
     ...[
       "/",
       "/caracteristicas",
@@ -21,4 +21,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: r.date,
     })),
   ];
+  return pages.flatMap((p) => {
+    const path = p.url.slice(origin.length);
+    const languages = {
+      es: p.url,
+      en: origin + "/en" + (path === "/" ? "" : path),
+    };
+    return [
+      { ...p, alternates: { languages } },
+      { ...p, url: languages.en, alternates: { languages } },
+    ];
+  });
 }
