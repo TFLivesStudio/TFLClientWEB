@@ -37,6 +37,8 @@ export interface PatternWavesProps extends Partial<PresetValues> {
   cursorStrength?: number;
   intro?: boolean;
   paused?: boolean;
+  onReady?: () => void;
+  onFailure?: () => void;
   className?: string;
   style?: CSSProperties;
 }
@@ -498,7 +500,9 @@ const PatternWaves = ({
   intro = true,
   paused = false,
   className = '',
-  style
+  style,
+  onReady,
+  onFailure
 }: PatternWavesProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const settingsRef = useRef<Settings | null>(null);
@@ -551,15 +555,20 @@ const PatternWaves = ({
     const gl = renderer.gl;
     if (!renderer.isWebgl2) {
       gl.getExtension('WEBGL_lose_context')?.loseContext();
+      onFailure?.();
       return undefined;
     }
     gl.clearColor(0, 0, 0, 0);
+    let reportedReady = false;
+    let verifiedInk = false;
     const canvas = gl.canvas;
     canvas.style.display = 'block';
     canvas.style.width = '100%';
     canvas.style.height = '100%';
     canvas.setAttribute('aria-hidden', 'true');
     container.appendChild(canvas);
+    const contextLost = () => onFailure?.();
+    canvas.addEventListener('webglcontextlost', contextLost);
 
     const geometry = new Triangle(gl);
     const blank = new Texture(gl);
@@ -852,6 +861,20 @@ const PatternWaves = ({
       markUniforms.uAccent.value = s.color.slice(0, 3).map(channel => channel + (tint - channel) * blend);
       markUniforms.uBackground.value = background;
       renderer.render({ scene: markMesh });
+      if (!verifiedInk && introClock >= 1) {
+        // A driver can accept a context yet render an empty shader result.
+        const side = Math.min(64, gl.drawingBufferWidth, gl.drawingBufferHeight);
+        const pixels = new Uint8Array(side * side * 4);
+        gl.readPixels(Math.floor((gl.drawingBufferWidth-side)/2), Math.floor((gl.drawingBufferHeight-side)/2), side, side, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
+        const hasInk = pixels.some((value, index) => index % 4 !== 3 && value > 0);
+        if (!hasInk || gl.getError() !== gl.NO_ERROR) { onFailure?.(); return; }
+        verifiedInk = true;
+      }
+      if (!reportedReady) {
+        if (gl.getError() !== gl.NO_ERROR) { onFailure?.(); return; }
+        reportedReady = true;
+        onReady?.();
+      }
       dirty = false;
 
       if (visible && (moving || introClock < 1 || rippleActive || dirty)) raf = requestAnimationFrame(frame);
@@ -932,6 +955,7 @@ const PatternWaves = ({
     resize();
 
     return () => {
+      canvas.removeEventListener('webglcontextlost', contextLost);
       alive = false;
       visible = false;
       cancelAnimationFrame(raf);
@@ -953,6 +977,8 @@ const PatternWaves = ({
       gl.getExtension('WEBGL_lose_context')?.loseContext();
       if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
     };
+  // Callbacks only report the lifetime of this mounted renderer.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

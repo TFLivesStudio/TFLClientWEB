@@ -20,9 +20,9 @@ Estado actual: implementación inicial en español con App Router, TypeScript, C
 
 El propietario solicita rediseño premium exclusivamente oscuro y autoriza trabajar y subir directamente a main. Se adopta negro, plata y azul TFL como acento. Esta dirección sustituye el fondo azul anterior; el modo claro queda fuera del alcance. Pattern Waves debe usar la fuente TS-TW del registro oficial con silk, blanco sobre negro e interacción (cursor 50, fuerza 0.6).
 
-## Regla permanente de movimiento — 12 de noviembre de 2026
+## Compatibilidad gráfica y movimiento — decisión vigente del 12 de noviembre de 2026
 
-Por instrucción explícita del propietario, no implementar soporte de `prefers-reduced-motion` en ninguna página, componente o CSS. No ocultar, detener ni simplificar animaciones por esa preferencia del sistema. Esta regla se aplica también a dependencias y componentes de registro: revisar sus controles internos al incorporarlos o actualizarlos. No reintroducir este comportamiento sin una nueva instrucción explícita del propietario. Conservar las protecciones por ausencia de WebGL y las pausas cuando la pestaña o el componente no sean visibles: estas no dependen de preferencias de movimiento.
+El propietario revocó la decisión de eliminar movimiento reducido. Respetar `prefers-reduced-motion` sin quitar el fondo: mostrar su versión estática. Ningún dispositivo debe quedarse sin el tratamiento visual por carecer de WebGL2. Pattern Waves necesita WebGL2; usar una alternativa Canvas 2D de la misma familia visual cuando no esté disponible, falle su inicialización o se pierda el contexto. No detectar por marca de CPU ni suponer que WebGL1 basta. Mantener pausas fuera de pantalla o con la pestaña oculta. No prometer equivalencia píxel a píxel entre motores gráficos.
 
 ## 0. Instrucciones prioritarias para agentes
 
@@ -512,7 +512,7 @@ Objetivos aspiracionales (NO mediciones actuales):
 - Optimizar imágenes (WebP/AVIF, responsive, lazy donde corresponda), preload solo de críticos.
 - Evitar vídeos automáticos pesados, fondos de partículas, JavaScript masivo y dependencias excesivas.
 - Fuentes optimizadas, SSR/SSG cuando corresponda, Server Components como base.
-- Animaciones independientes de las preferencias de movimiento del sistema.
+- Animaciones respetan la preferencia de movimiento, manteniendo un fondo estático equivalente.
 
 ### Accesibilidad
 
