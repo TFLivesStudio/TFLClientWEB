@@ -30,6 +30,10 @@ const schema = z.object({
   name: z.string().nullable(),
   html_url: z.string().refine(official),
   published_at: z.string().refine((t) => Number.isFinite(Date.parse(t))),
+  updated_at: z
+    .string()
+    .refine((t) => Number.isFinite(Date.parse(t)))
+    .optional(),
   body: z.string().nullable().optional(),
   assets: z.array(
     z.object({
@@ -49,6 +53,7 @@ export function parseRelease(data: unknown): Release | null {
     tag: d.tag_name,
     url: d.html_url,
     date: d.published_at,
+    updatedAt: d.updated_at,
     assets: d.assets
       .filter((a) => official(a.browser_download_url) && a.size > 0)
       .map((a) => ({

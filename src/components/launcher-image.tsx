@@ -29,7 +29,7 @@ export function LauncherImage({
           alt={alt}
           key={theme}
           src={theme === "light" ? src.replace(/(\.[^/.]+)$/, "-light$1") : src}
-          className={`${className} launcher-theme-image theme-${theme}${markActive && selectedTheme === theme ? " product-shot" : ""}`}
+          className={`${className} launcher-theme-image theme-${theme}${markActive && mounted && selectedTheme === theme ? " product-shot" : ""}`}
         />
       ))}
     </>

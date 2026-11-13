@@ -96,6 +96,7 @@ export default async function Privacy() {
           <a href="/licenses/MotionPrimitives-MIT.txt">Motion Primitives</a>
           <a href="/licenses/AnimateUI-MIT-Commons-Clause.txt">Animate UI</a>
           <a href="/licenses/Prism-Branding-CC-BY-SA-4.0.txt">Prism Launcher</a>
+          <a href="/licenses/Lenis-MIT.txt">Lenis (MIT)</a>
         </div>
       </article>
     </>

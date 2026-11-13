@@ -1,3 +1,4 @@
+import { ArrowDown } from "lucide-react";
 import { getTranslator } from "@/i18n/server";
 import { MemoryComparison } from "@/components/memory-comparison";
 import Link from "@/components/locale-link";
@@ -6,7 +7,9 @@ import { Ambient } from "@/components/ambient";
 import { Gallery } from "@/components/gallery";
 import { DownloadCTA, FAQ } from "@/components/ui";
 import { getReleases, releasePath } from "@/lib/releases";
-import { seo } from "@/lib/seo";
+import { StructuredData } from "@/components/structured-data";
+import { localeUrl } from "@/i18n/shared";
+import { origin, seo } from "@/lib/seo";
 export async function generateMetadata() {
   const tr = await getTranslator();
   return {
@@ -27,6 +30,24 @@ export default async function Home() {
   const stable = releases.find((r) => r.channel === "stable");
   return (
     <>
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "@id": `${origin}/#launcher`,
+          name: "TFL Client",
+          url: localeUrl("/", tr.locale),
+          applicationCategory: "GameApplication",
+          operatingSystem: "Windows, macOS, Linux",
+          description: tr(
+            "Instala Minecraft, organiza tus versiones y gestiona tus mods desde un mismo launcher.",
+          ),
+          image: `${origin}/images/social/tfl-client-${tr.locale}.png`,
+          publisher: { "@id": `${origin}/#organization` },
+          downloadUrl: localeUrl("/descargas", tr.locale),
+          ...(stable ? { softwareVersion: stable.tag } : {}),
+        }}
+      />
       <section className="hero">
         <Ambient />
         <div className="shell hero-content">
@@ -48,10 +69,18 @@ export default async function Home() {
           <p className="platform-note">
             {tr("Windows, macOS y Linux · Instaladores según publicación")}
           </p>
-          <div className="hero-gallery">
-            <Gallery />
-          </div>
+          <a className="hero-scroll-cue" href="#launcher-preview">
+            <span>{tr("Explora el launcher")}</span>
+            <ArrowDown size={18} aria-hidden="true" />
+          </a>
         </div>
+      </section>
+      <section
+        id="launcher-preview"
+        className="shell launcher-showcase"
+        aria-label={tr("Capturas del launcher")}
+      >
+        <Gallery />
       </section>
       <section className="shell section overview">
         <div>

@@ -62,30 +62,40 @@ export default async function Selection() {
               .filter((t) => Object.keys(t.channels).length)
               .map((t) => (
                 <article className="catalog-card" key={t.targetId}>
-                  <h3>{t.displayName || `Minecraft ${t.minecraftVersion}`}</h3>
-                  <p>Minecraft {t.minecraftVersion}</p>
-                  {Object.entries(t.channels).map(([channel, p]) => (
-                    <div
-                      key={channel}
-                      className={`channel-row channel-${channel}`}
-                    >
-                      <span className={`badge ${channel}`}>
-                        {channel === "stable"
-                          ? tr("Estable")
-                          : channel === "beta"
-                            ? tr("Beta")
-                            : tr("Desarrollo")}
-                      </span>
-                      <strong>{p.release}</strong>
-                      <p>
-                        {channel === "stable"
-                          ? tr("Versión publicada para uso habitual.")
-                          : tr(
-                              "Versión de prueba. Lee su descripción en el launcher antes de instalar.",
-                            )}
-                      </p>
-                    </div>
-                  ))}
+                  <header className="catalog-heading">
+                    <h3>
+                      {t.displayName || `Minecraft ${t.minecraftVersion}`}
+                    </h3>
+                    <span className="catalog-version">
+                      Minecraft {t.minecraftVersion}
+                    </span>
+                  </header>
+                  <div className="catalog-channels">
+                    {Object.entries(t.channels).map(([channel, p]) => (
+                      <div
+                        key={channel}
+                        className={`channel-row channel-${channel}`}
+                      >
+                        <div className="channel-heading">
+                          <span className={`badge ${channel}`}>
+                            {channel === "stable"
+                              ? tr("Estable")
+                              : channel === "beta"
+                                ? tr("Beta")
+                                : tr("Desarrollo")}
+                          </span>
+                          <strong>{p.release}</strong>
+                        </div>
+                        <p>
+                          {channel === "stable"
+                            ? tr("Versión publicada para uso habitual.")
+                            : tr(
+                                "Versión de prueba. Lee su descripción en el launcher antes de instalar.",
+                              )}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
                 </article>
               ))}
           </div>

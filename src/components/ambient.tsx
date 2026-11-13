@@ -2,7 +2,6 @@
 import PatternWaves from "./PatternWaves";
 import { Component, useEffect, useState, type ReactNode } from "react";
 import { useMotionPreference } from "./motion-preference";
-import { useTheme } from "next-themes";
 class GraphicsBoundary extends Component<
   { children: ReactNode; onFailure: () => void },
   { failed: boolean }
@@ -19,7 +18,6 @@ class GraphicsBoundary extends Component<
   }
 }
 export function Ambient() {
-  const { resolvedTheme } = useTheme();
   const { reduced } = useMotionPreference();
   const [settings, setSettings] = useState({
     color: "transparent",
@@ -29,18 +27,34 @@ export function Ambient() {
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
   useEffect(() => {
-    const update = () =>
-      setSettings({
+    const update = () => {
+      const next = {
         color: `hsl(${getComputedStyle(document.documentElement).getPropertyValue("--primary").trim()})`,
         hidden: document.hidden,
         dpr: navigator.hardwareConcurrency <= 4 ? 0.85 : 1.25,
-      });
+      };
+      setSettings((current) =>
+        current.color === next.color &&
+        current.hidden === next.hidden &&
+        current.dpr === next.dpr
+          ? current
+          : next,
+      );
+    };
+    // Observe the applied DOM theme, not next-themes state: its effect applies
+    // the class after descendant effects, which otherwise reads the old token.
+    const observer = new MutationObserver(update);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
     update();
     document.addEventListener("visibilitychange", update);
     return () => {
+      observer.disconnect();
       document.removeEventListener("visibilitychange", update);
     };
-  }, [resolvedTheme]);
+  }, []);
   return (
     <div
       className="ambient"

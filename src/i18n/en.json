@@ -335,5 +335,8 @@
   "Plataformas": "Platforms",
   "Selection": "Selection",
   "Reducir animaciones": "Reduce animations",
-  "Las animaciones están activadas por defecto. El control Reducir animaciones guarda tu elección en este navegador con la clave tfl-motion. Puedes cambiarla en el pie de página sin crear una cuenta.": "Animations are on by default. The Reduce animations control saves your choice in this browser under tfl-motion. You can change it in the footer without creating an account."
+  "Las animaciones están activadas por defecto. El control Reducir animaciones guarda tu elección en este navegador con la clave tfl-motion. Puedes cambiarla en el pie de página sin crear una cuenta.": "Animations are on by default. The Reduce animations control saves your choice in this browser under tfl-motion. You can change it in the footer without creating an account.",
+  "Explora el launcher": "Explore the launcher",
+  "Vista general de TFL Client, launcher de Minecraft Java": "TFL Client overview, Minecraft Java launcher",
+  "Inicio": "Home"
 }

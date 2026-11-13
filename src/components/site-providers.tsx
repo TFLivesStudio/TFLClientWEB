@@ -3,6 +3,7 @@ import {
   MotionPreferenceProvider,
   useMotionPreference,
 } from "./motion-preference";
+import { SmoothScroll } from "./smooth-scroll";
 import { ThemeProvider, useTheme } from "next-themes";
 import { MotionConfig } from "motion/react";
 import * as Tooltip from "@radix-ui/react-tooltip";
@@ -35,6 +36,7 @@ function AnimatedProviders({ children }: { children: ReactNode }) {
         transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
       >
         <Tooltip.Provider delayDuration={350}>
+          <SmoothScroll />
           {children}
           <Notifications />
         </Tooltip.Provider>

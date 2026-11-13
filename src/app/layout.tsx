@@ -1,7 +1,11 @@
 import { getTranslator } from "@/i18n/server";
 import { SiteProviders } from "@/components/site-providers";
 import { LocaleProvider } from "@/i18n/provider";
-import type { Metadata } from "next";
+import { headers } from "next/headers";
+import { socialImage } from "@/lib/seo";
+import { siteStructuredData } from "@/lib/structured-data";
+import { StructuredData } from "@/components/structured-data";
+import type { Metadata, Viewport } from "next";
 import "@fontsource/manrope/latin-400.css";
 import "@fontsource/manrope/latin-600.css";
 import "@fontsource/manrope/latin-700.css";
@@ -17,16 +21,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const tr = await getTranslator();
   return {
     metadataBase: new URL("https://launcher.tflives.com"),
-    openGraph: {
-      images: [
-        {
-          url: "/images/launcher-settings.webp",
-          width: 1440,
-          height: 900,
-          alt: tr("Configuración de TFL Client"),
-        },
-      ],
-    },
+    applicationName: "TFL Client",
+    category: "technology",
+    openGraph: { images: [socialImage(tr.locale)] },
+    twitter: { card: "summary_large_image", images: [socialImage(tr.locale)] },
     title: {
       default: tr("TFL Client | Launcher de Minecraft Java"),
       template: "%s | TFL Client",
@@ -37,18 +35,35 @@ export async function generateMetadata(): Promise<Metadata> {
     robots: {
       index: process.env.VERCEL_ENV === "production",
       follow: process.env.VERCEL_ENV === "production",
+      googleBot: {
+        index: process.env.VERCEL_ENV === "production",
+        follow: process.env.VERCEL_ENV === "production",
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
     },
   };
 }
+export const viewport: Viewport = {
+  themeColor: "#4c8eff",
+  colorScheme: "dark light",
+};
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   const tr = await getTranslator();
+  const path = (await headers()).get("x-tfl-path") || "/";
   return (
-    <html lang={tr.locale} suppressHydrationWarning>
+    <html
+      lang={tr.locale}
+      suppressHydrationWarning
+      data-scroll-behavior="smooth"
+    >
       <body>
+        <StructuredData data={siteStructuredData(tr.locale, path)} />
         <LocaleProvider locale={tr.locale}>
           <SiteProviders>
             <a href="#contenido" className="skip-link">

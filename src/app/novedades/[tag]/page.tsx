@@ -5,7 +5,9 @@ import { notFound } from "next/navigation";
 import Link from "@/components/locale-link";
 import { getReleases } from "@/lib/releases";
 import { Markdown } from "@/components/markdown";
-import { seo } from "@/lib/seo";
+import { StructuredData } from "@/components/structured-data";
+import { localeUrl } from "@/i18n/shared";
+import { origin, seo } from "@/lib/seo";
 export async function generateMetadata({
   params,
 }: {
@@ -15,12 +17,27 @@ export async function generateMetadata({
 }) {
   const tr = await getTranslator();
   const { tag } = await params;
-  return seo(
+  const { releases } = await getReleases();
+  const release = releases.find((item) => item.tag === tag);
+  const metadata = seo(
     `TFL Client ${tag}`,
     `${tr("Notas de versión y archivos de TFL Client")} ${tag}.`,
     `/novedades/${encodeURIComponent(tag)}`,
     tr.locale,
   );
+  return {
+    ...metadata,
+    openGraph: {
+      ...metadata.openGraph,
+      type: "article" as const,
+      ...(release
+        ? {
+            publishedTime: release.date,
+            modifiedTime: release.updatedAt || release.date,
+          }
+        : {}),
+    },
+  };
 }
 export default async function ReleasePage({
   params,
@@ -48,6 +65,21 @@ export default async function ReleasePage({
   }
   return (
     <article className="shell release-detail section">
+      <StructuredData
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: r.name,
+          datePublished: r.date,
+          dateModified: r.updatedAt || r.date,
+          mainEntityOfPage: {
+            "@id": `${localeUrl(`/novedades/${encodeURIComponent(r.tag)}`, tr.locale)}#webpage`,
+          },
+          image: `${origin}/images/social/tfl-client-${tr.locale}.png`,
+          author: { "@id": `${origin}/#organization` },
+          publisher: { "@id": `${origin}/#organization` },
+        }}
+      />
       <ScrollProgress />
       <Link href="/novedades" className="text-link">
         {tr("← Historial de versiones")}

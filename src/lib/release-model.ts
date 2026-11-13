@@ -4,6 +4,7 @@ export type Release = {
   tag: string;
   url: string;
   date: string;
+  updatedAt?: string;
   assets: ReleaseAsset[];
   body: string;
   prerelease: boolean;

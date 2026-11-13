@@ -4,6 +4,10 @@ export function proxy(request: NextRequest) {
   const english = url.pathname === "/en" || url.pathname.startsWith("/en/");
   const headers = new Headers(request.headers);
   headers.set("x-tfl-locale", english ? "en" : "es");
+  headers.set(
+    "x-tfl-path",
+    english ? url.pathname.replace(/^\/en/, "") || "/" : url.pathname,
+  );
   if (english) {
     url.pathname = url.pathname.replace(/^\/en/, "") || "/";
     return NextResponse.rewrite(url, { request: { headers } });

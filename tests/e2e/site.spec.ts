@@ -542,7 +542,8 @@ test("light launcher screenshots switch with the theme in gallery, detail and fu
     localStorage.setItem("tfl-motion", "reduced");
   });
   await page.goto("/");
-  await expect(page.locator(".product-shot")).toHaveAttribute(
+  await expect(page.locator(".gallery .product-shot:visible")).toHaveCount(1);
+  await expect(page.locator(".gallery .product-shot:visible")).toHaveAttribute(
     "src",
     /launcher-console-light/,
   );
@@ -563,7 +564,7 @@ test("light launcher screenshots switch with the theme in gallery, detail and fu
   await page
     .getByRole("button", { name: "Activar tema oscuro", exact: true })
     .click();
-  await expect(page.locator(".product-shot")).toHaveAttribute(
+  await expect(page.locator(".gallery .product-shot:visible")).toHaveAttribute(
     "src",
     /launcher-console.webp/,
   );
@@ -613,4 +614,177 @@ test("cursor remains interactive without floating-point WebGL render targets", a
     )
     .toBeGreaterThan(0.5);
   await expect(page.locator(".ambient[data-graphics=webgl]")).toBeVisible();
+});
+
+test("wave highlights survive a complete dark-light-dark theme cycle", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    localStorage.setItem("tfl-motion", "reduced");
+    const original = WebGL2RenderingContext.prototype.createProgram;
+    const programs: WebGLProgram[] = [];
+    Object.assign(window, { tflHighlightPrograms: programs });
+    WebGL2RenderingContext.prototype.createProgram = function () {
+      const program = original.call(this);
+      if (program) programs.push(program);
+      return program;
+    };
+  });
+  await page.goto("/");
+  await expect(page.locator('.ambient[data-graphics="webgl"]')).toBeVisible();
+  const lighting = () =>
+    page.locator(".silk-gpu canvas").evaluate((canvas: HTMLCanvasElement) => {
+      const gl = canvas.getContext("webgl2")!;
+      const programs = (
+        window as unknown as { tflHighlightPrograms: WebGLProgram[] }
+      ).tflHighlightPrograms;
+      const result: Record<string, number | number[]> = {};
+      for (const program of programs)
+        for (const name of ["uInk", "uColor", "uAccent"]) {
+          const location = gl.getUniformLocation(program, name);
+          if (location) {
+            const value = gl.getUniform(program, location);
+            result[name] =
+              typeof value === "number"
+                ? value
+                : Array.from(value as Float32Array);
+          }
+        }
+      return result;
+    });
+  const initial = await lighting();
+  expect(initial.uInk).toBe(0);
+  await page
+    .getByRole("button", { name: "Activar tema claro", exact: true })
+    .click();
+  await expect.poll(async () => (await lighting()).uInk).toBe(1);
+  expect((await lighting()).uColor).not.toEqual(initial.uColor);
+  await page
+    .getByRole("button", { name: "Activar tema oscuro", exact: true })
+    .click();
+  await expect.poll(lighting).toEqual(initial);
+});
+
+test("full-height hero, smooth anchor navigation, wheel input and modal scroll lock", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/");
+  await expect(page.locator("html")).toHaveClass(/lenis/);
+  const heroBottom = await page
+    .locator(".hero")
+    .evaluate((el) => el.getBoundingClientRect().bottom);
+  expect(Math.abs(heroBottom - 1000)).toBeLessThan(2);
+  await page
+    .getByRole("link", { name: "Explora el launcher", exact: true })
+    .click();
+  await expect
+    .poll(() => page.evaluate(() => location.hash))
+    .toBe("#launcher-preview");
+  const galleryTop = await page
+    .locator("#launcher-preview")
+    .evaluate((el) => el.getBoundingClientRect().top);
+  expect(galleryTop).toBeGreaterThanOrEqual(90);
+  expect(galleryTop).toBeLessThan(110);
+  const start = await page.evaluate(() => scrollY);
+  await page.mouse.wheel(0, 240);
+  await expect
+    .poll(() => page.evaluate(() => scrollY))
+    .toBeGreaterThan(start + 150);
+  await page.getByRole("button", { name: "Ampliar captura" }).click();
+  await expect(page.getByRole("dialog")).toBeVisible();
+  await expect(page.locator("html")).toHaveClass(/lenis-stopped/);
+  const locked = await page.evaluate(() => scrollY);
+  await page.mouse.wheel(0, 500);
+  await page.waitForTimeout(250);
+  expect(await page.evaluate(() => scrollY)).toBe(locked);
+  await page.keyboard.press("Escape");
+  await expect(page.locator("html")).not.toHaveClass(/lenis-stopped/);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  expect(
+    Math.abs(
+      (await page
+        .locator(".hero")
+        .evaluate((el) => el.getBoundingClientRect().bottom)) - 844,
+    ),
+  ).toBeLessThan(2);
+});
+
+test("Selection channel cards provide padding and readable wrapping in both themes", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/selection");
+  for (const next of ["Activar tema claro", "Activar tema oscuro"]) {
+    const row = page.locator(".channel-row").first();
+    await expect(row).toBeVisible();
+    const spacing = await row.evaluate((el) => {
+      const r = el.getBoundingClientRect(),
+        text = el.querySelector("strong")!.getBoundingClientRect();
+      return {
+        paddingLeft: parseFloat(getComputedStyle(el).paddingLeft),
+        left: text.left - r.left,
+        right: r.right - text.right,
+        overflow: document.documentElement.scrollWidth > innerWidth,
+      };
+    });
+    expect(spacing.paddingLeft).toBeGreaterThanOrEqual(20);
+    expect(spacing.left).toBeGreaterThanOrEqual(20);
+    expect(spacing.right).toBeGreaterThanOrEqual(20);
+    expect(spacing.overflow).toBe(false);
+    await page.getByRole("button", { name: next, exact: true }).click();
+    await page.waitForTimeout(750);
+  }
+});
+
+test("social previews, structured data and complete bilingual sitemap are crawlable without JavaScript", async ({
+  request,
+}) => {
+  for (const prefix of ["", "/en"]) {
+    const response = await request.get(prefix + "/selection");
+    const html = await response.text();
+    expect(html).toContain('property="og:image:width" content="1200"');
+    expect(html).toContain('property="og:image:height" content="630"');
+    expect(html).toContain(
+      `https://launcher.tflives.com/images/social/tfl-client-${prefix ? "en" : "es"}.png`,
+    );
+    expect(html).toContain('name="twitter:card" content="summary_large_image"');
+    expect(html).toContain('name="theme-color" content="#4c8eff"');
+    const data = JSON.parse(
+      html.match(
+        /<script type="application\/ld\+json">([\s\S]*?)<\/script>/,
+      )![1],
+    );
+    const webpage = data["@graph"].find(
+      (node: Record<string, unknown>) => node["@type"] === "WebPage",
+    );
+    expect(webpage.url).toBe(`https://launcher.tflives.com${prefix}/selection`);
+    expect(
+      data["@graph"].some(
+        (node: Record<string, unknown>) => node["@type"] === "BreadcrumbList",
+      ),
+    ).toBe(true);
+    const image = await request.get(
+      `/images/social/tfl-client-${prefix ? "en" : "es"}.png`,
+    );
+    expect(image.ok()).toBe(true);
+    expect(image.headers()["content-type"]).toContain("image/png");
+    expect((await image.body()).subarray(1, 4).toString()).toBe("PNG");
+  }
+  const sitemap = await (await request.get("/sitemap.xml")).text();
+  expect(sitemap).toContain('hreflang="x-default"');
+  const locations = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(
+    (match) => match[1],
+  );
+  expect(new Set(locations).size).toBe(locations.length);
+  for (const route of [
+    "/selection",
+    "/en/selection",
+    "/ayuda/reportar",
+    "/en/ayuda/reportar",
+    "/novedades/v0.15.3-beta.6",
+    "/en/novedades/v0.15.3-beta.6",
+  ])
+    expect(locations).toContain("https://launcher.tflives.com" + route);
 });

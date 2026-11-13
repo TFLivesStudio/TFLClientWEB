@@ -61,7 +61,11 @@ await screen.waitForFunction(() =>
 await screen.waitForTimeout(100);
 await screen.screenshot({ path: "docs/qa/theme-transition.png" });
 await screen.waitForTimeout(600);
-if ((await screen.locator("html").getAttribute("class")) !== "light")
+if (
+  !(await screen
+    .locator("html")
+    .evaluate((el) => el.classList.contains("light")))
+)
   throw new Error("Animated theme change did not finish in light mode");
 if (errors.length) throw new Error(JSON.stringify(errors));
 const compatible = await browser.newContext({
