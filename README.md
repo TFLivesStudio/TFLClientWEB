@@ -2,6 +2,15 @@
 
 Web oficial de TFL Client en Next.js App Router, React y TypeScript. Actualización aprobada por el propietario para integrarse en `main` y desplegarse mediante la integración Git de Vercel. Dominio: https://launcher.tflives.com.
 
+## Nombres del ecosistema
+
+**TFL Client** es el launcher. **TFL Selection** es la biblioteca donde TFLives
+publica sus clientes modificados. **TFLClient** es el cliente que se instala y se
+utiliza dentro de Minecraft; **TFL Core** impulsa sus funciones.
+
+Consulta [los nombres y términos](docs/PRODUCT_NAMES.md) para mantener esta
+distinción en todo el proyecto.
+
 ## Desarrollo y validación
 
 Node.js 24 y npm. No se necesita base de datos ni claves para consultar las fuentes públicas.

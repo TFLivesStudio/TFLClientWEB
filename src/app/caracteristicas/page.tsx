@@ -75,7 +75,7 @@ export default async function Features() {
             "06",
             tr("Actualizaciones y Selection"),
             tr(
-              "Las releases del launcher tienen canales estable y beta. Los clientes de TFL Selection tienen sus propias versiones publicadas. Actualizar el launcher no significa que se publique un nuevo cliente de Selection.",
+              "El launcher TFL Client tiene canales estable y beta. TFLClient tiene sus propias versiones dentro de la biblioteca TFL Selection. Actualizar el launcher no publica ni instala automáticamente una versión nueva del cliente.",
             ),
             "selection",
           ],

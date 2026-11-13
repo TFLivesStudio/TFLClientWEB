@@ -13,7 +13,7 @@ El Production Refresh del propietario sustituye las instrucciones anteriores sob
 - Slate domina; azul TFL es acento. Oscuro predeterminado y tema claro completo con los mismos tokens Slate; next-themes persiste la elección y permite modo del sistema. Negro profundo de fondo y superficies azuladas, con azules eléctricos y cian como acentos. Manrope en títulos e Inter en texto, servidas localmente.
 - Copy descriptivo, preciso y humano. Cada título identifica su contenido y cada párrafo aporta información. No eslóganes genéricos, cifras inventadas, promesas de FPS, testimonios ficticios ni funcionalidades futuras presentadas como actuales.
 - Nombre protagonista: TFL Client. Título del inicio: `TFL Client | Launcher de Minecraft Java`.
-- En la web pública, Selection explica clientes oficiales preparados por TFLives para PvP, Minecraft técnico y otros estilos, con guía breve. No exponer su arquitectura, firmas, loaders, manifiestos ni repositorios. Core solo como impulsor de la experiencia; no enlazar su GitHub. El único repositorio GitHub enlazado en la web es TFLivesStudio/TFLClient (launcher).
+- En la web pública, TFL Selection es la biblioteca; TFLClient es el cliente modificado y TFL Client es el launcher. Explicar sus funciones y la instalación con una guía breve. No exponer su arquitectura, firmas, loaders, manifiestos ni repositorios. Core solo como impulsor de la experiencia; no enlazar su GitHub. El único repositorio GitHub enlazado en la web es TFLivesStudio/TFLClient (launcher).
 - Español primario en `/`; inglés completo en `/en`. Mantener diccionario, metadatos, ayudas, etiquetas accesibles y enlaces locales en ambos idiomas. Notas de releases conservan su idioma original con aviso.
 - Discord oficial: https://discord.gg/tflives. Estables en verde y betas en naranja rust; siempre añadir texto además del color.
 - Comparativa de RAM: cifras aportadas por TFLives en AMD A10 PRO 8750B/Windows 10, sin método ni estado de las aplicaciones proporcionados. Identificar su procedencia y límites; no convertirlas en promesa universal. El núcleo nativo es Rust y la interfaz es Svelte: no afirmar que toda la aplicación es Rust.
@@ -67,3 +67,11 @@ Ejecutar `npm run build`, `npm run typecheck`, `npm run lint`, `npm test` y Play
 La máquina cloud necesita `NODE_USE_ENV_PROXY=1` al iniciar Node para respetar el proxy heredado. No desactivar TLS ni copiar credenciales en archivos. En Vercel no se requiere esta variable de infraestructura cloud.
 
 Al entregar: rama/commit integrado, cambios, pruebas reales, capturas, límites y estado del despliegue. No mezclar cambios de otros repositorios ni reescribir historial.
+
+## Nombres oficiales del ecosistema
+
+TFL Client es el launcher; TFL Selection es la biblioteca de clientes modificados;
+TFLClient es el cliente final (sin espacio). TFL Core impulsa sus funciones.
+Usa [docs/PRODUCT_NAMES.md](docs/PRODUCT_NAMES.md) como referencia. Aplica estos
+nombres a copy, traducciones y notas públicas. Conserva IDs, rutas, datos de
+usuario y bytes firmados; la biblioteca no se presenta como cliente ni modpack.

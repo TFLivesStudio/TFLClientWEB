@@ -135,3 +135,30 @@ horizontal en cuatro vistas:
 - [Artículo histórico, móvil claro en inglés](qa/release-notes/release-mobile-light.png).
 
 [Registro de las cuatro comprobaciones](qa/release-notes/verification.json).
+
+## Nombres del ecosistema — 13 de noviembre de 2026
+
+TFL Client identifica el launcher; TFL Selection, la biblioteca de clientes
+modificados; TFLClient, el cliente final. Se corrigieron páginas, ayuda, FAQ,
+traducciones, metadatos y etiquetas del catálogo. El nuevo glosario bilingüe
+explica también instancia, modpack, módulo, HUD, canal y MCP.
+
+Las etiquetas antiguas del catálogo se normalizan solo para su presentación,
+después de la verificación existente. No se modificaron los bytes firmados ni
+las referencias de las versiones publicadas. Las pruebas nuevas cubren alias,
+fallbacks, nombres personalizados y objetos originales inmutables.
+
+Validación: 19 pruebas unitarias, 27 pruebas Playwright, TypeScript, ESLint y build
+de producción correctos. Se comprobaron definición de los tres productos, títulos
+del catálogo, navegación ES/EN, accesibilidad y ausencia de overflow.
+
+Revisión visual adicional:
+
+- [Selection, escritorio oscuro](qa/product-names/selection-desktop-dark.png).
+- [Selection, móvil claro](qa/product-names/selection-mobile-light.png).
+- [Glosario, escritorio claro en inglés](qa/product-names/glossary-desktop-light-en.png).
+- [Glosario, móvil oscuro en inglés](qa/product-names/glossary-mobile-dark-en.png).
+
+[Registro de las cuatro comprobaciones](qa/product-names/verification.json).
+La terminología que deben conservar próximas actualizaciones está documentada en
+[PRODUCT_NAMES.md](PRODUCT_NAMES.md) y AGENTS.md.

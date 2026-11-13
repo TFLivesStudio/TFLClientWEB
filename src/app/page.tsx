@@ -133,10 +133,10 @@ export default async function Home() {
       <ScanSection />
       <section className="shell section selection-overview">
         <span className="eyebrow">{tr("DISTRIBUCIÓN OFICIAL")}</span>
-        <h2>{tr("TFL Selection: clientes oficiales de Minecraft")}</h2>
+        <h2>{tr("TFL Selection: la biblioteca de clientes de TFLives")}</h2>
         <p>
           {tr(
-            "Selection se instala desde el launcher. El equipo prepara clientes oficiales para distintas formas de jugar.",
+            "Desde la biblioteca TFL Selection eliges TFLClient, el cliente modificado de Minecraft. TFL Client es el launcher que lo instala y lo abre.",
           )}
         </p>
         <div className="comparison-table">
@@ -149,10 +149,10 @@ export default async function Home() {
             </p>
           </div>
           <div>
-            <h3>TFL Selection</h3>
+            <h3>TFLClient</h3>
             <p>
               {tr(
-                "Eliges un cliente publicado por TFLives y sigues su instalación desde el launcher.",
+                "Encuentras TFLClient en la biblioteca TFL Selection y lo instalas desde el launcher TFL Client.",
               )}
             </p>
           </div>

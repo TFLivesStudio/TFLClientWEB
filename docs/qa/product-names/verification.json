@@ -1,0 +1,53 @@
+{
+  "checkedOn": "2026-11-13",
+  "scenarios": [
+    {
+      "name": "selection-desktop-dark",
+      "path": "/selection",
+      "theme": "dark",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "passed": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "name": "selection-mobile-light",
+      "path": "/selection",
+      "theme": "light",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "passed": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "name": "glossary-desktop-light-en",
+      "path": "/en/ayuda/glosario",
+      "theme": "light",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "passed": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "name": "glossary-mobile-dark-en",
+      "path": "/en/ayuda/glosario",
+      "theme": "dark",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "passed": true,
+      "horizontalOverflow": false,
+      "pageErrors": []
+    }
+  ]
+}

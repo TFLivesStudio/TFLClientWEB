@@ -63,7 +63,7 @@ export function ModuleExplorer() {
       <div className="module-intro">
         <div>
           <span className="eyebrow">{tr("IMPULSADO POR TFL CORE")}</span>
-          <h2>{tr("82 módulos de TFL Core")}</h2>
+          <h2>{tr("82 módulos de TFLClient")}</h2>
           <p>
             {tr(
               "Explora los 82 módulos del catálogo de la candidata. Busca una función o elige una categoría; la lista se desplaza dentro de su propio panel.",
@@ -80,7 +80,7 @@ export function ModuleExplorer() {
         <div className="module-toolbar">
           <label className="module-search">
             <Search size={18} aria-hidden="true" />
-            <span className="sr-only">{tr("Buscar módulos de TFL Core")}</span>
+            <span className="sr-only">{tr("Buscar módulos de TFLClient")}</span>
             <input
               type="search"
               value={query}
@@ -114,7 +114,7 @@ export function ModuleExplorer() {
           ref={wrapper}
           className="module-scroll"
           role="region"
-          aria-label={tr("Catálogo de módulos de TFL Core")}
+          aria-label={tr("Catálogo de módulos de TFLClient")}
           tabIndex={0}
           data-lenis-prevent
         >
@@ -155,7 +155,7 @@ export function ModuleExplorer() {
       </div>
       <p className="module-disclaimer">
         {tr(
-          "Catálogo de una candidata en desarrollo. La presencia en esta lista no confirma disponibilidad en todos los clientes publicados ni certifica todas sus funciones en partida. Consulta los módulos habilitados en tu versión de Selection.",
+          "Catálogo de una candidata de TFLClient en desarrollo, impulsada por TFL Core. Esta lista no confirma la disponibilidad de todas las funciones en cada versión publicada. Consulta los módulos habilitados en tu versión de TFLClient.",
         )}
       </p>
     </section>

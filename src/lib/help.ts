@@ -1,5 +1,62 @@
 export const articles = [
   {
+    slug: "glosario",
+    category: "Primeros pasos",
+    title: "Nombres y términos de TFL",
+    summary:
+      "Aprende la diferencia entre el launcher TFL Client, la biblioteca TFL Selection y el cliente TFLClient.",
+    sections: [
+      [
+        "TFL Client",
+        "Es el launcher de TFLives. Desde esta aplicación instalas, actualizas, organizas y abres tus instancias de Minecraft. Su nombre lleva un espacio entre TFL y Client.",
+      ],
+      [
+        "TFL Selection",
+        "Es la biblioteca donde TFLives publica sus propios clientes modificados de Minecraft. La abres desde el launcher para elegir qué cliente y versión instalar. Es el nombre de la biblioteca, no de un cliente ni de un modpack.",
+      ],
+      [
+        "TFLClient",
+        "Es el cliente modificado de Minecraft de TFLives, disponible en TFL Selection. Es la experiencia que utilizas dentro del juego. Su nombre se escribe junto, sin espacio.",
+      ],
+      [
+        "TFL Core",
+        "Impulsa las funciones de TFLClient dentro del juego. El cliente se llama TFLClient; TFL Core identifica el componente que proporciona esas funciones.",
+      ],
+      [
+        "Launcher",
+        "Aplicación que prepara los archivos y abre Minecraft. TFL Client es nuestro launcher; TFLClient es el cliente que puedes instalar con él.",
+      ],
+      [
+        "Instancia",
+        "Instalación de Minecraft con sus propios archivos, ajustes y mundos. Puedes tener varias instancias para separar versiones y formas de jugar.",
+      ],
+      [
+        "Biblioteca",
+        "Colección desde la que eliges contenido. TFL Selection es la biblioteca de clientes publicados por TFLives; la Biblioteca del launcher organiza las instancias que ya tienes.",
+      ],
+      [
+        "Modpack",
+        "Conjunto de mods y configuración distribuido como un paquete. TFL Selection no es el nombre de un modpack: es la biblioteca donde encuentras nuestros clientes modificados.",
+      ],
+      [
+        "Módulo",
+        "Función de TFLClient que puedes configurar o activar dentro del juego. Los módulos disponibles dependen de la versión del cliente.",
+      ],
+      [
+        "HUD",
+        "Información que aparece sobre la partida, como FPS, coordenadas o el estado de la armadura. Los módulos de HUD permiten personalizar esa información cuando están disponibles.",
+      ],
+      [
+        "Canal de publicación",
+        "Indica el tipo de versión: estable para uso habitual, beta para pruebas y desarrollo para trabajo en curso. El launcher y el cliente tienen versiones y canales independientes.",
+      ],
+      [
+        "MCP",
+        "Integración opcional del launcher con asistentes locales compatibles. Permite autorizar ciertas consultas y acciones desde el asistente; los permisos se controlan en TFL Client.",
+      ],
+    ],
+  },
+  {
     slug: "instalar",
     category: "Primeros pasos",
     title: "Descargar e instalar TFL Client",
@@ -62,16 +119,17 @@ export const articles = [
   {
     slug: "selection",
     category: "Instalaciones",
-    title: "Instalar TFL Selection",
-    summary: "Clientes oficiales disponibles en el launcher.",
+    title: "Instalar TFLClient desde TFL Selection",
+    summary:
+      "Distinguir el cliente, la biblioteca y el launcher para instalar la versión correcta.",
     sections: [
       [
-        "Qué es Selection",
-        "TFL Selection reúne los clientes oficiales preparados por TFLives. Cada propuesta incluye mods y ajustes elegidos por el equipo. Para gestionar tu propio conjunto de mods, utiliza una instalación normal.",
+        "Qué es TFL Selection",
+        "TFL Selection es la biblioteca de clientes modificados de TFLives. El cliente se llama TFLClient y se instala desde TFL Client, el launcher. La biblioteca no es el nombre de un modpack ni de un cliente.",
       ],
       [
         "Instalación",
-        "Abre TFL Selection en el launcher, elige un cliente publicado, lee su descripción y confirma la instalación. Espera a que termine y ábrelo desde la biblioteca.",
+        "Abre el launcher TFL Client y entra en TFL Selection. Elige una versión de TFLClient, revisa su descripción y confirma la instalación. Después abre la instancia instalada para jugar.",
       ],
       [
         "Si no aparece una versión",
@@ -84,7 +142,7 @@ export const articles = [
     category: "Versiones",
     title: "Diferencias entre estable y beta",
     summary:
-      "Elegir el canal del launcher y distinguirlo del canal de Selection.",
+      "Elegir el canal del launcher y distinguirlo del canal del cliente.",
     sections: [
       [
         "Estable",
@@ -96,7 +154,7 @@ export const articles = [
       ],
       [
         "Dos canales diferentes",
-        "El canal de actualización de TFL Client corresponde al launcher. El canal de TFL Selection corresponde a su distribución de mods. Usar un launcher beta no significa que todos los targets de Selection estén publicados.",
+        "TFL Client tiene su propio canal de actualización como launcher. Las versiones de TFLClient publicadas en la biblioteca TFL Selection tienen sus propios canales. Instalar una beta del launcher no cambia por sí solo la versión del cliente.",
       ],
     ],
   },
@@ -104,7 +162,7 @@ export const articles = [
     slug: "mods-recursos",
     category: "Instalaciones",
     title: "Gestionar mods, shaders y recursos",
-    summary: "Contenido por instalación y límites de Selection.",
+    summary: "Contenido por instalación y límites de los clientes oficiales.",
     sections: [
       [
         "Instalaciones normales",
@@ -115,8 +173,8 @@ export const articles = [
         "Antes de añadir contenido, lee sus dependencias y compatibilidad. Si un fallo aparece tras un cambio, conserva el log y registra qué archivos cambiaste. No todos los errores se resuelven aumentando memoria.",
       ],
       [
-        "Selection",
-        "La composición de mods de una instalación Selection la gestiona TFLives. Para experimentar con otros mods, utiliza una instalación normal separada.",
+        "TFLClient",
+        "TFLives gestiona los mods de TFLClient distribuido en TFL Selection. Para experimentar con otros mods, utiliza una instalación normal separada.",
       ],
     ],
   },
@@ -144,15 +202,15 @@ export const articles = [
     slug: "compatibilidad",
     category: "Solución de problemas",
     title: "Requisitos y compatibilidad",
-    summary: "Distinguir requisitos del launcher, Minecraft y Selection.",
+    summary: "Distinguir requisitos del launcher, Minecraft y TFLClient.",
     sections: [
       [
         "Plataformas",
         "La disponibilidad para Windows, macOS y Linux se obtiene de los archivos de cada release. Si un instalador no está publicado para tu plataforma, no se genera un enlace supuesto.",
       ],
       [
-        "Minecraft y Selection",
-        "Los requisitos cambian según la versión de Minecraft o el cliente. Lee las indicaciones que muestra TFL Client antes de instalar un cliente de Selection.",
+        "Minecraft y TFLClient",
+        "Los requisitos de TFLClient dependen de la versión de Minecraft y del contenido incluido. Revisa sus indicaciones en la biblioteca TFL Selection del launcher TFL Client.",
       ],
       [
         "Limitaciones conocidas",

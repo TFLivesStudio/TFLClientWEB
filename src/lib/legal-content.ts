@@ -294,11 +294,11 @@ export const legalDocuments = {
       },
       {
         id: "selection",
-        title: t("Selection y módulos", "Selection and modules"),
+        title: t("TFLClient y módulos", "TFLClient and modules"),
         paragraphs: [
           t(
-            "Los clientes de Selection, sus módulos y las candidatas de TFL Core tienen disponibilidad y compatibilidad propias. Que una función figure en el catálogo no significa que esté incluida o habilitada en todas las versiones publicadas. Respeta las reglas de cada servidor y revisa sus restricciones antes de activar módulos.",
-            "Selection clients, their modules and TFL Core candidates have their own availability and compatibility. A feature appearing in the catalog does not mean it is included or enabled in every published version. Respect each server’s rules and check its restrictions before enabling modules.",
+            "TFLClient, los clientes publicados en la biblioteca TFL Selection, sus módulos y las candidatas de TFL Core tienen disponibilidad y compatibilidad propias. Que una función figure en el catálogo no significa que esté incluida o habilitada en todas las versiones publicadas. Respeta las reglas de cada servidor y revisa sus restricciones antes de activar módulos.",
+            "TFLClient, the clients published in the TFL Selection library, their modules and TFL Core candidates have their own availability and compatibility. A feature appearing in the catalog does not mean it is included or enabled in every published version. Respect each server’s rules and check its restrictions before enabling modules.",
           ),
         ],
       },

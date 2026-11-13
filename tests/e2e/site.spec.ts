@@ -1,5 +1,38 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+test("product names distinguish the library, client and launcher in both languages", async ({
+  page,
+}) => {
+  for (const prefix of ["", "/en"]) {
+    await page.goto(prefix + "/selection");
+    await expect(page.locator(".ecosystem-terms dt")).toHaveText([
+      "TFL Client",
+      "TFL Selection",
+      "TFLClient",
+    ]);
+    for (const title of await page
+      .locator(".catalog-heading h3")
+      .allTextContents()) {
+      expect(title).toMatch(/^TFLClient/);
+      expect(title).not.toMatch(/^TFL Selection/);
+    }
+    await page.goto(prefix + "/ayuda/glosario");
+    for (const name of [
+      "TFL Client",
+      "TFL Selection",
+      "TFLClient",
+      "TFL Core",
+    ]) {
+      await expect(
+        page.getByRole("heading", { name, exact: true, level: 2 }),
+      ).toBeVisible();
+    }
+    const a11y = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa"])
+      .analyze();
+    expect(a11y.violations.map(({ id }) => id)).toEqual([]);
+  }
+});
 test("home, gallery, keyboard dialog and FAQ", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
@@ -852,7 +885,7 @@ test("Core catalog has 82 modules, working search and category filters, and inde
   await page.goto("/selection");
   await expect(page.locator(".module-card")).toHaveCount(82);
   const panel = page.getByRole("region", {
-    name: "Catálogo de módulos de TFL Core",
+    name: "Catálogo de módulos de TFLClient",
   });
   await panel.scrollIntoViewIfNeeded();
   await expect(panel).toHaveClass(/lenis/);
@@ -867,7 +900,7 @@ test("Core catalog has 82 modules, working search and category filters, and inde
     2,
   );
   await page
-    .getByRole("searchbox", { name: "Buscar módulos de TFL Core" })
+    .getByRole("searchbox", { name: "Buscar módulos de TFLClient" })
     .fill("zoom");
   await expect(page.locator(".module-card")).toHaveCount(1);
   await expect(page.locator(".module-card h3")).toHaveText("Zoom");
@@ -881,7 +914,7 @@ test("Core catalog has 82 modules, working search and category filters, and inde
   await expect(page.locator(".module-card")).toHaveCount(4);
   await page.goto("/en/selection");
   await page
-    .getByRole("searchbox", { name: "Search TFL Core modules" })
+    .getByRole("searchbox", { name: "Search TFLClient modules" })
     .fill("reach");
   await expect(page.locator(".module-card")).toContainText(
     "without increasing reach",

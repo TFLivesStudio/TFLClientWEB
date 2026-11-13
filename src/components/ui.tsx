@@ -63,6 +63,10 @@ export async function PageTitle({
 }
 export const questions = [
   [
+    "¿Qué diferencia hay entre TFL Client y TFLClient?",
+    "TFL Client, con espacio, es el launcher. TFLClient, sin espacio, es el cliente modificado de Minecraft. Lo encuentras en TFL Selection, la biblioteca de clientes de TFLives.",
+  ],
+  [
     "¿Qué es TFL Client?",
     "Es el launcher de Minecraft de TFLives: el lugar desde el que gestionas versiones, mods y configuraciones de Minecraft Java.",
   ],
@@ -71,12 +75,12 @@ export const questions = [
     "Para jugar con autenticación Microsoft necesitas una cuenta con acceso a Minecraft Java Edition. El inicio de sesión se realiza dentro del launcher, nunca en esta web.",
   ],
   [
-    "¿Qué ofrece TFL Selection?",
-    "Clientes oficiales de Minecraft preparados por TFLives para distintas formas de jugar, como PvP o Minecraft técnico. Puedes elegir e instalar los clientes publicados desde el launcher.",
+    "¿Qué es TFL Selection?",
+    "Es la biblioteca donde TFLives publica sus clientes modificados. Allí encuentras TFLClient, el cliente que instalas y abres con el launcher TFL Client.",
   ],
   [
-    "¿Puedo elegir los mods de TFL Selection?",
-    "Selection es una distribución oficial con un conjunto de mods definido por TFLives. Su composición no es editable como una instalación libre.",
+    "¿Puedo cambiar los mods de TFLClient?",
+    "Los mods de TFLClient los prepara TFLives. La biblioteca TFL Selection permite elegir su versión; para gestionar tu propia combinación de mods, crea una instalación normal en el launcher.",
   ],
   [
     "¿Dónde encuentro versiones y requisitos?",
@@ -130,13 +134,14 @@ export async function Footer() {
         <div>
           <span>{tr("PRODUCTO")}</span>
           <Link href="/caracteristicas">Launcher</Link>
-          <Link href="/selection">{tr("TFL Selection & Core")}</Link>
+          <Link href="/selection">{tr("Biblioteca TFL Selection")}</Link>
           <Link href="/descargas">{tr("Descargas")}</Link>
         </div>
         <div>
           <span>{tr("EXPLORA")}</span>
           <Link href="/novedades">{tr("Novedades")}</Link>
           <Link href="/ayuda">{tr("Centro de ayuda")}</Link>
+          <Link href="/ayuda/glosario">{tr("Glosario")}</Link>
           <Link href="/comunidad">{tr("Comunidad")}</Link>
         </div>
         <div>

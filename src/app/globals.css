@@ -1088,6 +1088,29 @@ body {
   margin: 35px 0;
   line-height: 1.85;
 }
+
+.selection-intro .text-link {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.ecosystem-terms {
+  margin: 1.5rem 0;
+  display: grid;
+  gap: 0.8rem;
+}
+.ecosystem-terms > div {
+  padding-block: 0.65rem;
+  border-bottom: 1px solid hsl(var(--border));
+}
+.ecosystem-terms dt {
+  font-weight: 700;
+}
+.ecosystem-terms dd {
+  margin: 0.25rem 0 0;
+  color: hsl(var(--muted-foreground));
+  line-height: 1.65;
+}
 .markdown h1,
 .markdown h2,
 .markdown h3 {

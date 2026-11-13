@@ -67,7 +67,7 @@ export default async function Community() {
           <h3>{tr("Quieres proponer un cambio")}</h3>
           <p>
             {tr(
-              "Revisa las instrucciones y el estado del repositorio antes de abrir una propuesta o un pull request. Una idea para el launcher no implica un cambio en la distribución de Selection.",
+              "Revisa las instrucciones y el estado del repositorio antes de abrir una propuesta o un pull request. Una idea para el launcher no implica un cambio en los clientes publicados en TFL Selection.",
             )}
           </p>
           <a href="https://discord.gg/tflives">

@@ -4,12 +4,13 @@ import Link from "@/components/locale-link";
 import { PageTitle, DownloadCTA } from "@/components/ui";
 import { getCatalog } from "@/lib/selection";
 import { seo } from "@/lib/seo";
+import { clientDisplayName } from "@/lib/product-names";
 export async function generateMetadata() {
   const tr = await getTranslator();
   return seo(
     "TFL Selection",
     tr(
-      "Clientes oficiales de Minecraft de TFLives para diferentes formas de jugar.",
+      "La biblioteca oficial de clientes modificados de TFLives. Descubre TFLClient e instálalo desde el launcher TFL Client.",
     ),
     "/selection",
     tr.locale,
@@ -21,25 +22,52 @@ export default async function Selection() {
   return (
     <>
       <PageTitle
-        label={tr("CLIENTES OFICIALES")}
+        label={tr("BIBLIOTECA OFICIAL")}
         title="TFL Selection"
         description={tr(
-          "Clientes de Minecraft preparados por TFLives para distintas formas de jugar: PvP, Minecraft técnico y otras experiencias del equipo.",
+          "TFL Selection es la biblioteca donde TFLives publica sus clientes modificados de Minecraft. TFLClient es el cliente; TFL Client es el launcher desde el que lo instalas.",
         )}
       />
       <section className="shell section selection-intro">
         <div>
-          <h2>{tr("Elige el cliente para tu partida")}</h2>
+          <h2>{tr("Una biblioteca, un cliente y un launcher")}</h2>
           <p>
             {tr(
-              "TFL Selection reúne los clientes oficiales que puedes encontrar en TFL Client. Cada propuesta tiene una configuración y una selección de mods preparadas por el equipo, para que no tengas que reunirlos por separado.",
+              "Abre la biblioteca TFL Selection dentro del launcher TFL Client para encontrar TFLClient. Cada versión publicada del cliente reúne los mods y ajustes preparados por el equipo.",
             )}
           </p>
           <p>
             {tr(
-              "Las propuestas disponibles dependen de lo que haya publicado TFLives. Consulta su descripción y su canal antes de instalar.",
+              "La biblioteca muestra las versiones que TFLives ha publicado. Consulta la descripción y el canal de TFLClient antes de instalarlo.",
             )}
           </p>
+          <dl className="ecosystem-terms">
+            <div>
+              <dt>TFL Client</dt>
+              <dd>
+                {tr("El launcher: instala, actualiza y abre tus instancias.")}
+              </dd>
+            </div>
+            <div>
+              <dt>TFL Selection</dt>
+              <dd>
+                {tr(
+                  "La biblioteca: reúne los clientes modificados que publica TFLives.",
+                )}
+              </dd>
+            </div>
+            <div>
+              <dt>TFLClient</dt>
+              <dd>
+                {tr(
+                  "El cliente: la experiencia modificada que utilizas dentro de Minecraft.",
+                )}
+              </dd>
+            </div>
+          </dl>
+          <Link href="/ayuda/glosario" className="text-link">
+            {tr("Aprende los nombres y términos de TFL →")}
+          </Link>
           <DownloadCTA />
         </div>
         <div className="comparison">
@@ -47,7 +75,7 @@ export default async function Selection() {
           <h3>{tr("Herramientas dentro de Minecraft")}</h3>
           <p>
             {tr(
-              "TFL Core forma parte del trabajo del equipo para personalizar la experiencia dentro del juego. Las funciones incluidas dependen del cliente que elijas.",
+              "TFLClient ofrece las funciones dentro de Minecraft, impulsadas por TFL Core. Las funciones incluidas dependen de la versión del cliente que instales.",
             )}
           </p>
           <a className="button secondary" href="https://discord.gg/tflives">
@@ -56,7 +84,7 @@ export default async function Selection() {
         </div>
       </section>
       <section className="shell section">
-        <h2>{tr("Clientes disponibles")}</h2>
+        <h2>{tr("Versiones de TFLClient en la biblioteca")}</h2>
         {catalog ? (
           <div className="catalog-grid">
             {catalog.targets
@@ -65,7 +93,7 @@ export default async function Selection() {
                 <article className="catalog-card" key={t.targetId}>
                   <header className="catalog-heading">
                     <h3>
-                      {t.displayName || `Minecraft ${t.minecraftVersion}`}
+                      {clientDisplayName(t.displayName, t.minecraftVersion)}
                     </h3>
                     <span className="catalog-version">
                       Minecraft {t.minecraftVersion}
@@ -110,13 +138,15 @@ export default async function Selection() {
       </section>
       <ModuleExplorer />
       <section className="shell section">
-        <h2>{tr("Cómo instalar un cliente")}</h2>
+        <h2>{tr("Cómo instalar TFLClient")}</h2>
         <ol className="instruction-list">
           <li>
             {tr("Descarga TFL Client e inicia sesión dentro de la aplicación.")}
           </li>
           <li>
-            {tr("Abre TFL Selection y elige uno de los clientes publicados.")}
+            {tr(
+              "Abre la biblioteca TFL Selection y elige una versión publicada de TFLClient.",
+            )}
           </li>
           <li>
             {tr(
