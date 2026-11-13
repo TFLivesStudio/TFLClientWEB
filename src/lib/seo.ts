@@ -1,4 +1,4 @@
-import { localizedPath, translate, type Locale } from "@/i18n/shared";
+import { localeUrl, translate, type Locale } from "@/i18n/shared";
 import type { Metadata } from "next";
 export const origin = "https://launcher.tflives.com";
 export const seo = (
@@ -10,17 +10,17 @@ export const seo = (
   title,
   description,
   alternates: {
-    canonical: origin + localizedPath(path, locale),
+    canonical: localeUrl(path, locale),
     languages: {
-      es: origin + path,
-      en: origin + localizedPath(path, "en"),
-      "x-default": origin + path,
+      es: localeUrl(path, "es"),
+      en: localeUrl(path, "en"),
+      "x-default": localeUrl(path, "es"),
     },
   },
   openGraph: {
     title,
     description,
-    url: origin + localizedPath(path, locale),
+    url: localeUrl(path, locale),
     siteName: "TFL Client",
     locale: locale === "es" ? "es_ES" : "en_US",
     type: "website",

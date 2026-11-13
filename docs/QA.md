@@ -1,89 +1,74 @@
-# Production Refresh — revisión del 12 de noviembre de 2026
+# TFL Client Web — validación de la actualización
 
-## Alcance entregado
+Revisión del 12 de noviembre de 2026 (America/Bogota). El propietario autorizó integrar el trabajo en `main`. El inglés continúa en `/en`; se descartó expresamente la propuesta de subdominios. No hay cambios de DNS.
 
-| Página | Cambio |
-| --- | --- |
-| Inicio | TFL Client como nombre principal; funciones concretas, biblioteca, personalización, comparación con Selection y última estable de la API. |
-| Características | Explicación por capacidades, galería y guías relacionadas; separación launcher/mod. |
-| Selection | Clientes oficiales por estilo de juego, canales disponibles y miniguía; Core como impulsor. Sin arquitectura ni repositorios internos en la UI. |
-| Novedades | Historial completo, filtros, 12 entradas por página visual y rutas individuales con Markdown seguro y archivos. |
-| Descargas | Estable recomendada, beta opcional, plataformas con marcas reconocibles y listado real de archivos/arquitecturas/tamaños. |
-| Ayuda | Ocho artículos, categorías, búsqueda local normalizada y navegación de guías. |
-| Comunidad | Repositorio del launcher, incidencias, propuestas y Discord oficial. |
-| Privacidad/auxiliares | Alcance real del código, proveedor externo, atribuciones, 404, metadata por ruta, canonical, Open Graph, sitemap y robots. |
+## Comportamiento entregado
 
-CSS: una fuente Slate/HSL con tokens semánticos y puente Tailwind 4; se eliminó premium.css y su cascada de overrides. Etiquetas mínimas de 12 px, texto habitual de 16 px, foco y contrastes comprobados. El fondo tiene alternativa Canvas 2D y conserva una imagen estática al pedir movimiento reducido.
+| Área                | Resultado                                                                                                                                                                                                                                                             |
+| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Fondo               | Solo Pattern Waves como renderer visible. Se eliminó SilkFallback/Canvas 2D y la sonda WebGL adicional. Azul del token del tema, sin interacción del cursor.                                                                                                          |
+| Calidad gráfica     | DPR máximo 0.85 para navegadores que anuncian hasta cuatro hilos; 1.25 en los demás. Mismo shader y distribución visual. Con movimiento reducido dibuja un frame estático y se pausa al ocultarse. Sin WebGL queda decoración CSS estática.                           |
+| Carrusel            | Cuatro vistas oficiales precargadas. Cambio cada 6000 ms, sin botón de pausa. Se detiene al ampliar, con pestaña oculta o movimiento reducido y reanuda al cerrar. Flechas e índices manuales.                                                                        |
+| Ampliación          | Portal, contenedor fijo centrado, transición compartida de Motion, título y descripción accesibles. Escape, flechas, foco atrapado y restauración del foco.                                                                                                           |
+| Temas               | Oscuro predeterminado; claro completo. next-themes guarda la preferencia antes de hidratar; opción del sistema y transición circular basada en Magic UI. Cambio inmediato si la API no existe o hay movimiento reducido.                                              |
+| Navegación e idioma | Indicadores animados de ruta y ES/EN. Menú móvil animado con Escape y cierre exterior. Conservación de página, query y fragmento al cambiar idioma.                                                                                                                   |
+| Filtros             | Tabs animadas con Radix/Motion para historial, canales, sistemas y categorías. Flechas, Home/End y estado seleccionado accesibles.                                                                                                                                    |
+| Ayuda y lectura     | Resultados animados sin tarjetas salientes que puedan recibir clics obsoletos. Acordeones de FAQ/documentación, progreso en guías y changelogs, copia de enlace con toast y skeleton de rutas.                                                                        |
+| Comparativa         | Tabla HTML adaptable con las cinco cifras aportadas por TFLives y marcas reales. TFL usa el icono oficial del launcher/favicon, Prism el SVG oficial CC BY-SA 4.0, CM el rayo rojo original, Laby el lobo azul oficial y Lunar el favicon de su web con marco morado. |
+| Selection           | Explicación de clientes oficiales por estilo de juego y miniguía, sin arquitectura ni repositorios internos en la UI. Datos verificados en servidor. Core solo como impulsor.                                                                                         |
+| Datos y enlaces     | API paginada de releases, notas originales con Markdown seguro, estable verde y beta naranja rust, descargas reales y Discord `discord.gg/tflives`. Único repositorio enlazado por la interfaz: launcher.                                                             |
 
-## Datos reales comprobados
+## Validación ejecutada
 
-- GitHub Releases: 84 publicaciones públicas durante la revisión, última estable `v0.15.2`, última beta `v0.15.3-beta.6`. No son valores fijados en la UI.
-- Se comprobó el historial desde la API y el catálogo desde sus bytes originales. Las 84 rutas individuales respondieron HTTP 200 con contenido de release; evidencia en `qa/release-routes.json`. La clave coincide con la que el launcher distribuye como confiable.
-- Selection: catálogo firmado generación 1. 1.8.9/Ornithe Gen2, beta `0.1.0-preview.1`; target 26.3/Fabric sin canal publicado. La web deriva este estado dinámicamente.
-- Manifiesto beta: hash, Ed25519 y esquema válidos; Java 25, loader 0.20.1 y launcher mínimo 0.1.0.
-- Core: README del commit señalado en README.md, alpha 0.3.0-alpha.1 sin validación en partida según su propia documentación. No se presenta como release estable de Selection.
-- Sitio de producción actual: dominio HTTPS respondió y tenía `index, follow`. No se cambió DNS ni se ejecutó un deploy de producción.
+- Build de producción, TypeScript, ESLint y `git diff --check`: correctos.
+- Unitarias: **10**, sobre clasificación de versiones, paginación, fallos de API, URLs, Markdown, validación de catálogos, cobertura de traducciones de ayuda y conservación de contexto al cambiar idioma.
+- Playwright: **13 correctas**. Cobertura: navegación, galería, avance cada seis segundos, pausa al ampliar y reanudación, centrado móvil/escritorio, foco/Escape, tabs con teclado, temas persistidos/sistema, i18n y conservación de URL, búsqueda, copia/toast, progreso, resolución reducida y ausencia de Canvas 2D.
+- Axe: 10 rutas españolas en oscuro, siete inglesas móviles y 10 españolas en claro. No equivale a certificación ni a una prueba con lector de pantalla físico.
+- Se corrigió un nombre accesible perdido al compactar el enlace de descarga en móvil. También se corrigió una carrera de interacción: al buscar, el resultado anterior permanecía brevemente clicable durante su salida; ahora se sustituye de inmediato y se anima la entrada del nuevo resultado.
+- Captura reproducible de diez rutas × dos idiomas × dos temas × dos tamaños: **80 estados**, más cuatro capturas de interacción. El script espera fuentes e imágenes, usa movimiento reducido para estabilizar la evidencia y comprueba fondo, estado HTTP, overflow y errores JavaScript.
+- La transición circular con movimiento normal también se ejecutó en Chromium: el tema ya era claro dentro del callback y al resolver ready, con keyframes clip-path de círculo activos y sin errores JavaScript; evidencia `theme-transition.png`.
 
-## Verificaciones ejecutadas
+## Evidencia
 
-- Build de producción y TypeScript: correctos.
-- ESLint: sin errores ni warnings.
-- Unitarias: **8 correctas**, clasificación estable/beta e inconsistencias, URLs, paginación múltiple y fallos/límites sin resultado parcial; Markdown inseguro, catálogo real y rechazo de alteraciones/esquemas firmados inválidos.
-- Playwright: **9 correctas** sobre el build. Galería y Escape, teclado/skip link, FAQ, filtros/paginación/notas individuales, canales/OS/URLs de instaladores, catálogo real, búsqueda de ayuda, 404, navegación móvil y alternativa animada sin WebGL.
-- Axe WCAG 2 A/AA y 2.1 AA: **cero infracciones detectadas** en las ocho rutas principales, una guía y una release españolas; también en siete rutas inglesas móviles. No equivale a certificación de accesibilidad ni a prueba con lector de pantalla real.
-- Canonical por ruta, sitemap con releases y robots de desarrollo bloqueando indexación: comprobados en Playwright. La indexación de producción depende de `VERCEL_ENV=production`, como antes.
-- Capturas: 40 imágenes en español e inglés, diez rutas en 1440×1000 y 390×844. El script espera fuentes, comprueba el fondo Slate real y carga imágenes antes de capturar. `measurements.json` conserva estados HTTP, overflow, errores JS y tiempos de navegación de esta máquina local.
-- Se detectaron durante QA y corrigieron el overflow de los pasos en móvil, contrastes del footer/descargas y una declaración CSS que impedía resolver los tokens. La prueba exige explícitamente Slate e Inter para evitar un falso positivo funcional sin tema.
-- Notas largas y ayuda, enlaces de navegación, encabezados, formularios de búsqueda, iconos de plataformas, diálogos y footer revisados en las capturas. Se retiraron eslóganes y bloques de noticias vacíos.
+| Vista               | Oscuro                          | Claro                                 |
+| ------------------- | ------------------------------- | ------------------------------------- |
+| Inicio escritorio   | [PNG](qa/inicio-desktop.png)    | [PNG](qa/inicio-light-desktop.png)    |
+| Inicio móvil        | [PNG](qa/inicio-mobile.png)     | [PNG](qa/inicio-light-mobile.png)     |
+| Inicio inglés       | [PNG](qa/inicio-en-desktop.png) | [PNG](qa/inicio-en-light-desktop.png) |
+| Descargas           | [PNG](qa/descargas-desktop.png) | [PNG](qa/descargas-light-desktop.png) |
+| Selection           | [PNG](qa/selection-desktop.png) | [PNG](qa/selection-light-desktop.png) |
+| Ayuda inglesa móvil | [PNG](qa/ayuda-en-mobile.png)   | [PNG](qa/ayuda-en-light-mobile.png)   |
+| Guía                | [PNG](qa/guia-desktop.png)      | [PNG](qa/guia-light-desktop.png)      |
+| Historial           | [PNG](qa/novedades-desktop.png) | [PNG](qa/novedades-light-desktop.png) |
 
-Los tiempos de `measurements.json` son navegación local con caché, no Lighthouse, Core Web Vitals reales ni mediciones en el AMD/Thorium del propietario. No se afirma una puntuación o garantía de FPS.
+Interacciones: [diálogo escritorio](qa/dialog-desktop.png), [diálogo móvil](qa/dialog-mobile.png), [menú inglés claro](qa/menu-en-light-mobile.png), [transición de tema](qa/theme-transition.png). Resto de páginas y mediciones en `docs/qa/measurements.json`.
 
-## Capturas para revisión
+## Fuentes y licencias
 
-| Vista | Escritorio | Móvil |
-| --- | --- | --- |
-| Inicio | [PNG](qa/inicio-desktop.png) | [PNG](qa/inicio-mobile.png) |
-| Características | [PNG](qa/caracteristicas-desktop.png) | [PNG](qa/caracteristicas-mobile.png) |
-| Selection | [PNG](qa/selection-desktop.png) | [PNG](qa/selection-mobile.png) |
-| Historial | [PNG](qa/novedades-desktop.png) | [PNG](qa/novedades-mobile.png) |
-| Descargas | [PNG](qa/descargas-desktop.png) | [PNG](qa/descargas-mobile.png) |
-| Ayuda | [PNG](qa/ayuda-desktop.png) | [PNG](qa/ayuda-mobile.png) |
-| Comunidad | [PNG](qa/comunidad-desktop.png) | [PNG](qa/comunidad-mobile.png) |
-| Privacidad | [PNG](qa/privacidad-desktop.png) | [PNG](qa/privacidad-mobile.png) |
-| Release | [PNG](qa/release-desktop.png) | [PNG](qa/release-mobile.png) |
-| Guía | [PNG](qa/guia-desktop.png) | [PNG](qa/guia-mobile.png) |
+Se consultaron las fuentes oficiales de Magic UI (AnimatedThemeToggler y ScrollProgress), Motion Primitives (MorphingDialog) y Animate UI (Radix tabs, accordion y tooltip). Se adaptaron individualmente a los tokens de TFL y a la gestión de temas/foco de este proyecto; no se instaló una biblioteca completa de esas colecciones.
 
-## Límites de verificación
+Magic UI y Motion Primitives: MIT; Animate UI: MIT + Commons Clause, permite integrarlos en una aplicación y prohíbe vender/redistribuir los componentes como paquete independiente. Avisos completos en `public/licenses`. Prism: branding CC BY-SA 4.0, SVG sin modificar y atribución conservada. Las demás marcas no se presentan como open source. Procedencia exacta de cada archivo en `public/licenses/launcher-marks.txt` y enlaces de licencia en Privacidad.
 
-1. Las imágenes son vistas del frontend oficial con puente nativo simulado. Consola e instancia usan datos de demostración identificados en los pies de imagen. No verifican un proceso real de Minecraft ni el ejecutable nativo.
-2. No se ejecutó Minecraft, el launcher de escritorio ni instaladores en Windows/macOS/Linux. Los enlaces se obtienen de assets publicados; esto no certifica esos binarios ni su compatibilidad.
-3. No hay prueba física en el PC AMD/Thorium. Se probaron fallback y preferencias en Chromium automatizado, no todos los drivers ni dispositivos.
-4. GitHub público tiene límites. La caché de 15 minutos y páginas de 20 reducen consultas, y los errores se muestran sin inventar datos. No hay un snapshot persistido del último historial válido.
-5. La web valida firmas de Selection, pero no mantiene un contador monotónico compartido entre instancias serverless. Una protección anti-replay persistente requeriría una decisión de infraestructura; no se atribuye esa garantía a la firma.
-6. La configuración privada de logs/métricas de Vercel no se inspeccionó. No se prometen políticas de datos que no se hayan comprobado.
-7. El propietario autorizó el merge a `main` en esta actualización. La integración Git publica en Vercel; el estado posterior se verifica por separado.
+## Límites de la evidencia
 
-## Reproducir la revisión
+- No se probó físicamente el AMD/Thorium del propietario. HardwareConcurrency=4 y pérdida/ausencia de WebGL son simulaciones de navegador; no se garantiza compatibilidad con todos los drivers ni igualdad píxel a píxel.
+- Las capturas de consola e instancia proceden del frontend oficial con puente nativo simulado y datos de demostración identificados. No se ejecutó Minecraft ni el launcher nativo en Windows/macOS/Linux.
+- Las cifras 9/100/150/880/940 MB fueron aportadas por TFLives para AMD A10 PRO 8750B/Windows 10, sin método o estado de aplicación especificado; no se verificaron independientemente ni predicen memoria de una partida/FPS.
+- La API pública de GitHub tiene límites. Caché 900 s, páginas de 20, timeouts y errores explícitos; no hay una copia persistente de último resultado válido ni contador anti-replay compartido para Selection.
+- Las notas de releases conservan el idioma del autor. No se inspeccionaron opciones privadas de métricas/logs de Vercel.
+
+## Reproducir
 
 ```sh
-git fetch origin
-git switch main
 npm ci
-npm run dev
+NODE_USE_ENV_PROXY=1 npm run build
+npm run typecheck
+npm run lint
+npm test
+CI=1 NODE_USE_ENV_PROXY=1 PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium npm run test:e2e
+NODE_USE_ENV_PROXY=1 npm run start -- --port 3010
+QA_BASE_URL=http://127.0.0.1:3010 QA_THEME=light QA_LOCALE=en PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium node scripts/capture-qa.mjs
+PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium node scripts/capture-interactions.mjs
 ```
 
-En cloud usar el proxy indicado en README.md. Para QA de producción local: `npm run build`, `npm run start -- --port 3003` y `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium node scripts/capture-qa.mjs` (o Chromium instalado por Playwright sin esa variable).
-
-La integración en main está autorizada. El PR conserva el detalle de implementación y las capturas. No se requiere cambiar dominios ni publicar manualmente.
-
-## Ampliación aprobada: fondo, idiomas y presentación
-
-- Eliminada la heurística de lectura de píxeles que confundía la introducción oscura con un fallo de WebGL. Programas enlazados y pérdida de contexto siguen activando el fallback cuando corresponde. Regresión: WebGL permanece visible tras 2,5 s sin Canvas 2D; sin WebGL, Canvas se anima. No se ha probado físicamente el AMD del propietario.
-- Acento azul compartido con el tema en ambos renderers; cursor desactivado. Movimiento reducido conserva el fondo estático. Cards suavizadas, versiones estables verdes y betas naranja rust.
-- Carrusel de cuatro vistas: consola, edición de instancia, bienvenida y ajustes. Avance cada 6,5 s; pausa explícita, hover/foco/diálogo/pestaña oculta/movimiento reducido. Navegación manual y ampliación conservadas. Nuevas capturas reproducibles con scripts/capture-launcher-console.mjs y scripts/capture-launcher-instance.mjs contra el frontend oficial.
-- Comparativa de memoria como tabla HTML: 9/100/150/880/940 MB, procedencia AMD A10 PRO 8750B/Windows 10 y límites declarados. Núcleo nativo Rust, UI Svelte.
-- Español primario e inglés completo bajo /en, incluyendo ayuda, controles, metadata, sitemap, hreflang y enlaces. Se preservan las notas originales de releases con aviso. Pruebas de siete rutas inglesas móviles con axe, navegación ES/EN y release con puntos en el tag.
-- Único repositorio enlazado públicamente: launcher. Se mantienen validaciones de Selection en servidor; retirados detalles de arquitectura de su presentación y ayuda. Discord oficial visible.
-- Capturas inglesas: [inicio escritorio](qa/inicio-en-desktop.png), [inicio móvil](qa/inicio-en-mobile.png), [Selection](qa/selection-en-desktop.png). Reproducir con QA_LOCALE=en en scripts/capture-qa.mjs.
-
-La tabla de memoria también se verifica en móvil: nombres, barras y valores caben juntos sin desplazamiento horizontal. Las 40 mediciones de captura registran HTTP 200, sin overflow de página ni errores JavaScript.
+La variable de proxy corresponde solo a esta máquina cloud. Vercel publica mediante su integración Git al integrar `main`; no se realiza despliegue manual.

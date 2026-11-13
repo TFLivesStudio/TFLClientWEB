@@ -1,6 +1,7 @@
+import { AnimatedAccordion } from "./animated-ui";
 import { getTranslator } from "@/i18n/server";
 import Link from "@/components/locale-link";
-import { ArrowUpRight, ArrowRight, Download, Plus } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Download } from "lucide-react";
 import { PlatformIcon } from "./platform-icon";
 import { Brand } from "./header";
 export async function DownloadCTA({
@@ -85,15 +86,12 @@ export async function FAQ() {
   const tr = await getTranslator();
   return (
     <div className="faq-list">
-      {questions.map(([q, a]) => (
-        <details key={tr(q)}>
-          <summary>
-            {tr(q)}
-            <Plus size={18} />
-          </summary>
-          <p>{tr(a)}</p>
-        </details>
-      ))}
+      <AnimatedAccordion
+        items={questions.map(([q, a]) => ({
+          title: tr(q),
+          content: <p>{tr(a)}</p>,
+        }))}
+      />
     </div>
   );
 }

@@ -1,3 +1,8 @@
+import {
+  AnimatedAccordion,
+  ScrollProgress,
+  CopyLink,
+} from "@/components/animated-ui";
 import { getTranslator } from "@/i18n/server";
 import Link from "@/components/locale-link";
 import { notFound } from "next/navigation";
@@ -33,6 +38,7 @@ export default async function HelpArticle({
   if (!a) notFound();
   return (
     <div className="shell article-layout section">
+      <ScrollProgress />
       <aside>
         <Link href="/ayuda">{tr("← Centro de ayuda")}</Link>
         <nav aria-label={tr("Artículos de ayuda")}>
@@ -51,12 +57,14 @@ export default async function HelpArticle({
         <span className="eyebrow">{tr(a.category)}</span>
         <h1>{tr(a.title)}</h1>
         <p>{tr(a.summary)}</p>
-        {a.sections.map(([title, text]) => (
-          <section key={tr(title)}>
-            <h2>{tr(title)}</h2>
-            <p>{tr(text)}</p>
-          </section>
-        ))}
+        <CopyLink />
+        <AnimatedAccordion
+          headingLevel={2}
+          items={a.sections.map(([title, text]) => ({
+            title: tr(title),
+            content: <p>{tr(text)}</p>,
+          }))}
+        />
         <div className="notice">
           {tr("Referencias: interfaz y código de")}{" "}
           <a href="https://github.com/TFLivesStudio/TFLClient">TFL Client</a>,{" "}

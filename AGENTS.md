@@ -10,14 +10,14 @@ El Production Refresh del propietario sustituye las instrucciones anteriores sob
 
 - Fuente única de estilo: `src/app/globals.css`. Escala Slate HSL y tokens semánticos consumidos como `hsl(var(--token))`, con Tailwind 4 mediante `@theme inline`.
 - No reintroducir `premium.css`, raíces duplicadas, colores hex dispersos ni overrides por página del tema.
-- Slate domina; azul TFL es acento. Solo modo oscuro. Manrope en títulos e Inter en texto, servidas localmente.
+- Slate domina; azul TFL es acento. Oscuro predeterminado y tema claro completo con los mismos tokens Slate; next-themes persiste la elección y permite modo del sistema. Manrope en títulos e Inter en texto, servidas localmente.
 - Copy descriptivo, preciso y humano. Cada título identifica su contenido y cada párrafo aporta información. No eslóganes genéricos, cifras inventadas, promesas de FPS, testimonios ficticios ni funcionalidades futuras presentadas como actuales.
 - Nombre protagonista: TFL Client. Título del inicio: `TFL Client | Launcher de Minecraft Java`.
 - En la web pública, Selection explica clientes oficiales preparados por TFLives para PvP, Minecraft técnico y otros estilos, con guía breve. No exponer su arquitectura, firmas, loaders, manifiestos ni repositorios. Core solo como impulsor de la experiencia; no enlazar su GitHub. El único repositorio GitHub enlazado en la web es TFLivesStudio/TFLClient (launcher).
 - Español primario en `/`; inglés completo en `/en`. Mantener diccionario, metadatos, ayudas, etiquetas accesibles y enlaces locales en ambos idiomas. Notas de releases conservan su idioma original con aviso.
 - Discord oficial: https://discord.gg/tflives. Estables en verde y betas en naranja rust; siempre añadir texto además del color.
 - Comparativa de RAM: cifras aportadas por TFLives en AMD A10 PRO 8750B/Windows 10, sin método ni estado de las aplicaciones proporcionados. Identificar su procedencia y límites; no convertirlas en promesa universal. El núcleo nativo es Rust y la interfaz es Svelte: no afirmar que toda la aplicación es Rust.
-- Marcas: iconos oficiales reconocibles de GitHub, Windows, Apple y Linux; Lucide para acciones. Mantener licencias y atribución. No inventar logos ni usar material de LabyMod.
+- Marcas: iconos oficiales reconocibles de GitHub, Windows, Apple y Linux; Lucide para acciones. Mantener licencias y atribución. No inventar logos. Está autorizado usar los iconos reales de los launchers en la tabla, incluido el lobo azul de LabyMod. Mantener procedencia y licencias en public/licenses/launcher-marks.txt. El logotipo TFL debe ser el icono oficial del launcher, igual al favicon, nunca el hexágono provisional.
 - Las capturas disponibles proceden del frontend oficial con puente nativo simulado, sin cuenta; consola e instancia usan datos explícitos de demostración. No presentarlas como prueba de ejecución del juego. No inventar capturas de Core.
 
 ## Arquitectura y datos
@@ -35,7 +35,15 @@ Next.js App Router, React, TypeScript estricto, npm y `package-lock.json`. Sin b
 
 ## Accesibilidad y gráficos
 
-No ocultar el tratamiento visual por falta de WebGL2. Pattern Waves con alternativa animada Canvas 2D para contextos no soportados, fallidos o perdidos. Fondo azul derivado de --primary, sin interacción del cursor. No descartar WebGL por una muestra oscura de píxeles durante la introducción: comprobar enlace de shaders y pérdida real de contexto. Probar que sigue activo tras la introducción. Con movimiento reducido, conservar el fondo estático. Pausar efectos fuera de pantalla y en pestaña oculta. No prometer identidad píxel a píxel entre motores o equipos. Mantener contraste, foco, teclado, diálogos accesibles, zoom, etiquetas y ausencia de overflow móvil.
+Pattern Waves es el único renderer visible de canvas. El propietario pidió eliminar completamente el reemplazo Canvas 2D: no reintroducir SilkFallback ni sondas WebGL adicionales. Los canvas 2D internos de React Bits para interpretar colores o crear su atlas de textura no son un fondo visible y pueden mantenerse. Si WebGL no está disponible, conservar decoración CSS estática, sin simular una animación inexistente.
+
+- Fondo azul del token --primary, sin interacción del cursor. Calidad reducida mediante DPR 0.85 para navegadores que anuncian hasta cuatro hilos y máximo 1.25 en los demás; nunca ocultarlo por una estimación de potencia.
+- Comprobar enlace de programas y pérdida real de contexto. No descartar WebGL por muestras oscuras durante la introducción. No prometer compatibilidad exacta de todos los drivers ni pruebas físicas que no se realizaron.
+- Respetar prefers-reduced-motion: dibujar Pattern Waves estático, pausar fuera de pantalla y en pestaña oculta. MotionConfig reducedMotion=user y CSS de movimiento reducido para componentes.
+- Carrusel sin botón de pausa, intervalo de 6000 ms. Pausar cuando una imagen esté abierta, en pestaña oculta o con movimiento reducido; reanudar al cerrar. Mantener controles manuales. Precargar imágenes y centrar diálogos con portal y contenedor fijo, foco atrapado, Escape y restauración del foco.
+- Selector ES/EN animado con Motion, rutas `/` y `/en`, conservando página, query y fragmento. El propietario descartó los subdominios: no configurar dominios nuevos.
+- Primitivos individuales Radix + Motion para pestañas, navegación, diálogos, acordeones y tooltips. Magic UI y Motion Primitives son MIT; Animate UI añade Commons Clause. No instalar bibliotecas completas ni redistribuir estos componentes como producto separado. Conservar avisos de licencia.
+- Mantener contraste en ambos temas, nombres accesibles de controles compactos, teclado, zoom y ausencia de overflow móvil. No ocultar texto de un botón sin conservar su nombre accesible.
 
 ## SEO y privacidad
 

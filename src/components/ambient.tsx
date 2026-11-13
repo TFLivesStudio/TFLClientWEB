@@ -1,7 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import { Component, useEffect, useState, type ReactNode } from "react";
-import { SilkFallback } from "./silk-fallback";
+import { useTheme } from "next-themes";
 const PatternWaves = dynamic(() => import("./PatternWaves"), { ssr: false });
 class GraphicsBoundary extends Component<
   { children: ReactNode; onFailure: () => void },
@@ -19,28 +19,24 @@ class GraphicsBoundary extends Component<
   }
 }
 export function Ambient() {
-  const [active, setActive] = useState(false);
-  const [color, setColor] = useState("transparent");
-  const [reduced, setReduced] = useState(true);
-  const [gpu, setGpu] = useState(false);
+  const { resolvedTheme } = useTheme();
+  const [settings, setSettings] = useState({
+    color: "transparent",
+    reduced: true,
+    hidden: false,
+    dpr: 1,
+  });
   const [ready, setReady] = useState(false);
+  const [failed, setFailed] = useState(false);
   useEffect(() => {
     const preference = matchMedia("(prefers-reduced-motion: reduce)");
-    const canvas = document.createElement("canvas");
-    let gl: WebGL2RenderingContext | null = null;
-    try {
-      gl = canvas.getContext("webgl2");
-    } catch {}
-    const supported = !!gl;
-    gl?.getExtension("WEBGL_lose_context")?.loseContext();
-    const update = () => {
-      const accent = getComputedStyle(document.documentElement)
-        .getPropertyValue("--primary").trim();
-      setColor(`hsl(${accent})`);
-      setReduced(preference.matches);
-      setActive(!document.hidden);
-      setGpu(supported);
-    };
+    const update = () =>
+      setSettings({
+        color: `hsl(${getComputedStyle(document.documentElement).getPropertyValue("--primary").trim()})`,
+        reduced: preference.matches,
+        hidden: document.hidden,
+        dpr: navigator.hardwareConcurrency <= 4 ? 0.85 : 1.25,
+      });
     update();
     preference.addEventListener("change", update);
     document.addEventListener("visibilitychange", update);
@@ -48,33 +44,32 @@ export function Ambient() {
       preference.removeEventListener("change", update);
       document.removeEventListener("visibilitychange", update);
     };
-  }, []);
+  }, [resolvedTheme]);
   return (
-    <div className="ambient" aria-hidden="true">
-      {(!ready || !gpu || reduced || !active) && (
-        <SilkFallback paused={reduced || !active} />
-      )}
-      {active && !reduced && gpu && (
-        <GraphicsBoundary
-          onFailure={() => {
-            setGpu(false);
-            setReady(false);
-          }}
-        >
+    <div
+      className="ambient"
+      aria-hidden="true"
+      data-graphics={failed ? "unavailable" : ready ? "webgl" : "loading"}
+    >
+      <div
+        className="silk-static"
+        style={{ opacity: ready && !failed ? 0 : 1 }}
+      />
+      {!failed && settings.color !== "transparent" && (
+        <GraphicsBoundary onFailure={() => setFailed(true)}>
           <div className="silk-gpu" style={{ opacity: ready ? 1 : 0 }}>
             <PatternWaves
               preset="silk"
-              color={color}
+              color={settings.color}
               backgroundColor="transparent"
               fade="edges"
               interactive={false}
-              cursorSize={50}
               cursorStrength={0}
+              paused={settings.reduced || settings.hidden}
+              intro={!settings.reduced}
+              maxDpr={settings.dpr}
               onReady={() => setReady(true)}
-              onFailure={() => {
-                setReady(false);
-                setGpu(false);
-              }}
+              onFailure={() => setFailed(true)}
             />
           </div>
         </GraphicsBoundary>

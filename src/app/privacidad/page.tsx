@@ -33,6 +33,12 @@ export default async function Privacy() {
             {tr("Política de privacidad de Vercel")}
           </a>
         </p>
+        <h2>{tr("Preferencia de apariencia")}</h2>
+        <p>
+          {tr(
+            "La elección de tema se guarda en tu navegador mediante almacenamiento local, con la clave tfl-theme. Puedes elegir claro, oscuro o seguir al sistema. No necesitas una cuenta para cambiarla.",
+          )}
+        </p>
         <h2>{tr("Enlaces externos")}</h2>
         <p>
           {tr(
@@ -64,6 +70,28 @@ export default async function Privacy() {
             "TFL Client no es un producto oficial de Minecraft. No está aprobado por ni asociado con Mojang o Microsoft. Los recursos se usan para presentar el proyecto de TFLives.",
           )}
         </p>
+        <h2>{tr("Componentes e iconos de los launchers")}</h2>
+        <p>
+          {tr(
+            "Las marcas identifican los productos comparados; no implican afiliación. Prism conserva su licencia CC BY-SA 4.0. Los demás iconos conservan los derechos de sus propietarios.",
+          )}
+        </p>
+        <p>
+          <a href="/licenses/launcher-marks.txt">
+            {tr("Procedencia y atribuciones de los iconos")}
+          </a>
+        </p>
+        <p>
+          {tr(
+            "Transiciones adaptadas de Magic UI y Motion Primitives (MIT), y patrones de Animate UI (MIT + Commons Clause). No se redistribuyen como una biblioteca de componentes.",
+          )}
+        </p>
+        <div className="license-links">
+          <a href="/licenses/MagicUI-MIT.txt">Magic UI</a>
+          <a href="/licenses/MotionPrimitives-MIT.txt">Motion Primitives</a>
+          <a href="/licenses/AnimateUI-MIT-Commons-Clause.txt">Animate UI</a>
+          <a href="/licenses/Prism-Branding-CC-BY-SA-4.0.txt">Prism Launcher</a>
+        </div>
       </article>
     </>
   );

@@ -1,0 +1,9 @@
+Launcher marks: provenance and attribution
+
+TFL Client: official launcher icon, TFLivesStudio/TFLClient source commit 4590afe229067265dc9cc20c94a2fa8459536a1f, src-tauri/icons/128x128.png. Same artwork as the website favicon. TFLives.
+Prism Launcher: official PrismLauncher/PrismLauncher develop branch, program_info/org.prismlauncher.PrismLauncher.svg. Prism Launcher contributors, https://prismlauncher.org/. Branding CC BY-SA 4.0, unchanged. Full license: Prism-Branding-CC-BY-SA-4.0.txt.
+CMClient: red lightning bitmap from Minecraft 1.8.8 CMClient source, VexioPL/CMClient main, src/main/resources/assets/minecraft/client/logo_108_inner.png. Original bitmap, not a redraw. No open license is asserted for the mark. Rights belong to the respective owner.
+LabyMod: official LabyMod/labymod4-api-wiki master, docs/assets/theme/images/favicon.ico, extracted as PNG without redrawing or recoloring. Blue wolf mark, https://www.labymod.net/. Rights belong to LabyMod.
+Lunar Client: official website favicon for https://www.lunarclient.com/, retrieved from Google's cached favicon service (128px request). Original bitmap, not a redraw; purple surrounding badge is page styling, not an assertion about official brand colors. Rights belong to Lunar Client.
+
+These marks identify the products compared; no affiliation or endorsement is implied. Other than Prism, no claim that these marks are open-source is made. Retrieved 2026-11-12 (America/Bogota).

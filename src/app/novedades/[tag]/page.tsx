@@ -1,3 +1,4 @@
+import { ScrollProgress, CopyLink } from "@/components/animated-ui";
 import { getTranslator } from "@/i18n/server";
 import { ArrowUpRight } from "lucide-react";
 import { notFound } from "next/navigation";
@@ -47,13 +48,15 @@ export default async function ReleasePage({
   }
   return (
     <article className="shell release-detail section">
+      <ScrollProgress />
       <Link href="/novedades" className="text-link">
         {tr("← Historial de versiones")}
       </Link>
-      <span className="badge">
+      <span className={`badge ${r.channel}`}>
         {r.channel === "stable" ? tr("Estable") : tr("Beta / prueba")}
       </span>
       <h1>{r.name}</h1>
+      <CopyLink />
       <p>
         <code>{r.tag}</code> ·{" "}
         <time dateTime={r.date}>

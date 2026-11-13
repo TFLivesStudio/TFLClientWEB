@@ -1,4 +1,5 @@
 "use client";
+import { AnimatedTabs, AnimatedResults } from "./animated-ui";
 import { useT } from "@/i18n/provider";
 import Link from "@/components/locale-link";
 import { useState } from "react";
@@ -8,10 +9,10 @@ const normalize = (s: string) =>
 export function HelpSearch() {
   const tr = useT();
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState(tr("Todas"));
+  const [category, setCategory] = useState("all");
   const filtered = articles.filter(
     (a) =>
-      (category === tr("Todas") || a.category === category) &&
+      (category === "all" || a.category === category) &&
       normalize(
         [a.title, a.summary, ...a.sections.flat()].map(tr).join(" "),
       ).includes(normalize(query)),
@@ -28,39 +29,39 @@ export function HelpSearch() {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
       />
-      <div
-        className="filter-bar"
-        role="group"
-        aria-label={tr("Categorías de ayuda")}
+      <AnimatedTabs
+        value={category}
+        onValueChange={setCategory}
+        label={tr("Categorías de ayuda")}
+        items={[
+          { value: "all", label: tr("Todas") },
+          ...[...new Set(articles.map((a) => a.category))].map((c) => ({
+            value: c,
+            label: tr(c),
+          })),
+        ]}
       >
-        {[tr("Todas"), ...new Set(articles.map((a) => a.category))].map((c) => (
-          <button
-            key={tr(c)}
-            aria-pressed={c === category}
-            onClick={() => setCategory(c)}
-          >
-            {tr(c)}
-          </button>
-        ))}
-      </div>
-      <p aria-live="polite">
-        {filtered.length} {tr("artículos")}{" "}
-      </p>
-      <div className="help-grid">
-        {filtered.map((a) => (
-          <Link key={a.slug} href={`/ayuda/${a.slug}`}>
-            <span className="eyebrow">{tr(a.category)}</span>
-            <h2>{tr(a.title)}</h2>
-            <p>{tr(a.summary)}</p>
-            <span>{tr("Leer guía →")}</span>
-          </Link>
-        ))}
-      </div>
-      {!filtered.length && (
-        <p>
-          {tr("No hay resultados. Prueba otra palabra o selecciona Todas.")}
+        <p aria-live="polite">
+          {filtered.length} {tr("artículos")}{" "}
         </p>
-      )}
+        <AnimatedResults resultKey={category + query}>
+          <div className="help-grid">
+            {filtered.map((a) => (
+              <Link key={a.slug} href={`/ayuda/${a.slug}`}>
+                <span className="eyebrow">{tr(a.category)}</span>
+                <h2>{tr(a.title)}</h2>
+                <p>{tr(a.summary)}</p>
+                <span>{tr("Leer guía →")}</span>
+              </Link>
+            ))}
+          </div>
+        </AnimatedResults>
+        {!filtered.length && (
+          <p>
+            {tr("No hay resultados. Prueba otra palabra o selecciona Todas.")}
+          </p>
+        )}
+      </AnimatedTabs>
     </>
   );
 }

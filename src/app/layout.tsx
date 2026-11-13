@@ -1,4 +1,5 @@
 import { getTranslator } from "@/i18n/server";
+import { SiteProviders } from "@/components/site-providers";
 import { LocaleProvider } from "@/i18n/provider";
 import type { Metadata } from "next";
 import "@fontsource/manrope/latin-400.css";
@@ -46,15 +47,17 @@ export default async function RootLayout({
 }) {
   const tr = await getTranslator();
   return (
-    <html lang={tr.locale}>
+    <html lang={tr.locale} suppressHydrationWarning>
       <body>
         <LocaleProvider locale={tr.locale}>
-          <a href="#contenido" className="skip-link">
-            {tr("Saltar al contenido")}
-          </a>
-          <Header />
-          <main id="contenido">{children}</main>
-          <Footer />
+          <SiteProviders>
+            <a href="#contenido" className="skip-link">
+              {tr("Saltar al contenido")}
+            </a>
+            <Header />
+            <main id="contenido">{children}</main>
+            <Footer />
+          </SiteProviders>
         </LocaleProvider>
       </body>
     </html>

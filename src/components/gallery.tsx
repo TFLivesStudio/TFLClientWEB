@@ -1,8 +1,16 @@
 "use client";
 import { useT } from "@/i18n/provider";
 import Image from "next/image";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { Expand, X, ArrowLeft, ArrowRight, Pause, Play } from "lucide-react";
+import * as Dialog from "@radix-ui/react-dialog";
+import {
+  AnimatePresence,
+  LayoutGroup,
+  motion,
+  useReducedMotion,
+} from "motion/react";
+import { Hint } from "./animated-ui";
+import { useEffect, useId, useState, useSyncExternalStore } from "react";
+import { Expand, X, ArrowLeft, ArrowRight } from "lucide-react";
 const subscribeMotion = (fn: () => void) => {
   const q = matchMedia("(prefers-reduced-motion: reduce)");
   q.addEventListener("change", fn);
@@ -41,9 +49,8 @@ const shots = [
 export function Gallery() {
   const tr = useT();
   const [index, setIndex] = useState(0);
-  const dialog = useRef<HTMLDialogElement>(null);
-  const [playing, setPlaying] = useState(true);
-  const [hovered, setHovered] = useState(false);
+  const id = useId();
+  const reduce = useReducedMotion();
   const [expanded, setExpanded] = useState(false);
   const reduced = useSyncExternalStore(
     subscribeMotion,
@@ -56,126 +63,183 @@ export function Gallery() {
     () => true,
   );
   useEffect(() => {
-    if (!playing || hovered || expanded || reduced || hidden) return;
-    const id = setInterval(() => setIndex((i) => (i + 1) % shots.length), 6500);
+    if (expanded || reduced || hidden) return;
+    const id = setInterval(() => setIndex((i) => (i + 1) % shots.length), 6000);
     return () => clearInterval(id);
-  }, [playing, hovered, expanded, reduced, hidden, index]);
+  }, [expanded, reduced, hidden, index]);
   const shot = shots[index];
-  useEffect(() => {
-    const d = dialog.current;
-    const close = () => {
-      document.body.style.removeProperty("overflow");
-      setExpanded(false);
-    };
-    d?.addEventListener("close", close);
-    return () => {
-      d?.removeEventListener("close", close);
-      document.body.style.removeProperty("overflow");
-    };
-  }, []);
   return (
-    <div
-      className="gallery"
-      role="region"
-      aria-label={tr("Capturas del launcher")}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onFocusCapture={() => setHovered(true)}
-      onBlurCapture={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget)) setHovered(false);
-      }}
-    >
-      <div className="product-frame">
-        <div className="frame-bar">
-          <div className="window-dots">
-            <i />
-            <i />
-            <i />
-          </div>
-          <span>TFL CLIENT / {tr(shot.tag)}</span>
-          <button
-            className="icon-button"
-            aria-label={tr("Ampliar captura")}
-            onClick={() => {
-              setExpanded(true);
-              dialog.current?.showModal();
-              document.body.style.overflow = "hidden";
-            }}
-          >
-            <Expand size={15} />
-          </button>
-        </div>
-        <Image
-          key={shot.src}
-          src={shot.src}
-          alt={tr(shot.alt)}
-          width={1440}
-          height={900}
-          priority
-          className="product-shot"
-        />
-      </div>
-      <div className="gallery-bottom">
-        <div className="gallery-caption">
-          <span className="live-dot" />
-          {tr(shot.label)}
-          <small>{tr("Frontend oficial · vistas de demostración")}</small>
-        </div>
-        <div className="gallery-controls">
-          <button
-            className="icon-button carousel-pause"
-            aria-label={
-              playing ? tr("Pausar carrusel") : tr("Reanudar carrusel")
-            }
-            onClick={() => setPlaying(!playing)}
-          >
-            {playing ? <Pause size={16} /> : <Play size={16} />}
-          </button>
-          {shots.map((s, i) => (
-            <button
-              key={s.src}
-              aria-label={`${tr("Ver captura")} ${i + 1}: ${tr(s.tag)}`}
-              aria-pressed={index === i}
-              onClick={() => setIndex(i)}
-              className={i === index ? "active" : ""}
-            >
-              0{i + 1}
-            </button>
-          ))}
-          <span className="control-line" />
-          <button
-            className="icon-button"
-            aria-label={tr("Captura anterior")}
-            onClick={() => setIndex((index + shots.length - 1) % shots.length)}
-          >
-            <ArrowLeft size={17} />
-          </button>
-          <button
-            className="icon-button"
-            aria-label={tr("Siguiente captura")}
-            onClick={() => setIndex((index + 1) % shots.length)}
-          >
-            <ArrowRight size={17} />
-          </button>
-        </div>
-      </div>
-      <dialog
-        ref={dialog}
-        className="image-dialog"
-        onClick={(e) => {
-          if (e.target === e.currentTarget) dialog.current?.close();
-        }}
-      >
-        <button
-          className="icon-button close-dialog"
-          aria-label={tr("Cerrar captura")}
-          onClick={() => dialog.current?.close()}
+    <Dialog.Root open={expanded} onOpenChange={setExpanded}>
+      <LayoutGroup id={id}>
+        <div
+          className="gallery"
+          role="region"
+          aria-label={tr("Capturas del launcher")}
         >
-          <X />
-        </button>
-        <Image src={shot.src} alt={tr(shot.alt)} width={1440} height={900} />
-        <p>{tr(shot.label)}</p>
-      </dialog>
-    </div>
+          <div className="product-frame">
+            <div className="frame-bar">
+              <div className="window-dots">
+                <i />
+                <i />
+                <i />
+              </div>
+              <span>TFL CLIENT / {tr(shot.tag)}</span>
+              <Hint label={tr("Ampliar captura")}>
+                <Dialog.Trigger asChild>
+                  <button
+                    className="icon-button"
+                    aria-label={tr("Ampliar captura")}
+                  >
+                    <Expand size={15} />
+                  </button>
+                </Dialog.Trigger>
+              </Hint>
+            </div>
+            <motion.div
+              className="product-viewport"
+              layoutId="launcher-image"
+              transition={{ duration: reduce ? 0 : 0.28 }}
+            >
+              {shots.map((s, i) => (
+                <Image
+                  key={s.src}
+                  src={s.src}
+                  alt={i === index ? tr(s.alt) : ""}
+                  aria-hidden={i !== index}
+                  width={1440}
+                  height={900}
+                  priority={i === 0}
+                  loading={i === 0 ? undefined : "eager"}
+                  className={`gallery-shot${i === index ? " product-shot is-active" : ""}`}
+                />
+              ))}
+            </motion.div>
+          </div>
+          <div className="gallery-bottom">
+            <div className="gallery-caption">
+              <span className="live-dot" />
+              {tr(shot.label)}
+              <small>{tr("Frontend oficial · vistas de demostración")}</small>
+            </div>
+            <div className="gallery-controls">
+              {shots.map((s, i) => (
+                <button
+                  key={s.src}
+                  aria-label={`${tr("Ver captura")} ${i + 1}: ${tr(s.tag)}`}
+                  aria-pressed={index === i}
+                  onClick={() => setIndex(i)}
+                  className={i === index ? "active" : ""}
+                >
+                  0{i + 1}
+                </button>
+              ))}
+              <span className="control-line" />
+              <button
+                className="icon-button"
+                aria-label={tr("Captura anterior")}
+                onClick={() =>
+                  setIndex((index + shots.length - 1) % shots.length)
+                }
+              >
+                <ArrowLeft size={17} />
+              </button>
+              <button
+                className="icon-button"
+                aria-label={tr("Siguiente captura")}
+                onClick={() => setIndex((index + 1) % shots.length)}
+              >
+                <ArrowRight size={17} />
+              </button>
+            </div>
+          </div>
+          <AnimatePresence>
+            {expanded && (
+              <Dialog.Portal forceMount>
+                <Dialog.Overlay asChild forceMount>
+                  <motion.div
+                    className="dialog-overlay"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  />
+                </Dialog.Overlay>
+                <div className="dialog-positioner">
+                  <Dialog.Content
+                    forceMount
+                    asChild
+                    onKeyDown={(e) => {
+                      if (e.key === "ArrowRight")
+                        setIndex((i) => (i + 1) % shots.length);
+                      if (e.key === "ArrowLeft")
+                        setIndex((i) => (i + shots.length - 1) % shots.length);
+                    }}
+                  >
+                    <motion.div
+                      className="image-dialog"
+                      initial={{ opacity: 0, scale: reduce ? 1 : 0.97 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: reduce ? 1 : 0.97 }}
+                    >
+                      <Dialog.Close asChild>
+                        <button
+                          className="icon-button close-dialog"
+                          aria-label={tr("Cerrar captura")}
+                        >
+                          <X />
+                        </button>
+                      </Dialog.Close>
+                      <motion.div
+                        layoutId="launcher-image"
+                        className="dialog-image-stage"
+                        transition={{ duration: reduce ? 0 : 0.28 }}
+                      >
+                        <Image
+                          src={shot.src}
+                          alt={tr(shot.alt)}
+                          width={1440}
+                          height={900}
+                          priority
+                        />
+                      </motion.div>
+                      <div className="dialog-caption">
+                        <Dialog.Title>{tr(shot.label)}</Dialog.Title>
+                        <div className="gallery-controls">
+                          <button
+                            className="icon-button"
+                            aria-label={tr("Captura anterior")}
+                            onClick={() =>
+                              setIndex(
+                                (index + shots.length - 1) % shots.length,
+                              )
+                            }
+                          >
+                            <ArrowLeft size={18} />
+                          </button>
+                          <span>
+                            {index + 1} / {shots.length}
+                          </span>
+                          <button
+                            className="icon-button"
+                            aria-label={tr("Siguiente captura")}
+                            onClick={() => setIndex((index + 1) % shots.length)}
+                          >
+                            <ArrowRight size={18} />
+                          </button>
+                        </div>
+                      </div>
+                      <Dialog.Description className="sr-only">
+                        {tr(
+                          "Usa las flechas para cambiar de captura y Escape para cerrar.",
+                        )}
+                      </Dialog.Description>
+                    </motion.div>
+                  </Dialog.Content>
+                </div>
+              </Dialog.Portal>
+            )}
+          </AnimatePresence>
+        </div>
+      </LayoutGroup>
+    </Dialog.Root>
   );
 }

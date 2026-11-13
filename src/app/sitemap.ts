@@ -1,3 +1,4 @@
+import { localeUrl } from "@/i18n/shared";
 import type { MetadataRoute } from "next";
 import { getReleases, releasePath } from "@/lib/releases";
 import { articles } from "@/lib/help";
@@ -25,7 +26,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const path = p.url.slice(origin.length);
     const languages = {
       es: p.url,
-      en: origin + "/en" + (path === "/" ? "" : path),
+      en: localeUrl(path, "en"),
     };
     return [
       { ...p, alternates: { languages } },

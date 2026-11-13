@@ -1,10 +1,11 @@
+import Image from "next/image";
 import { getTranslator } from "@/i18n/server";
 const measurements = [
-  ["TFL Client", 9],
-  ["Prism Launcher", 100],
-  ["CMClient", 150],
-  ["LabyMod", 880],
-  ["Lunar Client", 940],
+  ["TFL Client", 9, "tfl.png"],
+  ["Prism Launcher", 100, "prism.svg"],
+  ["CMClient", 150, "cmclient.png"],
+  ["LabyMod", 880, "labymod.png"],
+  ["Lunar Client", 940, "lunar.png"],
 ] as const;
 export async function MemoryComparison() {
   const tr = await getTranslator();
@@ -30,12 +31,26 @@ export async function MemoryComparison() {
             </tr>
           </thead>
           <tbody>
-            {measurements.map(([name, value]) => (
+            {measurements.map(([name, value, icon]) => (
               <tr
                 key={name}
                 className={name === "TFL Client" ? "memory-tfl" : ""}
               >
-                <th scope="row">{name}</th>
+                <th scope="row">
+                  <span className="launcher-name">
+                    <span
+                      className={`launcher-icon-shell ${name === "Lunar Client" ? "lunar-halo" : ""}`}
+                    >
+                      <Image
+                        src={`/icons/launchers/${icon}`}
+                        alt=""
+                        width={36}
+                        height={36}
+                      />
+                    </span>
+                    <span>{name}</span>
+                  </span>
+                </th>
                 <td>
                   <span className="memory-track" aria-hidden="true">
                     <span style={{ width: `${value / 10}%` }} />

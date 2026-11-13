@@ -37,6 +37,7 @@ export interface PatternWavesProps extends Partial<PresetValues> {
   cursorStrength?: number;
   intro?: boolean;
   paused?: boolean;
+  maxDpr?: number;
   onReady?: () => void;
   onFailure?: () => void;
   className?: string;
@@ -525,6 +526,7 @@ const PatternWaves = ({
   cursorStrength = 0.6,
   intro = true,
   paused = false,
+  maxDpr = 1.25,
   className = "",
   style,
   onReady,
@@ -787,6 +789,7 @@ const PatternWaves = ({
       width = Math.max(1, container.clientWidth);
       height = Math.max(1, container.clientHeight);
       renderer.dpr = Math.min(
+        maxDpr,
         window.devicePixelRatio || 1,
         2,
         Math.sqrt(PIXEL_BUDGET / (width * height)),
@@ -1067,6 +1070,7 @@ const PatternWaves = ({
   return (
     <div
       ref={containerRef}
+      data-motion={paused ? "static" : "animated"}
       className={`relative h-full w-full overflow-hidden ${className}`.trim()}
       style={style}
     />
