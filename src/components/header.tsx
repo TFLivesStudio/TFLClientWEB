@@ -1,4 +1,5 @@
 "use client";
+import { useMotionPreference } from "./motion-preference";
 import { useT } from "@/i18n/provider";
 import { languageHref, stripLocale } from "@/i18n/shared";
 import Image from "next/image";
@@ -11,13 +12,9 @@ import {
   useState,
   useSyncExternalStore,
 } from "react";
-import {
-  AnimatePresence,
-  LayoutGroup,
-  motion,
-  useReducedMotion,
-} from "motion/react";
+import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 import { ArrowDownToLine, Menu, X } from "lucide-react";
+import { MotionPreferenceControl } from "./motion-preference";
 import { ThemeToggle } from "./theme-toggle";
 const links = [
   ["/caracteristicas", "Launcher"],
@@ -26,6 +23,7 @@ const links = [
   ["/ayuda", "Ayuda"],
 ];
 const subscribe = () => () => {};
+const AnimatedNavLink = motion.create(Link);
 export function Brand() {
   const tr = useT();
   return (
@@ -44,7 +42,7 @@ export function Header() {
   const [language, setLanguage] = useState(tr.locale);
   const toggle = useRef<HTMLButtonElement>(null);
   const mobile = useRef<HTMLElement>(null);
-  const reduce = useReducedMotion();
+  const { reduced: reduce } = useMotionPreference();
   const group = useId();
   const currentUrl = useSyncExternalStore(
     subscribe,
@@ -78,7 +76,9 @@ export function Header() {
     };
   }, [open]);
   const navLink = ([href, label]: string[], animated: boolean) => (
-    <Link
+    <AnimatedNavLink
+      whileHover={reduce ? undefined : { y: -2 }}
+      whileTap={reduce ? undefined : { scale: 0.97 }}
       key={href}
       href={href}
       aria-current={
@@ -89,8 +89,8 @@ export function Header() {
       {animated && (path === href || path.startsWith(href + "/")) && (
         <motion.span className="active-nav-indicator" layoutId="active-nav" />
       )}
-      <span>{tr(label)}</span>
-    </Link>
+      <span className="nav-label">{tr(label)}</span>
+    </AnimatedNavLink>
   );
   return (
     <header className="header">
@@ -180,6 +180,7 @@ export function Header() {
                   <span>{tr("Apariencia")}</span>
                   <ThemeToggle />
                 </div>
+                <MotionPreferenceControl />
               </motion.nav>
             )}
           </AnimatePresence>

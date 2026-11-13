@@ -39,6 +39,11 @@ export default async function Privacy() {
             "La elección de tema se guarda en tu navegador mediante almacenamiento local, con la clave tfl-theme. Puedes elegir claro, oscuro o seguir al sistema. No necesitas una cuenta para cambiarla.",
           )}
         </p>
+        <p>
+          {tr(
+            "Las animaciones están activadas por defecto. El control Reducir animaciones guarda tu elección en este navegador con la clave tfl-motion. Puedes cambiarla en el pie de página sin crear una cuenta.",
+          )}
+        </p>
         <h2>{tr("Enlaces externos")}</h2>
         <p>
           {tr(

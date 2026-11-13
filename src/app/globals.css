@@ -1,9 +1,9 @@
 @import "tailwindcss";
 :root {
-  --slate-950: 222 22% 7%;
-  --slate-900: 220 19% 10%;
-  --slate-850: 220 17% 13%;
-  --slate-800: 218 16% 17%;
+  --slate-950: 222 25% 2%;
+  --slate-900: 220 25% 5%;
+  --slate-850: 220 24% 8%;
+  --slate-800: 221 23% 12%;
   --slate-700: 218 14% 25%;
   --slate-600: 217 12% 38%;
   --slate-500: 216 12% 54%;
@@ -11,8 +11,9 @@
   --slate-300: 215 20% 82%;
   --slate-200: 214 25% 91%;
   --slate-100: 212 30% 96%;
-  --brand-primary: 218 100% 63.5%;
-  --brand-accent: 201 100% 69.2%;
+  --brand-primary: 218 100% 65%;
+  --brand-deep: 223 100% 60%;
+  --brand-accent: 197 100% 73%;
   --background: var(--slate-950);
   --surface: var(--slate-900);
   --surface-elevated: var(--slate-850);
@@ -43,7 +44,8 @@
   --border: 216 16% 78%;
   --foreground: var(--slate-950);
   --muted-foreground: var(--slate-600);
-  --primary: 218 88% 42%;
+  --primary: 218 92% 42%;
+  --brand-deep: 223 92% 36%;
   --primary-foreground: 0 0% 100%;
   --accent: 212 85% 35%;
   --hover: var(--slate-200);
@@ -1417,17 +1419,15 @@ input:focus-visible {
     gap: 25px;
   }
 }
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    transition: none !important;
-    animation: none !important;
-  }
+.reduce-motion {
+  scroll-behavior: auto;
+}
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  scroll-behavior: auto !important;
+  transition: none !important;
+  animation: none !important;
 }
 @media (max-width: 760px) {
   .steps {
@@ -1820,19 +1820,8 @@ input:focus-visible {
 .mobile-nav {
   display: none;
 }
-.silk-static {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(
-    circle,
-    hsl(var(--primary) / 0.7) 1.5px,
-    transparent 2px
-  );
-  background-size: 14px 14px;
-  mask-image: radial-gradient(ellipse at center, black, transparent 75%);
-}
 .light .ambient {
-  opacity: 0.3;
+  opacity: 0.48;
 }
 .animated-tabs {
   isolation: isolate;
@@ -2197,4 +2186,119 @@ input:focus-visible {
   flex-wrap: wrap;
   gap: 10px 24px;
   margin-block: 18px;
+}
+
+/* Real light/dark launcher screenshots switch via CSS before client hydration. */
+.launcher-theme-image.theme-light {
+  display: none;
+}
+.light .launcher-theme-image.theme-dark {
+  display: none;
+}
+.light .launcher-theme-image.theme-light {
+  display: block;
+}
+.themed-product-image {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid hsl(var(--border));
+}
+.themed-product-image img {
+  width: 100%;
+}
+.button:not(.secondary) {
+  background: linear-gradient(
+    130deg,
+    hsl(var(--primary)),
+    hsl(var(--brand-deep))
+  );
+  box-shadow: 0 6px 24px hsl(var(--primary) / 0.16);
+}
+.button:not(.secondary):hover {
+  box-shadow: 0 8px 32px hsl(var(--primary) / 0.32);
+}
+.desktop-nav .nav-label {
+  display: inline-block;
+  transition:
+    color 0.2s,
+    text-shadow 0.2s;
+}
+.desktop-nav a::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
+  transform: scaleX(0);
+  opacity: 0;
+  transition:
+    transform 0.24s,
+    opacity 0.24s;
+  transform-origin: center;
+}
+.desktop-nav a:hover::after,
+.desktop-nav a:focus-visible::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+.desktop-nav a:hover .nav-label,
+.desktop-nav a:focus-visible .nav-label {
+  color: hsl(var(--accent));
+  text-shadow: 0 0 20px hsl(var(--primary) / 0.22);
+}
+.motion-preference {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: hsl(var(--muted-foreground));
+  padding: 8px 0;
+}
+.motion-preference:hover {
+  color: hsl(var(--foreground));
+}
+.preference-switch {
+  width: 30px;
+  height: 18px;
+  border-radius: 20px;
+  background: hsl(var(--hover));
+  border: 1px solid hsl(var(--border));
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+}
+.preference-switch i {
+  width: 10px;
+  height: 10px;
+  background: hsl(var(--muted-foreground));
+  border-radius: 50%;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+.motion-preference[aria-checked="true"] .preference-switch {
+  background: hsl(var(--primary) / 0.2);
+}
+.motion-preference[aria-checked="true"] i {
+  transform: translateX(11px);
+  background: hsl(var(--accent));
+}
+.mobile-nav > .motion-preference {
+  padding: 12px;
+  border-top: 1px solid hsl(var(--border));
+}
+.mobile-nav > .motion-preference .preference-switch {
+  margin-left: auto;
+}
+.theme-snapshot {
+  contain: paint;
+}
+
+.hero-content > p,
+.hero-content > .eyebrow {
+  color: hsl(var(--foreground) / 0.9);
 }

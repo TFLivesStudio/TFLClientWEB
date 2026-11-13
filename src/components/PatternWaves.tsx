@@ -258,6 +258,7 @@ uniform float uFadeSize;
 uniform float uAppear;
 uniform sampler2D tRipple;
 uniform float uRipple;
+uniform vec4 uCursor;
 out vec4 fragColor;
 
 const float FOLDS = 5.5;
@@ -331,6 +332,11 @@ float surface(vec2 p, float t) {
 float heightAt(vec2 css) {
   float h = surface((css - 0.5 * uSize) / uUnit, uTime) * uAmp;
   if (uRipple > 0.0) h += texture(tRipple, css / uSize).r * uRipple;
+  // Keep cursor response on WebGL2 implementations without floating-point render targets.
+  if (uCursor.w > 0.0) {
+    vec2 offset = (css - uCursor.xy) / max(uCursor.z, 1.0);
+    h += exp(-dot(offset, offset) * 1.8) * uCursor.w * 0.7;
+  }
   return h;
 }
 
@@ -666,6 +672,7 @@ const PatternWaves = ({
       uAppear: { value: 0 },
       tRipple: { value: blank },
       uRipple: { value: 0 },
+      uCursor: { value: [0, 0, 50, 0] },
     };
     const fieldMesh = new Mesh(gl, {
       geometry,
@@ -928,6 +935,12 @@ const PatternWaves = ({
       fieldUniforms.tRipple.value =
         ripple && rippleLive ? ripple.read.texture : blank;
       fieldUniforms.uRipple.value = rippleLive ? 0.32 : 0;
+      fieldUniforms.uCursor.value = [
+        pointer.x,
+        height - pointer.y,
+        s.cursorSize,
+        !floatTargets && s.interactive && pointer.inside ? s.cursorStrength : 0,
+      ];
       renderer.render({ scene: fieldMesh, target: fieldTarget });
 
       markUniforms.uOrigin.value = origin;

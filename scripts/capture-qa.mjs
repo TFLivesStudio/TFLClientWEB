@@ -17,10 +17,10 @@ for (const [device, width, height] of [
     viewport: { width, height },
     reducedMotion: "reduce",
   });
-  await context.addInitScript(
-    (theme) => localStorage.setItem("tfl-theme", theme),
-    theme,
-  );
+  await context.addInitScript((theme) => {
+    localStorage.setItem("tfl-theme", theme);
+    localStorage.setItem("tfl-motion", "reduced");
+  }, theme);
   const page = await context.newPage();
   for (const [name, path] of [
     ["inicio", "/"],
@@ -47,7 +47,7 @@ for (const [device, width, height] of [
       (await page
         .locator("body")
         .evaluate((e) => getComputedStyle(e).backgroundColor)) !==
-      (theme === "light" ? "rgb(242, 245, 248)" : "rgb(14, 16, 22)")
+      (theme === "light" ? "rgb(242, 245, 248)" : "rgb(4, 5, 6)")
     )
       throw new Error("Slate theme did not load");
     for (

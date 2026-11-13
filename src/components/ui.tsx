@@ -1,3 +1,4 @@
+import { MotionPreferenceControl } from "./motion-preference";
 import { AnimatedAccordion } from "./animated-ui";
 import { getTranslator } from "@/i18n/server";
 import Link from "@/components/locale-link";
@@ -154,6 +155,7 @@ export async function Footer() {
             "No es un producto oficial de Minecraft. Sin afiliación con Mojang o Microsoft.",
           )}
         </span>
+        <MotionPreferenceControl />
         <span className="made">{tr("ES / ESPAÑOL")}</span>
       </div>
     </footer>

@@ -1,21 +1,12 @@
 "use client";
+import { useMotionPreference } from "./motion-preference";
 import { useT } from "@/i18n/provider";
-import Image from "next/image";
+import { LauncherImage } from "./launcher-image";
 import * as Dialog from "@radix-ui/react-dialog";
-import {
-  AnimatePresence,
-  LayoutGroup,
-  motion,
-  useReducedMotion,
-} from "motion/react";
+import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 import { Hint } from "./animated-ui";
 import { useEffect, useId, useState, useSyncExternalStore } from "react";
 import { Expand, X, ArrowLeft, ArrowRight } from "lucide-react";
-const subscribeMotion = (fn: () => void) => {
-  const q = matchMedia("(prefers-reduced-motion: reduce)");
-  q.addEventListener("change", fn);
-  return () => q.removeEventListener("change", fn);
-};
 const subscribeVisibility = (fn: () => void) => {
   document.addEventListener("visibilitychange", fn);
   return () => document.removeEventListener("visibilitychange", fn);
@@ -50,23 +41,18 @@ export function Gallery() {
   const tr = useT();
   const [index, setIndex] = useState(0);
   const id = useId();
-  const reduce = useReducedMotion();
+  const { reduced: reduce } = useMotionPreference();
   const [expanded, setExpanded] = useState(false);
-  const reduced = useSyncExternalStore(
-    subscribeMotion,
-    () => matchMedia("(prefers-reduced-motion: reduce)").matches,
-    () => true,
-  );
   const hidden = useSyncExternalStore(
     subscribeVisibility,
     () => document.hidden,
     () => true,
   );
   useEffect(() => {
-    if (expanded || reduced || hidden) return;
+    if (expanded || reduce || hidden) return;
     const id = setInterval(() => setIndex((i) => (i + 1) % shots.length), 6000);
     return () => clearInterval(id);
-  }, [expanded, reduced, hidden, index]);
+  }, [expanded, reduce, hidden, index]);
   const shot = shots[index];
   return (
     <Dialog.Root open={expanded} onOpenChange={setExpanded}>
@@ -101,7 +87,7 @@ export function Gallery() {
               transition={{ duration: reduce ? 0 : 0.28 }}
             >
               {shots.map((s, i) => (
-                <Image
+                <LauncherImage
                   key={s.src}
                   src={s.src}
                   alt={i === index ? tr(s.alt) : ""}
@@ -110,7 +96,8 @@ export function Gallery() {
                   height={900}
                   priority={i === 0}
                   loading={i === 0 ? undefined : "eager"}
-                  className={`gallery-shot${i === index ? " product-shot is-active" : ""}`}
+                  markActive={i === index}
+                  className={`gallery-shot${i === index ? " is-active" : ""}`}
                 />
               ))}
             </motion.div>
@@ -193,7 +180,7 @@ export function Gallery() {
                         className="dialog-image-stage"
                         transition={{ duration: reduce ? 0 : 0.28 }}
                       >
-                        <Image
+                        <LauncherImage
                           src={shot.src}
                           alt={tr(shot.alt)}
                           width={1440}

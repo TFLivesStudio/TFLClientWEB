@@ -1,9 +1,10 @@
 "use client";
+import { useMotionPreference } from "./motion-preference";
 // Individual adaptations of Animate UI's Radix primitives (MIT + Commons Clause), with TFL tokens.
 import * as Tabs from "@radix-ui/react-tabs";
 import * as Accordion from "@radix-ui/react-accordion";
 import * as Tooltip from "@radix-ui/react-tooltip";
-import { motion, useReducedMotion, useScroll } from "motion/react";
+import { motion, useScroll } from "motion/react";
 import { ChevronDown, Copy } from "lucide-react";
 import { useId, type ReactNode } from "react";
 import { toast } from "sonner";
@@ -102,7 +103,7 @@ export function Hint({
   label: string;
   children: ReactNode;
 }) {
-  const reduce = useReducedMotion();
+  const { reduced: reduce } = useMotionPreference();
   return (
     <Tooltip.Root>
       <Tooltip.Trigger asChild>{children}</Tooltip.Trigger>

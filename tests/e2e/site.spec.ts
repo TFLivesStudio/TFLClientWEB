@@ -7,7 +7,7 @@ test("home, gallery, keyboard dialog and FAQ", async ({ page }) => {
   await expect(page.locator("h1")).toHaveText("TFL Client");
   await expect(page.locator("body")).toHaveCSS(
     "background-color",
-    "rgb(14, 16, 22)",
+    "rgb(4, 5, 6)",
   );
   await expect(page.locator("body")).toHaveCSS("font-family", /Inter/);
   await page.keyboard.press("Tab");
@@ -86,12 +86,19 @@ test("verified Selection and local help search", async ({ page }) => {
   await page.goto("/inexistente");
   await expect(page.locator("h1")).toContainText("Página no encontrada");
 });
-test("mobile navigation, static reduced motion background and page widths", async ({
+test("mobile navigation, site motion preference and page widths", async ({
   page,
 }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
+  await expect(
+    page.locator('.silk-gpu [data-motion="animated"]'),
+  ).toBeVisible();
+  await page
+    .getByRole("switch", { name: "Reducir animaciones" })
+    .first()
+    .click();
   await expect(page.locator('.silk-gpu [data-motion="static"]')).toBeVisible();
   await expect(page.locator('[data-renderer="canvas2d"]')).toHaveCount(0);
   expect(
@@ -138,9 +145,11 @@ test("without WebGL there is no Canvas 2D replacement", async ({ page }) => {
   });
   await page.goto("/");
   await expect(
-    page.locator('.ambient[data-graphics="unavailable"] .silk-static'),
+    page.locator('.ambient[data-graphics="unavailable"]'),
   ).toBeVisible();
-  await expect(page.locator(".ambient canvas")).toHaveCount(0);
+  await expect(
+    page.locator(".ambient canvas, .silk-static, [data-renderer=canvas2d]"),
+  ).toHaveCount(0);
   await expect(page.locator("h1")).toHaveText("TFL Client");
 });
 test("metadata, sitemap, robots and accessible primary routes", async ({
@@ -425,6 +434,13 @@ test("lower concurrency keeps Pattern Waves at lower resolution, respects motion
     page.locator('.silk-gpu [data-motion="animated"]'),
   ).toBeVisible();
   await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(
+    page.locator('.silk-gpu [data-motion="animated"]'),
+  ).toBeVisible();
+  await page
+    .getByRole("switch", { name: "Reducir animaciones" })
+    .first()
+    .click();
   await expect(page.locator('.silk-gpu [data-motion="static"]')).toBeVisible();
   for (const icon of [
     "tfl.png",
@@ -439,4 +455,162 @@ test("lower concurrency keeps Pattern Waves at lower resolution, respects motion
   await expect(page.locator(".ambient [data-renderer=canvas2d]")).toHaveCount(
     0,
   );
+});
+
+test("OS reduced motion does not silently disable the intro, continuous waves or circular transition", async ({
+  page,
+}) => {
+  test.setTimeout(45000);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.addInitScript(() =>
+    Object.defineProperty(navigator, "hardwareConcurrency", { get: () => 4 }),
+  );
+  await page.goto("/");
+  await expect(
+    page.locator(".silk-static,[data-renderer=canvas2d]"),
+  ).toHaveCount(0);
+  await expect(
+    page.locator('.silk-gpu [data-motion="animated"]'),
+  ).toBeVisible();
+  const canvas = page.locator(".silk-gpu canvas");
+  const intro = await canvas.screenshot();
+  await page.waitForTimeout(2400);
+  const appeared = await canvas.screenshot();
+  expect(intro.equals(appeared)).toBe(false);
+  await page.waitForTimeout(900);
+  expect(appeared.equals(await canvas.screenshot())).toBe(false);
+  await page
+    .getByRole("button", { name: "Activar tema claro", exact: true })
+    .click();
+  await expect(page.locator("html")).toHaveClass(/light/);
+  await expect
+    .poll(() =>
+      page.evaluate(() => {
+        return document.getAnimations().some((animation) => {
+          const effect = animation.effect;
+          return (
+            effect instanceof KeyframeEffect &&
+            effect
+              .getKeyframes()
+              .some((frame) =>
+                String(frame.clipPath || "").startsWith("circle("),
+              )
+          );
+        });
+      }),
+    )
+    .toBe(true);
+});
+
+test("circle reveal works without View Transitions and cleans its snapshot", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.addInitScript(() => {
+    Object.defineProperty(document, "startViewTransition", {
+      value: undefined,
+      configurable: true,
+    });
+  });
+  await page.goto("/descargas");
+  await page
+    .getByRole("button", { name: "Activar tema claro", exact: true })
+    .click();
+  const snapshot = page.locator('[data-theme-transition="fallback"]');
+  await expect(snapshot).toBeAttached();
+  await expect(snapshot).toHaveAttribute("aria-hidden", "true");
+  expect(await snapshot.evaluate((node) => (node as HTMLElement).inert)).toBe(
+    true,
+  );
+  await expect(page.locator("html")).toHaveClass(/light/);
+  await expect(snapshot).toHaveCount(0);
+  await page
+    .getByRole("button", { name: "Activar tema oscuro", exact: true })
+    .click();
+  await expect(page.locator("html")).toHaveClass(/dark/);
+  await expect(snapshot).toHaveCount(0);
+  await expect(
+    page.getByRole("tab", { name: "Linux", exact: true }),
+  ).toBeVisible();
+});
+
+test("light launcher screenshots switch with the theme in gallery, detail and full image", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    localStorage.setItem("tfl-theme", "light");
+    localStorage.setItem("tfl-motion", "reduced");
+  });
+  await page.goto("/");
+  await expect(page.locator(".product-shot")).toHaveAttribute(
+    "src",
+    /launcher-console-light/,
+  );
+  await expect(
+    page.locator(".themed-product-image img.theme-light"),
+  ).toBeVisible();
+  await expect(
+    page.locator(".themed-product-image img.theme-dark"),
+  ).not.toBeVisible();
+  await page.getByRole("button", { name: "Ampliar captura" }).click();
+  await expect(
+    page.getByRole("dialog").locator("img.theme-light"),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("dialog").locator("img.theme-dark"),
+  ).not.toBeVisible();
+  await page.keyboard.press("Escape");
+  await page
+    .getByRole("button", { name: "Activar tema oscuro", exact: true })
+    .click();
+  await expect(page.locator(".product-shot")).toHaveAttribute(
+    "src",
+    /launcher-console.webp/,
+  );
+});
+
+test("cursor remains interactive without floating-point WebGL render targets", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    const prototype = WebGL2RenderingContext.prototype;
+    const originalExtension = prototype.getExtension;
+    const originalProgram = prototype.createProgram;
+    const programs: WebGLProgram[] = [];
+    Object.assign(window, { tflTestPrograms: programs });
+    Object.defineProperty(prototype, "getExtension", {
+      configurable: true,
+      value: function (this: WebGL2RenderingContext, name: string) {
+        return name === "EXT_color_buffer_float"
+          ? null
+          : Reflect.apply(originalExtension, this, [name]);
+      },
+    });
+    prototype.createProgram = function () {
+      const program = originalProgram.call(this);
+      if (program) programs.push(program);
+      return program;
+    };
+  });
+  await page.goto("/");
+  await expect(page.locator(".silk-gpu canvas")).toBeVisible();
+  await page.mouse.move(300, 250);
+  await expect
+    .poll(() =>
+      page.locator(".silk-gpu canvas").evaluate((canvas: HTMLCanvasElement) => {
+        const gl = canvas.getContext("webgl2")!;
+        const programs = (
+          window as unknown as { tflTestPrograms: WebGLProgram[] }
+        ).tflTestPrograms;
+        const program = programs.find((p) =>
+          gl.getUniformLocation(p, "uCursor"),
+        );
+        if (!program) return 0;
+        const location = gl.getUniformLocation(program, "uCursor");
+        if (!location) return 0;
+        return (gl.getUniform(program, location) as Float32Array)[3];
+      }),
+    )
+    .toBeGreaterThan(0.5);
+  await expect(page.locator(".ambient[data-graphics=webgl]")).toBeVisible();
 });

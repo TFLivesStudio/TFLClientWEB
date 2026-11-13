@@ -12,6 +12,9 @@ for (const [device, width, height] of [
     viewport: { width, height },
     reducedMotion: "reduce",
   });
+  await context.addInitScript(() =>
+    localStorage.setItem("tfl-motion", "reduced"),
+  );
   const page = await context.newPage();
   await page.goto(base);
   await page.getByRole("button", { name: "Ampliar captura" }).click();
@@ -24,7 +27,10 @@ const context = await browser.newContext({
   viewport: { width: 390, height: 844 },
   reducedMotion: "reduce",
 });
-await context.addInitScript(() => localStorage.setItem("tfl-theme", "light"));
+await context.addInitScript(() => {
+  localStorage.setItem("tfl-theme", "light");
+  localStorage.setItem("tfl-motion", "reduced");
+});
 const page = await context.newPage();
 await page.goto(base + "/en/ayuda");
 await page.getByRole("button", { name: "Open menu" }).click();
@@ -58,6 +64,30 @@ await screen.waitForTimeout(600);
 if ((await screen.locator("html").getAttribute("class")) !== "light")
   throw new Error("Animated theme change did not finish in light mode");
 if (errors.length) throw new Error(JSON.stringify(errors));
+const compatible = await browser.newContext({
+  viewport: { width: 1440, height: 1000 },
+  reducedMotion: "reduce",
+});
+await compatible.addInitScript(() => {
+  Object.defineProperty(document, "startViewTransition", { value: undefined });
+});
+const fallback = await compatible.newPage();
+fallback.on("pageerror", (error) => errors.push(error.message));
+await fallback.goto(base + "/descargas");
+await fallback.evaluate(() => document.fonts.ready);
+await fallback
+  .getByRole("button", { name: "Activar tema claro", exact: true })
+  .click();
+await fallback
+  .locator('[data-theme-transition="fallback"]')
+  .waitFor({ state: "attached" });
+await fallback.waitForTimeout(180);
+await fallback.screenshot({ path: "docs/qa/theme-transition-compatible.png" });
+await fallback
+  .locator('[data-theme-transition="fallback"]')
+  .waitFor({ state: "detached" });
+if (errors.length) throw new Error(JSON.stringify(errors));
+await compatible.close();
 console.log(
   "Centered dialogs, English mobile menu and animated theme transition captured without JS errors",
 );

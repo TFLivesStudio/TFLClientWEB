@@ -333,5 +333,7 @@
   "La elección de tema se guarda en tu navegador mediante almacenamiento local, con la clave tfl-theme. Puedes elegir claro, oscuro o seguir al sistema. No necesitas una cuenta para cambiarla.": "Your theme choice is saved in your browser using local storage under the tfl-theme key. Choose light, dark, or follow the system. No account is needed to change it.",
   "Instalaciones": "Installations",
   "Plataformas": "Platforms",
-  "Selection": "Selection"
+  "Selection": "Selection",
+  "Reducir animaciones": "Reduce animations",
+  "Las animaciones están activadas por defecto. El control Reducir animaciones guarda tu elección en este navegador con la clave tfl-motion. Puedes cambiarla en el pie de página sin crear una cuenta.": "Animations are on by default. The Reduce animations control saves your choice in this browser under tfl-motion. You can change it in the footer without creating an account."
 }

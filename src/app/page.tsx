@@ -1,7 +1,7 @@
 import { getTranslator } from "@/i18n/server";
 import { MemoryComparison } from "@/components/memory-comparison";
 import Link from "@/components/locale-link";
-import Image from "next/image";
+import { LauncherImage } from "@/components/launcher-image";
 import { Ambient } from "@/components/ambient";
 import { Gallery } from "@/components/gallery";
 import { DownloadCTA, FAQ } from "@/components/ui";
@@ -87,13 +87,15 @@ export default async function Home() {
             {tr("Crear una instalación →")}
           </Link>
         </div>
-        <Image
-          src="/images/launcher-settings.webp"
-          alt={tr("Panel de apariencia del frontend oficial de TFL Client")}
-          width={1440}
-          height={900}
-          sizes="(max-width:760px) 100vw, 60vw"
-        />
+        <div className="themed-product-image">
+          <LauncherImage
+            src="/images/launcher-settings.webp"
+            alt={tr("Panel de apariencia del frontend oficial de TFL Client")}
+            width={1440}
+            height={900}
+            sizes="(max-width:760px) 100vw, 60vw"
+          />
+        </div>
       </section>
       <MemoryComparison />
       <section className="shell section selection-overview">
