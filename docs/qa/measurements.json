@@ -1,0 +1,722 @@
+[
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 1451,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/caracteristicas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 484,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/selection",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 258,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/novedades",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 334,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/descargas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 221,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/ayuda",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 339,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/comunidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 134,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/privacidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 100,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/novedades/v0.15.3-beta.6",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 245,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/ayuda/reportar",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 101,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 728,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/caracteristicas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 157,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/selection",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 102,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/novedades",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 223,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/descargas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 284,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/ayuda",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 166,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/comunidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 140,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/privacidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 270,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/novedades/v0.15.3-beta.6",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 105,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/ayuda/reportar",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 89,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/en",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 805,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/en/caracteristicas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 122,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/en/selection",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 72,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/en/novedades",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 156,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/en/descargas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 114,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/en/comunidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 73,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/en/privacidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 46,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/en/novedades/v0.15.3-beta.6",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 290,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/en/ayuda/reportar",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 91,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/en",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 756,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/en/caracteristicas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 83,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/en/selection",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 63,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/en/novedades",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 185,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/en/descargas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 180,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/en/comunidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 82,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/en/privacidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 75,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/en/novedades/v0.15.3-beta.6",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 105,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/en/ayuda/reportar",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 70,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 350,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/caracteristicas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 119,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/selection",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 83,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/novedades",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 163,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/descargas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 171,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/ayuda",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 86,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/comunidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 87,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/privacidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 137,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/novedades/v0.15.3-beta.6",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 95,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/ayuda/reportar",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 80,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 451,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/caracteristicas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 81,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/selection",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 52,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/novedades",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 166,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/descargas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 126,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/ayuda",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 66,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/comunidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 63,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/privacidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 60,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/novedades/v0.15.3-beta.6",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 99,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/ayuda/reportar",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 80,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 406,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en/caracteristicas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 145,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en/selection",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 73,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en/novedades",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 151,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en/descargas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 114,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en/comunidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 67,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en/privacidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 55,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en/novedades/v0.15.3-beta.6",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 99,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en/ayuda/reportar",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 69,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/en",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 470,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/en/caracteristicas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 135,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/en/selection",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 63,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/en/novedades",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 118,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/en/descargas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 115,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/en/comunidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 53,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/en/privacidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 161,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/en/novedades/v0.15.3-beta.6",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 167,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/en/ayuda/reportar",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 65,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/en/ayuda",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 578,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/en/ayuda",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 276,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en/ayuda",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 304,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/en/ayuda",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 324,
+    "errors": []
+  }
+]
