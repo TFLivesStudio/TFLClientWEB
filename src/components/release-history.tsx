@@ -2,23 +2,53 @@
 import { AnimatedTabs } from "./animated-ui";
 import { useT } from "@/i18n/provider";
 import Link from "@/components/locale-link";
-import { useState } from "react";
-import { releasePath, type Release } from "@/lib/release-model";
-export function ReleaseHistory({ releases }: { releases: Release[] }) {
+import { useSyncExternalStore } from "react";
+import { localizedPath } from "@/i18n/shared";
+import {
+  historyState,
+  historyQuery,
+  type ReleaseSummary,
+} from "@/lib/history-model";
+import { releasePath } from "@/lib/release-model";
+const subscribe = (notify: () => void) => {
+  window.addEventListener("popstate", notify);
+  window.addEventListener("tfl-url-change", notify);
+  return () => {
+    window.removeEventListener("popstate", notify);
+    window.removeEventListener("tfl-url-change", notify);
+  };
+};
+export function ReleaseHistory({
+  releases,
+  initialQuery = "",
+}: {
+  releases: ReleaseSummary[];
+  initialQuery?: string;
+}) {
   const tr = useT();
-  const [filter, setFilter] = useState("all");
-  const [page, setPage] = useState(1);
-  const filtered = releases.filter(
-    (r) => filter === "all" || r.channel === filter,
+  const query = useSyncExternalStore(
+    subscribe,
+    () => window.location.search,
+    () => initialQuery,
   );
-  const count = Math.max(1, Math.ceil(filtered.length / 12));
+  const params = new URLSearchParams(query);
+  const { filter, filtered, page, count } = historyState(params, releases);
+  const navigate = (channel: string, nextPage: number) => {
+    const query = historyQuery(new URLSearchParams(params), channel, nextPage);
+    const path = localizedPath("/novedades", tr.locale);
+    window.history.pushState(
+      window.history.state,
+      "",
+      path + (query ? `?${query}` : "") + window.location.hash,
+    );
+    window.dispatchEvent(new Event("tfl-url-change"));
+  };
   return (
     <>
       <AnimatedTabs
         value={filter}
         onValueChange={(value) => {
-          setFilter(value);
-          setPage(1);
+          navigate(value, 1);
         }}
         label={tr("Filtrar versiones")}
         items={[
@@ -30,7 +60,7 @@ export function ReleaseHistory({ releases }: { releases: Release[] }) {
         <p className="result-count" aria-live="polite">
           {filtered.length} {tr("publicaciones")}
         </p>
-        <div className="timeline">
+        <div className="timeline" id="release-results">
           {filtered.slice((page - 1) * 12, page * 12).map((r) => (
             <article key={r.tag} className={`release-embed ${r.channel}`}>
               <time dateTime={r.date}>
@@ -46,12 +76,7 @@ export function ReleaseHistory({ releases }: { releases: Release[] }) {
                   <Link href={releasePath(r.tag)}>{r.name}</Link>
                 </h2>
                 <code>{r.tag}</code>
-                {r.body && (
-                  <p className="release-excerpt">
-                    {r.body.slice(0, 260)}
-                    {r.body.length > 260 ? "…" : ""}
-                  </p>
-                )}
+                {r.excerpt && <p className="release-excerpt">{r.excerpt}</p>}
                 {r.inconsistent && (
                   <p>
                     {tr(
@@ -67,17 +92,25 @@ export function ReleaseHistory({ releases }: { releases: Release[] }) {
           ))}
         </div>
         {!filtered.length && <p>{tr("No hay publicaciones en este canal.")}</p>}
-        <div className="pagination">
-          <button disabled={page === 1} onClick={() => setPage(page - 1)}>
+        <nav className="pagination" aria-label={tr("Paginación de versiones")}>
+          <button
+            disabled={page === 1}
+            aria-controls="release-results"
+            onClick={() => navigate(filter, page - 1)}
+          >
             {tr("Anterior")}
           </button>
-          <span>
+          <span aria-live="polite">
             {tr("Página")} {page} {tr("de")} {count}
           </span>
-          <button disabled={page === count} onClick={() => setPage(page + 1)}>
+          <button
+            disabled={page === count}
+            aria-controls="release-results"
+            onClick={() => navigate(filter, page + 1)}
+          >
             {tr("Siguiente")}
           </button>
-        </div>
+        </nav>
       </AnimatedTabs>
     </>
   );

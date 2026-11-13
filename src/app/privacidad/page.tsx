@@ -1,11 +1,12 @@
 import { getTranslator } from "@/i18n/server";
-import { PageTitle } from "@/components/ui";
+import { LegalDocument } from "@/components/legal-document";
+import { legalDocuments } from "@/lib/legal-content";
 import { seo } from "@/lib/seo";
 export async function generateMetadata() {
   const tr = await getTranslator();
   return seo(
-    tr("Privacidad y créditos"),
-    tr("Información de la web, servicios externos, recursos y marcas."),
+    legalDocuments.privacy.title[tr.locale],
+    legalDocuments.privacy.description[tr.locale],
     "/privacidad",
     tr.locale,
   );
@@ -13,43 +14,9 @@ export async function generateMetadata() {
 export default async function Privacy() {
   const tr = await getTranslator();
   return (
-    <>
-      <PageTitle
-        label={tr("INFORMACIÓN DEL SITIO")}
-        title={tr("Privacidad y créditos.")}
-        description={tr(
-          "Información sobre esta web, sus recursos y los proyectos que presenta.",
-        )}
-      />
-      <article className="shell prose section">
-        <h2>{tr("Una web informativa")}</h2>
-        <p>
-          {tr(
-            "El código de esta web no incorpora cuentas de usuarios, formularios ni bibliotecas de analítica. El sitio se aloja en Vercel, cuyo tratamiento de datos técnicos se describe en su política de privacidad. La autenticación de Minecraft se realiza dentro del launcher. El proveedor de alojamiento puede procesar datos técnicos de las solicitudes para servir y proteger el sitio.",
-          )}
-        </p>
-        <p>
-          <a href="https://vercel.com/legal/privacy-policy">
-            {tr("Política de privacidad de Vercel")}
-          </a>
-        </p>
-        <h2>{tr("Preferencia de apariencia")}</h2>
-        <p>
-          {tr(
-            "La elección de tema se guarda en tu navegador mediante almacenamiento local, con la clave tfl-theme. Puedes elegir claro, oscuro o seguir al sistema. No necesitas una cuenta para cambiarla.",
-          )}
-        </p>
-        <p>
-          {tr(
-            "Las animaciones están activadas por defecto. El control Reducir animaciones guarda tu elección en este navegador con la clave tfl-motion. Puedes cambiarla en el pie de página sin crear una cuenta.",
-          )}
-        </p>
-        <h2>{tr("Enlaces externos")}</h2>
-        <p>
-          {tr(
-            "Las descargas, repositorios y soporte enlazan a GitHub. Al visitarlos se aplican las políticas del servicio correspondiente.",
-          )}
-        </p>
+    <LegalDocument kind="privacy">
+      <section id="creditos">
+        {" "}
         <h2>{tr("Recursos y atribución")}</h2>
         <p>
           {tr(
@@ -98,7 +65,12 @@ export default async function Privacy() {
           <a href="/licenses/Prism-Branding-CC-BY-SA-4.0.txt">Prism Launcher</a>
           <a href="/licenses/Lenis-MIT.txt">Lenis (MIT)</a>
         </div>
-      </article>
-    </>
+        <p>
+          <a href="https://vercel.com/legal/privacy-policy">
+            {tr("Política de privacidad de Vercel")}
+          </a>
+        </p>
+      </section>
+    </LegalDocument>
   );
 }

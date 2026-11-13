@@ -145,7 +145,12 @@ export async function Footer() {
             <PlatformIcon name="GitHub" /> Launcher <ArrowUpRight size={14} />
           </a>
           <a href="https://discord.gg/tflives">{tr("Discord de TFLives")}</a>
-          <Link href="/privacidad">{tr("Privacidad y créditos")}</Link>
+        </div>
+        <div>
+          <span>LEGAL</span>
+          <Link href="/legal/aviso-legal">{tr("Aviso legal")}</Link>
+          <Link href="/privacidad">{tr("Privacidad")}</Link>
+          <Link href="/legal/terminos">{tr("Términos de Servicio")}</Link>
         </div>
       </div>
       <div className="footer-bottom">

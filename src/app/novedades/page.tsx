@@ -1,3 +1,4 @@
+import { summarizeRelease } from "@/lib/history-model";
 import { getTranslator } from "@/i18n/server";
 import Link from "@/components/locale-link";
 import { PageTitle } from "@/components/ui";
@@ -13,7 +14,17 @@ export async function generateMetadata() {
     tr.locale,
   );
 }
-export default async function News() {
+export default async function News({
+  searchParams,
+}: {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const query = await searchParams;
+  const initialQuery = new URLSearchParams(
+    Object.entries(query).filter(
+      (entry): entry is [string, string] => typeof entry[1] === "string",
+    ),
+  ).toString();
   const tr = await getTranslator();
   const { releases, status } = await getReleases();
   return (
@@ -55,7 +66,10 @@ export default async function News() {
         {status === "ok" ? (
           <>
             <p>{tr("Notas originales, sin traducción automática.")}</p>
-            <ReleaseHistory releases={releases} />
+            <ReleaseHistory
+              releases={releases.map(summarizeRelease)}
+              initialQuery={initialQuery}
+            />
           </>
         ) : (
           <div className="notice">

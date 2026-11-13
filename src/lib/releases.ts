@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { z } from "zod";
 import type { Release } from "./release-model";
 export { platformAssets, assetDetails, releasePath } from "./release-model";
@@ -71,9 +72,7 @@ export type ReleaseResult = {
   releases: Release[];
   status: "ok" | "empty" | "unavailable" | "rate-limit";
 };
-export async function getReleases(
-  fetcher: typeof fetch = fetch,
-): Promise<ReleaseResult> {
+async function fetchReleases(fetcher: typeof fetch): Promise<ReleaseResult> {
   try {
     const releases: Release[] = [];
     for (let page = 1; page <= 200; page++) {
@@ -114,6 +113,13 @@ export async function getReleases(
   } catch {
     return { releases: [], status: "unavailable" };
   }
+}
+// Share parsing/pagination across metadata and Server Components in one render.
+const requestReleases = cache(() => fetchReleases(fetch));
+export async function getReleases(
+  fetcher?: typeof fetch,
+): Promise<ReleaseResult> {
+  return fetcher ? fetchReleases(fetcher) : requestReleases();
 }
 export async function getRelease() {
   const r = await getReleases();

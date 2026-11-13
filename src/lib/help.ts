@@ -160,4 +160,28 @@ export const articles = [
       ],
     ],
   },
+  {
+    slug: "mcp",
+    category: "Integraciones",
+    title: "Conectar un asistente local mediante MCP",
+    summary: "Habilitación, permisos y control de sesiones desde el launcher.",
+    sections: [
+      [
+        "Preparar la conexión",
+        "Instala una versión de TFL Client que incluya el auxiliar MCP. Abre Ajustes → Integraciones y activa MCP. El launcher debe permanecer abierto; una aplicación en la nube no puede acceder directamente a esta conexión local.",
+      ],
+      [
+        "Configurar el asistente",
+        "Elige el cliente local en Integraciones y copia la configuración que muestra el launcher. Utiliza la ruta real de tu instalación. Las configuraciones de Codex, Claude Code y OpenCode dependen de la versión de cada cliente; no se presenta una certificación universal.",
+      ],
+      [
+        "Aprobar y limitar permisos",
+        "Inicia la conexión desde tu asistente y aprueba la nueva sesión en TFL Client. Empieza con lectura y limita las instalaciones que puede consultar. Para operaciones adicionales, revisa los permisos; las acciones críticas requieren una confirmación local específica.",
+      ],
+      [
+        "Revocar una sesión",
+        "Revoca el cliente o desactiva MCP desde Integraciones cuando termines. El registro local permite consultar decisiones. Una reconexión puede requerir una nueva aprobación; no compartas tokens, rutas privadas ni registros innecesarios con asistentes.",
+      ],
+    ],
+  },
 ];

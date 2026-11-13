@@ -1,3 +1,4 @@
+import { LauncherFeatures } from "@/components/launcher-features";
 import { getTranslator } from "@/i18n/server";
 import Link from "@/components/locale-link";
 import { Gallery } from "@/components/gallery";
@@ -91,6 +92,7 @@ export default async function Features() {
           </article>
         ))}
       </section>
+      <LauncherFeatures />
       <EndCTA />
     </>
   );

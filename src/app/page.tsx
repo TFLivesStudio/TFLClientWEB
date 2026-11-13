@@ -1,3 +1,5 @@
+import { ScanSection } from "@/components/scan-section";
+import { LauncherFeatures } from "@/components/launcher-features";
 import { ArrowDown } from "lucide-react";
 import { getTranslator } from "@/i18n/server";
 import { MemoryComparison } from "@/components/memory-comparison";
@@ -126,7 +128,9 @@ export default async function Home() {
           />
         </div>
       </section>
+      <LauncherFeatures />
       <MemoryComparison />
+      <ScanSection />
       <section className="shell section selection-overview">
         <span className="eyebrow">{tr("DISTRIBUCIÓN OFICIAL")}</span>
         <h2>{tr("TFL Selection: clientes oficiales de Minecraft")}</h2>

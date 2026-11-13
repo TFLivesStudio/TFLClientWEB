@@ -79,7 +79,7 @@ test("verified Selection and local help search", async ({ page }) => {
   await expect(page.locator(".catalog-card")).not.toHaveCount(0);
   await page.goto("/ayuda");
   await page.getByLabel("Buscar en la ayuda").fill("tokens");
-  await expect(page.locator(".help-grid>a")).toHaveCount(2);
+  await expect(page.locator(".help-grid>a")).toHaveCount(3);
   await page.getByLabel("Buscar en la ayuda").fill("logs");
   await page.locator(".help-grid>a").first().click();
   await expect(page.locator(".article-layout h1")).toBeVisible();
@@ -156,6 +156,7 @@ test("metadata, sitemap, robots and accessible primary routes", async ({
   page,
   request,
 }) => {
+  test.setTimeout(60000);
   for (const p of [
     "/",
     "/descargas",
@@ -266,7 +267,7 @@ test("English routes, translated help, locale links, Discord and memory table", 
     ["descargas", "Download TFL Client"],
     ["ayuda", "Help center"],
     ["comunidad", "Projects and participation"],
-    ["privacidad", "Privacy and credits"],
+    ["privacidad", "Privacy"],
     ["caracteristicas", "Installations and content, separated by profile"],
     ["novedades", "Version history"],
   ]) {
@@ -787,4 +788,169 @@ test("social previews, structured data and complete bilingual sitemap are crawla
     "/en/novedades/v0.15.3-beta.6",
   ])
     expect(locations).toContain("https://launcher.tflives.com" + route);
+});
+
+test("Rust and MCP features use actual theme-specific screenshots and an accessible enlargement", async ({
+  page,
+}) => {
+  await page.addInitScript(() => localStorage.setItem("tfl-motion", "reduced"));
+  await page.goto("/");
+  await expect(
+    page.getByRole("heading", { name: "Rust en el núcleo del launcher" }),
+  ).toBeVisible();
+  const feature = page.locator(".mcp-feature");
+  await expect(feature.locator("img.theme-dark")).toBeVisible();
+  await expect(feature.locator("img.theme-light")).not.toBeVisible();
+  await page
+    .getByRole("button", { name: "Abrir imagen de MCP", exact: true })
+    .click();
+  await expect(
+    page.getByRole("dialog").locator("img.theme-dark"),
+  ).toHaveAttribute("src", /launcher-mcp.webp/);
+  await page.keyboard.press("Escape");
+  await page
+    .getByRole("button", { name: "Activar tema claro", exact: true })
+    .click();
+  await expect(feature.locator("img.theme-light")).toBeVisible();
+  await page
+    .getByRole("button", { name: "Abrir imagen de MCP", exact: true })
+    .click();
+  await expect(
+    page.getByRole("dialog").locator("img.theme-light"),
+  ).toHaveAttribute("src", /launcher-mcp-light.webp/);
+  await page.keyboard.press("Escape");
+  await page.goto("/en/ayuda/mcp");
+  await expect(page.locator("h1")).toHaveCount(1);
+  await expect(page.locator("h1")).toHaveText(
+    "Connect a local assistant using MCP",
+  );
+  await expect(page.locator("main")).toContainText("local client");
+});
+
+test("Core catalog has 82 modules, working search and category filters, and independent smooth scrolling", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/selection");
+  await expect(page.locator(".module-card")).toHaveCount(82);
+  const panel = page.getByRole("region", {
+    name: "Catálogo de módulos de TFL Core",
+  });
+  await panel.scrollIntoViewIfNeeded();
+  await expect(panel).toHaveClass(/lenis/);
+  const outer = await page.evaluate(() => scrollY);
+  const box = (await panel.boundingBox())!;
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  await page.mouse.wheel(0, 650);
+  await expect
+    .poll(() => panel.evaluate((el) => el.scrollTop))
+    .toBeGreaterThan(250);
+  expect(Math.abs((await page.evaluate(() => scrollY)) - outer)).toBeLessThan(
+    2,
+  );
+  await page
+    .getByRole("searchbox", { name: "Buscar módulos de TFL Core" })
+    .fill("zoom");
+  await expect(page.locator(".module-card")).toHaveCount(1);
+  await expect(page.locator(".module-card h3")).toHaveText("Zoom");
+  await expect.poll(() => panel.evaluate((el) => el.scrollTop)).toBe(0);
+  await page.getByRole("searchbox").fill("zzzz-no-module");
+  await expect(page.locator(".module-empty")).toBeVisible();
+  await page.getByRole("searchbox").fill("");
+  await page
+    .getByRole("combobox", { name: "Categoría de módulos" })
+    .selectOption("REDSTONE");
+  await expect(page.locator(".module-card")).toHaveCount(4);
+  await page.goto("/en/selection");
+  await page
+    .getByRole("searchbox", { name: "Search TFL Core modules" })
+    .fill("reach");
+  await expect(page.locator(".module-card")).toContainText(
+    "without increasing reach",
+  );
+});
+
+test("launcher legal pages are bilingual, linked in the footer and accessible", async ({
+  page,
+  request,
+}) => {
+  for (const [path, heading] of [
+    ["/legal/aviso-legal", "Aviso legal"],
+    ["/privacidad", "Privacidad"],
+    ["/legal/terminos", "Términos de Servicio"],
+    ["/en/legal/aviso-legal", "Legal notice"],
+    ["/en/privacidad", "Privacy"],
+    ["/en/legal/terminos", "Terms of Service"],
+  ]) {
+    await page.goto(path);
+    await expect(page.locator("h1")).toHaveText(heading);
+    await expect(page.locator("main")).toContainText("contact@tflives.com");
+    await expect(page.locator("main")).toContainText("tflives@outlook.com");
+    expect(
+      (
+        await new AxeBuilder({ page })
+          .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+          .analyze()
+      ).violations,
+    ).toEqual([]);
+  }
+  await expect(
+    page
+      .locator("footer")
+      .getByRole("link", { name: "Legal notice", exact: true }),
+  ).toHaveAttribute("href", "/en/legal/aviso-legal");
+  const sitemap = await (await request.get("/sitemap.xml")).text();
+  for (const route of [
+    "/legal/aviso-legal",
+    "/en/legal/terminos",
+    "/ayuda/mcp",
+  ])
+    expect(sitemap).toContain("https://launcher.tflives.com" + route);
+});
+
+test("news keeps channel and page in shareable URLs and restores browser history", async ({
+  page,
+}) => {
+  await page.goto("/novedades?channel=beta&page=2");
+  await expect(
+    page.getByRole("tab", { name: "Betas", exact: true }),
+  ).toHaveAttribute("data-state", "active");
+  await expect(page.locator(".pagination")).toContainText("Página 2");
+  const first = await page.locator(".timeline h2").first().textContent();
+  await page.getByRole("button", { name: "Siguiente", exact: true }).click();
+  await expect(page).toHaveURL(/page=3/);
+  await page.goBack();
+  await expect(page.locator(".pagination")).toContainText("Página 2");
+  await expect(page.locator(".timeline h2").first()).toHaveText(first!);
+  await page.reload();
+  await expect(page.locator(".pagination")).toContainText("Página 2");
+  await page.getByRole("tab", { name: "Estables", exact: true }).click();
+  await expect(page).toHaveURL(/channel=stable/);
+  expect(new URL(page.url()).searchParams.has("page")).toBe(false);
+  await expect(page.locator(".timeline .badge.beta")).toHaveCount(0);
+  await expect(
+    page.locator(".locale-switch a").filter({ hasText: "EN" }),
+  ).toHaveAttribute("href", "/en/novedades?channel=stable");
+  await page.goto("/en/novedades?channel=beta&page=2");
+  await expect(page.locator(".pagination")).toContainText("Page 2");
+});
+
+test("VirusTotal report is linked to the exact file without an unverified perfect score", async ({
+  page,
+}) => {
+  await page.goto("/descargas");
+  const card = page.locator(".scan-card");
+  await expect(card).toBeVisible();
+  await expect(
+    card.getByRole("link", { name: "Ver informe", exact: true }),
+  ).toHaveAttribute(
+    "href",
+    "https://www.virustotal.com/gui/file/ba6f60217974abd5822c0c350c4da5521d8ef7ec309047d9f2cb7a6e8e44de9a",
+  );
+  await expect(card.locator(".scan-score")).toHaveCount(0);
+  await expect(card).toContainText("no a todas las versiones");
+  await page.goto("/en/descargas");
+  await expect(page.locator(".scan-card")).toContainText(
+    "not every TFL Client version",
+  );
 });

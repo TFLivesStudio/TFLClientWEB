@@ -1,0 +1,1068 @@
+[
+  {
+    "id": "farTerrain",
+    "name": {
+      "es": "Terreno lejano",
+      "en": "Far Terrain"
+    },
+    "description": {
+      "es": "Muestra terreno distante a partir de las zonas recibidas o exploradas.",
+      "en": "Displays distant terrain from received or explored areas."
+    },
+    "category": "WORLD",
+    "availability": "preview"
+  },
+  {
+    "id": "worldInsight",
+    "name": {
+      "es": "World Insight",
+      "en": "World Insight"
+    },
+    "description": {
+      "es": "Consulta información del bloque o la entidad que estás mirando.",
+      "en": "See information about the block or entity under your crosshair."
+    },
+    "category": "HUD",
+    "availability": "preview"
+  },
+  {
+    "id": "miniPlayer",
+    "name": {
+      "es": "Mini Player",
+      "en": "Paper Doll · Mini Player"
+    },
+    "description": {
+      "es": "Una vista de tu personaje, equipamiento y animaciones en el HUD.",
+      "en": "A view of your character, equipment and animations in the HUD."
+    },
+    "category": "HUD",
+    "availability": "preview"
+  },
+  {
+    "id": "fps",
+    "name": {
+      "es": "FPS",
+      "en": "FPS"
+    },
+    "description": {
+      "es": "Consulta los fotogramas por segundo mientras juegas.",
+      "en": "See frames per second while playing."
+    },
+    "category": "HUD",
+    "availability": "preview"
+  },
+  {
+    "id": "cps",
+    "name": {
+      "es": "CPS",
+      "en": "CPS"
+    },
+    "description": {
+      "es": "Contadores separados de clics izquierdo y derecho.",
+      "en": "Separate counters for left and right clicks."
+    },
+    "category": "PVP",
+    "availability": "preview"
+  },
+  {
+    "id": "keystrokes",
+    "name": {
+      "es": "Teclas pulsadas",
+      "en": "Keystrokes"
+    },
+    "description": {
+      "es": "Visualiza WASD, los botones del ratón y la barra espaciadora.",
+      "en": "Display WASD, mouse buttons and the space bar."
+    },
+    "category": "PVP",
+    "availability": "preview"
+  },
+  {
+    "id": "ping",
+    "name": {
+      "es": "Ping",
+      "en": "Ping"
+    },
+    "description": {
+      "es": "Latencia al servidor, variación e historial de conexión.",
+      "en": "Server latency, jitter and connection history."
+    },
+    "category": "HUD",
+    "availability": "preview"
+  },
+  {
+    "id": "armor",
+    "name": {
+      "es": "Armadura",
+      "en": "Armor"
+    },
+    "description": {
+      "es": "Muestra las piezas que llevas y su durabilidad.",
+      "en": "Show equipped armor pieces and their durability."
+    },
+    "category": "PVP",
+    "availability": "preview"
+  },
+  {
+    "id": "effects",
+    "name": {
+      "es": "Efectos de pociones",
+      "en": "Potion Effects"
+    },
+    "description": {
+      "es": "Revisa los efectos activos y el tiempo que les queda.",
+      "en": "See active effects and their remaining duration."
+    },
+    "category": "HUD",
+    "availability": "preview"
+  },
+  {
+    "id": "coords",
+    "name": {
+      "es": "Coordenadas",
+      "en": "Coordinates"
+    },
+    "description": {
+      "es": "Posición, orientación y bioma a mano en pantalla.",
+      "en": "Keep position, direction and biome visible."
+    },
+    "category": "WORLD",
+    "availability": "preview"
+  },
+  {
+    "id": "clock",
+    "name": {
+      "es": "Reloj",
+      "en": "Clock"
+    },
+    "description": {
+      "es": "La hora local de tu equipo dentro del juego.",
+      "en": "Your computer’s local time inside the game."
+    },
+    "category": "HUD",
+    "availability": "preview"
+  },
+  {
+    "id": "memory",
+    "name": {
+      "es": "Memoria",
+      "en": "Memory"
+    },
+    "description": {
+      "es": "Consulta la RAM utilizada por Minecraft.",
+      "en": "See the memory used by Minecraft."
+    },
+    "category": "HUD",
+    "availability": "preview"
+  },
+  {
+    "id": "server",
+    "name": {
+      "es": "Dirección del servidor",
+      "en": "Server Address"
+    },
+    "description": {
+      "es": "Muestra la dirección de la partida multijugador actual.",
+      "en": "Display the address of the current multiplayer server."
+    },
+    "category": "WORLD",
+    "availability": "preview"
+  },
+  {
+    "id": "packs",
+    "name": {
+      "es": "Paquetes de recursos",
+      "en": "Active Resource Packs"
+    },
+    "description": {
+      "es": "Consulta los paquetes de recursos que tienes activados.",
+      "en": "See which resource packs are enabled."
+    },
+    "category": "HUD",
+    "availability": "preview"
+  },
+  {
+    "id": "toggleSprint",
+    "name": {
+      "es": "Sprint alternable",
+      "en": "Toggle Sprint"
+    },
+    "description": {
+      "es": "Activa o detén el sprint con una pulsación de su tecla.",
+      "en": "Toggle sprint with a single press of its key."
+    },
+    "category": "PVP",
+    "availability": "preview"
+  },
+  {
+    "id": "toggleSneak",
+    "name": {
+      "es": "Agacharse alternable",
+      "en": "Toggle Sneak"
+    },
+    "description": {
+      "es": "Mantén o desactiva el modo agachado con una pulsación.",
+      "en": "Toggle sneaking with a single key press."
+    },
+    "category": "PVP",
+    "availability": "preview"
+  },
+  {
+    "id": "reach",
+    "name": {
+      "es": "Distancia de golpe",
+      "en": "Reach"
+    },
+    "description": {
+      "es": "Mide la distancia del último golpe; no aumenta el alcance.",
+      "en": "Measure the last hit’s distance without increasing reach."
+    },
+    "category": "PVP",
+    "availability": "preview"
+  },
+  {
+    "id": "combo",
+    "name": {
+      "es": "Combo",
+      "en": "Combo"
+    },
+    "description": {
+      "es": "Cuenta golpes consecutivos y reinicia al romperse la secuencia.",
+      "en": "Count consecutive hits and reset when the sequence ends."
+    },
+    "category": "PVP",
+    "availability": "preview"
+  },
+  {
+    "id": "speed",
+    "name": {
+      "es": "Velocidad",
+      "en": "Speed"
+    },
+    "description": {
+      "es": "Visualiza tu desplazamiento en bloques por segundo.",
+      "en": "See your movement speed in blocks per second."
+    },
+    "category": "PVP",
+    "availability": "preview"
+  },
+  {
+    "id": "minimap",
+    "name": {
+      "es": "Minimapa",
+      "en": "Minimap"
+    },
+    "description": {
+      "es": "Un mapa de tu entorno con relieve y puntos de ruta.",
+      "en": "A map of your surroundings with terrain shading and waypoints."
+    },
+    "category": "WORLD",
+    "availability": "preview"
+  },
+  {
+    "id": "worldMap",
+    "name": {
+      "es": "Mapa del mundo",
+      "en": "World map"
+    },
+    "description": {
+      "es": "Explora el mapa de las zonas visitadas, por mundo y dimensión.",
+      "en": "Browse explored areas on a map for each world and dimension."
+    },
+    "category": "WORLD",
+    "availability": "preview"
+  },
+  {
+    "id": "crosshair",
+    "name": {
+      "es": "Mira personalizada",
+      "en": "Crosshair"
+    },
+    "description": {
+      "es": "Ajusta la forma, el color, el tamaño y la separación de la mira.",
+      "en": "Customize crosshair shape, color, size and gap."
+    },
+    "category": "PVP",
+    "availability": "preview"
+  },
+  {
+    "id": "hitColor",
+    "name": {
+      "es": "Color de impacto",
+      "en": "Hit Color"
+    },
+    "description": {
+      "es": "Personaliza el destello visual de las entidades al recibir un golpe.",
+      "en": "Customize the visual flash on entities when hit."
+    },
+    "category": "PVP",
+    "availability": "preview"
+  },
+  {
+    "id": "freelook",
+    "name": {
+      "es": "Cámara libre",
+      "en": "Freelook"
+    },
+    "description": {
+      "es": "Gira la cámara alrededor del personaje sin cambiar su orientación.",
+      "en": "Orbit the camera around your character without changing its direction."
+    },
+    "category": "WORLD",
+    "availability": "preview"
+  },
+  {
+    "id": "zoom",
+    "name": {
+      "es": "Zoom",
+      "en": "Zoom"
+    },
+    "description": {
+      "es": "Acerca la vista con una tecla y ajusta el aumento con la rueda.",
+      "en": "Zoom with a key and adjust magnification with the mouse wheel."
+    },
+    "category": "WORLD",
+    "availability": "preview"
+  },
+  {
+    "id": "fullbright",
+    "name": {
+      "es": "Brillo y gamma",
+      "en": "Gamma"
+    },
+    "description": {
+      "es": "Ajusta el brillo de la imagen según tus preferencias.",
+      "en": "Adjust image brightness to your preference."
+    },
+    "category": "WORLD",
+    "availability": "preview"
+  },
+  {
+    "id": "autorefill",
+    "name": {
+      "es": "Reposición de la barra",
+      "en": "Auto-Refill"
+    },
+    "description": {
+      "es": "Repone el hueco seleccionado desde tu inventario al agotarse.",
+      "en": "Refill the selected hotbar slot from your inventory when empty."
+    },
+    "category": "WORLD",
+    "availability": "preview"
+  },
+  {
+    "id": "titleScreen",
+    "name": {
+      "es": "Pantalla de inicio",
+      "en": "Title Screen"
+    },
+    "description": {
+      "es": "Personaliza la pantalla principal y sus preferencias de fondo.",
+      "en": "Customize the title screen and its background preferences."
+    },
+    "category": "MISC",
+    "availability": "preview"
+  },
+  {
+    "id": "menuStyle",
+    "name": {
+      "es": "Estilo de menús",
+      "en": "Menu Style"
+    },
+    "description": {
+      "es": "Ajusta el aspecto de los menús, listas y pantallas del juego.",
+      "en": "Adjust the appearance of game menus, lists and screens."
+    },
+    "category": "MISC",
+    "availability": "preview"
+  },
+  {
+    "id": "oldAnimations",
+    "name": {
+      "es": "Animaciones clásicas",
+      "en": "1.7 Animations"
+    },
+    "description": {
+      "es": "Opciones de animación de la mano inspiradas en versiones antiguas.",
+      "en": "Hand animation options inspired by older versions."
+    },
+    "category": "PVP",
+    "availability": "preview"
+  },
+  {
+    "id": "lowFire",
+    "name": {
+      "es": "Fuego reducido",
+      "en": "Low Fire"
+    },
+    "description": {
+      "es": "Baja la posición visual de las llamas que cubren la pantalla.",
+      "en": "Lower the visual position of flames covering the screen."
+    },
+    "category": "PVP",
+    "availability": "preview"
+  },
+  {
+    "id": "shieldPosition",
+    "name": {
+      "es": "Posición del escudo",
+      "en": "Shield Position"
+    },
+    "description": {
+      "es": "Ajusta cómo se coloca el escudo en primera persona.",
+      "en": "Adjust the shield’s first-person placement."
+    },
+    "category": "PVP",
+    "availability": "preview"
+  },
+  {
+    "id": "blockOutline",
+    "name": {
+      "es": "Contorno de bloques",
+      "en": "Block Outline"
+    },
+    "description": {
+      "es": "Elige el color y grosor del contorno del bloque apuntado.",
+      "en": "Choose the outline color and width for the targeted block."
+    },
+    "category": "WORLD",
+    "availability": "preview"
+  },
+  {
+    "id": "hitboxes",
+    "name": {
+      "es": "Cajas de colisión",
+      "en": "Hitboxes"
+    },
+    "description": {
+      "es": "Muestra las cajas de las entidades sin cambiar su tamaño real.",
+      "en": "Display entity hitboxes without changing their actual size."
+    },
+    "category": "PVP",
+    "availability": "preview"
+  },
+  {
+    "id": "noHurtCam",
+    "name": {
+      "es": "Cámara al recibir daño",
+      "en": "No Hurt Cam"
+    },
+    "description": {
+      "es": "Controla la inclinación de la cámara cuando recibes daño.",
+      "en": "Control the camera tilt when taking damage."
+    },
+    "category": "PVP",
+    "availability": "preview"
+  },
+  {
+    "id": "chat",
+    "name": {
+      "es": "Mejoras del chat",
+      "en": "Chat Improvements"
+    },
+    "description": {
+      "es": "Marcas de tiempo, mensajes repetidos agrupados y más historial.",
+      "en": "Timestamps, grouped duplicate messages and a longer history."
+    },
+    "category": "CHAT",
+    "availability": "preview"
+  },
+  {
+    "id": "autoGg",
+    "name": {
+      "es": "Auto GG",
+      "en": "Auto GG"
+    },
+    "description": {
+      "es": "Configura un mensaje automático al detectar el final de una partida.",
+      "en": "Configure an automatic message when a match ending is detected."
+    },
+    "category": "CHAT",
+    "availability": "preview"
+  },
+  {
+    "id": "textHotkeys",
+    "name": {
+      "es": "Atajos de texto",
+      "en": "Text Hotkeys"
+    },
+    "description": {
+      "es": "Asigna teclas a mensajes o comandos que hayas preparado.",
+      "en": "Assign keys to messages or commands you have prepared."
+    },
+    "category": "CHAT",
+    "availability": "preview"
+  },
+  {
+    "id": "waypoints",
+    "name": {
+      "es": "Puntos de ruta",
+      "en": "Waypoints"
+    },
+    "description": {
+      "es": "Guarda marcadores con nombre y color por mundo o servidor.",
+      "en": "Save named, colored markers for each world or server."
+    },
+    "category": "WORLD",
+    "availability": "preview"
+  },
+  {
+    "id": "trsOnline",
+    "name": {
+      "es": "Servicios online",
+      "en": "Online services"
+    },
+    "description": {
+      "es": "Entrada del catálogo desactivada en la candidata revisada.",
+      "en": "Catalog entry disabled in the reviewed candidate."
+    },
+    "category": "MISC",
+    "availability": "unavailable"
+  },
+  {
+    "id": "capePhysics",
+    "name": {
+      "es": "Movimiento de capas",
+      "en": "Cape Physics"
+    },
+    "description": {
+      "es": "Simulación de movimiento de la capa al caminar, girar o saltar.",
+      "en": "Cape movement simulation when walking, turning or jumping."
+    },
+    "category": "MISC",
+    "availability": "preview"
+  },
+  {
+    "id": "colors",
+    "name": {
+      "es": "Color de la imagen",
+      "en": "Colors"
+    },
+    "description": {
+      "es": "Ajusta saturación, contraste, brillo y temperatura del juego.",
+      "en": "Adjust game saturation, contrast, brightness and color temperature."
+    },
+    "category": "WORLD",
+    "availability": "preview"
+  },
+  {
+    "id": "emotes",
+    "name": {
+      "es": "Emotes locales",
+      "en": "Emotes"
+    },
+    "description": {
+      "es": "Elige una animación local para tu personaje; no se transmite a otros clientes.",
+      "en": "Choose a local character animation; it is not sent to other clients."
+    },
+    "category": "MISC",
+    "availability": "preview"
+  },
+  {
+    "id": "redstoneSignal",
+    "name": {
+      "es": "Señal de redstone",
+      "en": "Signal Strength"
+    },
+    "description": {
+      "es": "Consulta información de señal del componente que estás mirando.",
+      "en": "See signal information for the component you are looking at."
+    },
+    "category": "REDSTONE",
+    "availability": "preview"
+  },
+  {
+    "id": "redstoneOverlay",
+    "name": {
+      "es": "Indicador de señales",
+      "en": "Signal Overlay"
+    },
+    "description": {
+      "es": "Muestra la intensidad de señal sobre el polvo de redstone cercano.",
+      "en": "Display signal strength above nearby redstone dust."
+    },
+    "category": "REDSTONE",
+    "availability": "preview"
+  },
+  {
+    "id": "redstoneClock",
+    "name": {
+      "es": "Medidor de relojes",
+      "en": "Clock Meter"
+    },
+    "description": {
+      "es": "Consulta frecuencia, periodo y pulsos de un componente de redstone.",
+      "en": "See a redstone component’s frequency, period and pulses."
+    },
+    "category": "REDSTONE",
+    "availability": "preview"
+  },
+  {
+    "id": "clips",
+    "name": {
+      "es": "Clips y grabación",
+      "en": "Clips & Recording"
+    },
+    "description": {
+      "es": "La entrada de este módulo requiere una integración no disponible en la candidata revisada.",
+      "en": "This module entry requires an integration unavailable in the reviewed candidate."
+    },
+    "category": "MISC",
+    "availability": "unavailable"
+  },
+  {
+    "id": "fpsBoost",
+    "name": {
+      "es": "Ajustes de rendimiento",
+      "en": "FPS Boost"
+    },
+    "description": {
+      "es": "Agrupa opciones de rendimiento y permite comparar con ellas desactivadas.",
+      "en": "Group performance options and compare with them disabled."
+    },
+    "category": "PERFORMANCE",
+    "availability": "preview"
+  },
+  {
+    "id": "dynamicFps",
+    "name": {
+      "es": "FPS dinámicos",
+      "en": "Dynamic FPS"
+    },
+    "description": {
+      "es": "Limita fotogramas cuando el juego está en segundo plano o inactivo.",
+      "en": "Limit frames while the game is in the background or idle."
+    },
+    "category": "PERFORMANCE",
+    "availability": "preview"
+  },
+  {
+    "id": "borderlessFullscreen",
+    "name": {
+      "es": "Pantalla sin bordes",
+      "en": "Borderless Fullscreen"
+    },
+    "description": {
+      "es": "Utiliza una ventana sin bordes que cubre el monitor.",
+      "en": "Use a borderless window covering the monitor."
+    },
+    "category": "PERFORMANCE",
+    "availability": "preview"
+  },
+  {
+    "id": "entityCulling",
+    "name": {
+      "es": "Visibilidad de entidades",
+      "en": "Entity Culling"
+    },
+    "description": {
+      "es": "Opciones para omitir el dibujo de entidades ocultas.",
+      "en": "Options to skip rendering hidden entities."
+    },
+    "category": "PERFORMANCE",
+    "availability": "preview"
+  },
+  {
+    "id": "particles",
+    "name": {
+      "es": "Partículas",
+      "en": "Particles"
+    },
+    "description": {
+      "es": "Ajusta la cantidad, el límite y los tipos de partículas visibles.",
+      "en": "Adjust the amount, limit and types of visible particles."
+    },
+    "category": "PERFORMANCE",
+    "availability": "preview"
+  },
+  {
+    "id": "worldDetails",
+    "name": {
+      "es": "Detalles del mundo",
+      "en": "World Details"
+    },
+    "description": {
+      "es": "Controla detalles visuales como cielo, estrellas, clima y niebla.",
+      "en": "Control visual details such as sky, stars, weather and fog."
+    },
+    "category": "PERFORMANCE",
+    "availability": "preview"
+  },
+  {
+    "id": "builtinOptimizations",
+    "name": {
+      "es": "Optimizaciones disponibles",
+      "en": "Built-in Optimizations"
+    },
+    "description": {
+      "es": "Consulta opciones disponibles según la versión y las dependencias instaladas.",
+      "en": "See options available for the version and installed dependencies."
+    },
+    "category": "PERFORMANCE",
+    "availability": "conditional"
+  },
+  {
+    "id": "netOptimize",
+    "name": {
+      "es": "Opciones de conexión",
+      "en": "Network Optimization"
+    },
+    "description": {
+      "es": "Ajustes locales para el procesamiento de la conexión del juego.",
+      "en": "Local options for processing the game connection."
+    },
+    "category": "PERFORMANCE",
+    "availability": "preview"
+  },
+  {
+    "id": "lowLatency",
+    "name": {
+      "es": "Entrada y fotogramas",
+      "en": "Low Input Latency"
+    },
+    "description": {
+      "es": "Ajustes para la entrada del ratón y la cola de fotogramas.",
+      "en": "Options for mouse input and frame queuing."
+    },
+    "category": "PERFORMANCE",
+    "availability": "preview"
+  },
+  {
+    "id": "fastConnect",
+    "name": {
+      "es": "Conexión a servidores",
+      "en": "Fast Connect"
+    },
+    "description": {
+      "es": "Opciones de resolución de direcciones y preparación de conexiones.",
+      "en": "Address resolution and connection preparation options."
+    },
+    "category": "PERFORMANCE",
+    "availability": "preview"
+  },
+  {
+    "id": "social",
+    "name": {
+      "es": "Panel social",
+      "en": "Social"
+    },
+    "description": {
+      "es": "Entrada del catálogo vinculada a servicios no habilitados en esta candidata.",
+      "en": "Catalog entry tied to services not enabled in this candidate."
+    },
+    "category": "CHAT",
+    "availability": "unavailable"
+  },
+  {
+    "id": "chatMentions",
+    "name": {
+      "es": "Menciones",
+      "en": "Mentions"
+    },
+    "description": {
+      "es": "Destaca tu nombre o palabras elegidas en el chat, con sonido opcional.",
+      "en": "Highlight your name or chosen words in chat, with optional sound."
+    },
+    "category": "CHAT",
+    "availability": "preview"
+  },
+  {
+    "id": "chatHeads",
+    "name": {
+      "es": "Avatares en el chat",
+      "en": "Chat Heads"
+    },
+    "description": {
+      "es": "Muestra la cabeza del emisor junto a sus mensajes.",
+      "en": "Display the sender’s avatar head beside messages."
+    },
+    "category": "CHAT",
+    "availability": "preview"
+  },
+  {
+    "id": "chatFilter",
+    "name": {
+      "es": "Filtro del chat",
+      "en": "Chat Filter"
+    },
+    "description": {
+      "es": "Oculta en tu pantalla los mensajes que coincidan con tus filtros.",
+      "en": "Hide messages matching your filters on your own screen."
+    },
+    "category": "CHAT",
+    "availability": "preview"
+  },
+  {
+    "id": "autoReconnect",
+    "name": {
+      "es": "Reconexión automática",
+      "en": "Auto Reconnect"
+    },
+    "description": {
+      "es": "Configura una cuenta atrás y límites de intentos al desconectarte.",
+      "en": "Configure a reconnect countdown and attempt limits after disconnecting."
+    },
+    "category": "MISC",
+    "availability": "preview"
+  },
+  {
+    "id": "queueAlerts",
+    "name": {
+      "es": "Colas y avisos",
+      "en": "Queue & Alerts"
+    },
+    "description": {
+      "es": "Avisos de cola y eventos mientras el juego está en segundo plano.",
+      "en": "Queue and event alerts while the game is in the background."
+    },
+    "category": "MISC",
+    "availability": "preview"
+  },
+  {
+    "id": "scoreboard",
+    "name": {
+      "es": "Marcador",
+      "en": "Scoreboard"
+    },
+    "description": {
+      "es": "Mueve y escala el marcador desde el editor del HUD.",
+      "en": "Move and scale the scoreboard in the HUD editor."
+    },
+    "category": "HUD",
+    "availability": "preview"
+  },
+  {
+    "id": "tabPing",
+    "name": {
+      "es": "Ping en la lista",
+      "en": "Tab List Ping"
+    },
+    "description": {
+      "es": "Muestra la latencia de jugadores en milisegundos en la lista.",
+      "en": "Show player latency in milliseconds in the tab list."
+    },
+    "category": "HUD",
+    "availability": "preview"
+  },
+  {
+    "id": "bossBar",
+    "name": {
+      "es": "Barra de jefe",
+      "en": "Boss Bar"
+    },
+    "description": {
+      "es": "Ajusta la posición y el tamaño de las barras de jefe.",
+      "en": "Adjust boss bar position and size."
+    },
+    "category": "HUD",
+    "availability": "preview"
+  },
+  {
+    "id": "titles",
+    "name": {
+      "es": "Títulos en pantalla",
+      "en": "Titles"
+    },
+    "description": {
+      "es": "Ajusta el tamaño de los títulos grandes enviados por servidores.",
+      "en": "Adjust the size of large titles sent by servers."
+    },
+    "category": "HUD",
+    "availability": "preview"
+  },
+  {
+    "id": "warnings",
+    "name": {
+      "es": "Avisos de estado",
+      "en": "Warnings"
+    },
+    "description": {
+      "es": "Avisos de durabilidad, hambre, salud o inventario lleno.",
+      "en": "Alerts for durability, hunger, health or a full inventory."
+    },
+    "category": "HUD",
+    "availability": "preview"
+  },
+  {
+    "id": "itemCounter",
+    "name": {
+      "es": "Contador de objetos",
+      "en": "Item Counter"
+    },
+    "description": {
+      "es": "Consulta cantidades de objetos elegidos en tu inventario.",
+      "en": "See counts of selected items in your inventory."
+    },
+    "category": "PVP",
+    "availability": "preview"
+  },
+  {
+    "id": "hitFeedback",
+    "name": {
+      "es": "Respuesta de impacto",
+      "en": "Hit Feedback"
+    },
+    "description": {
+      "es": "Personaliza marcadores y efectos visuales cuando aciertas un golpe.",
+      "en": "Customize markers and visual effects when a hit lands."
+    },
+    "category": "PVP",
+    "availability": "preview"
+  },
+  {
+    "id": "streamerMode",
+    "name": {
+      "es": "Modo streamer",
+      "en": "Streamer Mode"
+    },
+    "description": {
+      "es": "Opciones para ocultar o sustituir nombres en varias vistas del juego.",
+      "en": "Options to hide or replace names in game views."
+    },
+    "category": "MISC",
+    "availability": "preview"
+  },
+  {
+    "id": "tooltips",
+    "name": {
+      "es": "Información de objetos",
+      "en": "Better Tooltips"
+    },
+    "description": {
+      "es": "Más detalles al pasar el cursor sobre objetos del inventario.",
+      "en": "More detail when hovering over inventory items."
+    },
+    "category": "MISC",
+    "availability": "preview"
+  },
+  {
+    "id": "serverProfiles",
+    "name": {
+      "es": "Perfiles por servidor",
+      "en": "Server Profiles"
+    },
+    "description": {
+      "es": "Cambia entre configuraciones guardadas al entrar o salir de servidores.",
+      "en": "Switch saved setups when joining or leaving servers."
+    },
+    "category": "MISC",
+    "availability": "preview"
+  },
+  {
+    "id": "panorama",
+    "name": {
+      "es": "Capturas panorámicas",
+      "en": "Panorama Screenshots"
+    },
+    "description": {
+      "es": "Crea imágenes panorámicas del entorno con sus controles de captura.",
+      "en": "Create panoramic images of your surroundings with capture controls."
+    },
+    "category": "WORLD",
+    "availability": "preview"
+  },
+  {
+    "id": "screenshots",
+    "name": {
+      "es": "Herramientas de captura",
+      "en": "Screenshot Tools"
+    },
+    "description": {
+      "es": "Previsualiza y organiza capturas del juego.",
+      "en": "Preview and organize game screenshots."
+    },
+    "category": "MISC",
+    "availability": "preview"
+  },
+  {
+    "id": "keySearch",
+    "name": {
+      "es": "Buscar teclas",
+      "en": "Key Binding Search"
+    },
+    "description": {
+      "es": "Encuentra acciones y asignaciones en la configuración de controles.",
+      "en": "Find actions and bindings in the controls settings."
+    },
+    "category": "MISC",
+    "availability": "preview"
+  },
+  {
+    "id": "hungerOverlay",
+    "name": {
+      "es": "Información de hambre",
+      "en": "Hunger Overlay"
+    },
+    "description": {
+      "es": "Indicadores adicionales de saturación y de los alimentos que llevas.",
+      "en": "Additional saturation and held food indicators."
+    },
+    "category": "HUD",
+    "availability": "preview"
+  },
+  {
+    "id": "circuitLibrary",
+    "name": {
+      "es": "Biblioteca de circuitos",
+      "en": "Circuit Library"
+    },
+    "description": {
+      "es": "Consulta circuitos, materiales y vistas previas de redstone.",
+      "en": "Browse redstone circuits, material lists and previews."
+    },
+    "category": "REDSTONE",
+    "availability": "preview"
+  },
+  {
+    "id": "notes",
+    "name": {
+      "es": "Notas del mundo",
+      "en": "World Notes"
+    },
+    "description": {
+      "es": "Guarda textos y listas de tareas para cada mundo o servidor.",
+      "en": "Save notes and checklists for each world or server."
+    },
+    "category": "WORLD",
+    "availability": "preview"
+  },
+  {
+    "id": "pinnedNote",
+    "name": {
+      "es": "Nota fijada",
+      "en": "Pinned Note"
+    },
+    "description": {
+      "es": "Mantén una nota elegida visible en el HUD.",
+      "en": "Keep a selected note visible in the HUD."
+    },
+    "category": "HUD",
+    "availability": "preview"
+  },
+  {
+    "id": "cinematic",
+    "name": {
+      "es": "Rutas de cámara",
+      "en": "Camera Paths"
+    },
+    "description": {
+      "es": "Prepara recorridos de cámara con fotogramas clave.",
+      "en": "Prepare camera paths using keyframes."
+    },
+    "category": "MISC",
+    "availability": "preview"
+  },
+  {
+    "id": "halloween",
+    "name": {
+      "es": "Halloween",
+      "en": "Halloween"
+    },
+    "description": {
+      "es": "Opciones de temporada sujetas a su disponibilidad en el cliente.",
+      "en": "Seasonal options subject to their availability in the client."
+    },
+    "category": "MISC",
+    "availability": "conditional"
+  }
+]

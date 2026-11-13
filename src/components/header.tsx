@@ -22,7 +22,16 @@ const links = [
   ["/novedades", "Novedades"],
   ["/ayuda", "Ayuda"],
 ];
-const subscribe = () => () => {};
+const subscribe = (notify: () => void) => {
+  window.addEventListener("popstate", notify);
+  window.addEventListener("hashchange", notify);
+  window.addEventListener("tfl-url-change", notify);
+  return () => {
+    window.removeEventListener("popstate", notify);
+    window.removeEventListener("hashchange", notify);
+    window.removeEventListener("tfl-url-change", notify);
+  };
+};
 const AnimatedNavLink = motion.create(Link);
 export function Brand() {
   const tr = useT();

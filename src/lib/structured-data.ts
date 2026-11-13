@@ -13,7 +13,9 @@ const labels: Record<string, string> = {
   "/novedades": "Historial de versiones",
   "/ayuda": "Centro de ayuda",
   "/comunidad": "Comunidad",
-  "/privacidad": "Privacidad y créditos",
+  "/privacidad": "Privacidad",
+  "/legal/aviso-legal": "Aviso legal",
+  "/legal/terminos": "Términos de Servicio",
 };
 export function siteStructuredData(locale: Locale, path: string) {
   const tr = (s: string) => translate(s, locale);

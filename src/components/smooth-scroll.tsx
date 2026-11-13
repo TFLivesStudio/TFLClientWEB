@@ -58,6 +58,7 @@ export function SmoothScroll() {
       lenis.scrollTo(target, {
         onComplete: () => {
           history.pushState(history.state, "", url);
+          window.dispatchEvent(new Event("tfl-url-change"));
           if (!target.hasAttribute("tabindex"))
             target.setAttribute("tabindex", "-1");
           target.focus({ preventScroll: true });

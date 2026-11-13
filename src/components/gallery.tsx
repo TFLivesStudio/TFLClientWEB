@@ -11,7 +11,7 @@ const subscribeVisibility = (fn: () => void) => {
   document.addEventListener("visibilitychange", fn);
   return () => document.removeEventListener("visibilitychange", fn);
 };
-const shots = [
+const launcherShots = [
   {
     src: "/images/launcher-console.webp",
     label: "Consola y monitoreo · datos de demostración",
@@ -37,7 +37,18 @@ const shots = [
     alt: "Panel de apariencia de la interfaz oficial de TFL Client",
   },
 ];
-export function Gallery() {
+const mcpShots = [
+  {
+    src: "/images/launcher-mcp.webp",
+    label: "Integraciones MCP · demostración sin asistentes conectados",
+    tag: "MCP",
+    alt: "Panel oficial de integraciones MCP del launcher",
+  },
+];
+export function Gallery({
+  kind = "launcher",
+}: { kind?: "launcher" | "mcp" } = {}) {
+  const shots = kind === "mcp" ? mcpShots : launcherShots;
   const tr = useT();
   const [index, setIndex] = useState(0);
   const id = useId();
@@ -49,10 +60,10 @@ export function Gallery() {
     () => true,
   );
   useEffect(() => {
-    if (expanded || reduce || hidden) return;
+    if (expanded || reduce || hidden || shots.length < 2) return;
     const id = setInterval(() => setIndex((i) => (i + 1) % shots.length), 6000);
     return () => clearInterval(id);
-  }, [expanded, reduce, hidden, index]);
+  }, [expanded, reduce, hidden, index, shots.length]);
   const shot = shots[index];
   return (
     <Dialog.Root open={expanded} onOpenChange={setExpanded}>
@@ -60,7 +71,9 @@ export function Gallery() {
         <div
           className="gallery"
           role="region"
-          aria-label={tr("Capturas del launcher")}
+          aria-label={tr(
+            kind === "mcp" ? "Captura de MCP" : "Capturas del launcher",
+          )}
         >
           <div className="product-frame">
             <div className="frame-bar">
@@ -70,11 +83,19 @@ export function Gallery() {
                 <i />
               </div>
               <span>TFL CLIENT / {tr(shot.tag)}</span>
-              <Hint label={tr("Ampliar captura")}>
+              <Hint
+                label={tr(
+                  kind === "mcp" ? "Abrir imagen de MCP" : "Ampliar captura",
+                )}
+              >
                 <Dialog.Trigger asChild>
                   <button
                     className="icon-button"
-                    aria-label={tr("Ampliar captura")}
+                    aria-label={tr(
+                      kind === "mcp"
+                        ? "Abrir imagen de MCP"
+                        : "Ampliar captura",
+                    )}
                   >
                     <Expand size={15} />
                   </button>
@@ -96,7 +117,7 @@ export function Gallery() {
                   height={900}
                   priority={i === 0}
                   loading={i === 0 ? undefined : "eager"}
-                  markActive={i === index}
+                  markActive={kind === "launcher" && i === index}
                   className={`gallery-shot${i === index ? " is-active" : ""}`}
                 />
               ))}
@@ -108,36 +129,38 @@ export function Gallery() {
               {tr(shot.label)}
               <small>{tr("Frontend oficial · vistas de demostración")}</small>
             </div>
-            <div className="gallery-controls">
-              {shots.map((s, i) => (
+            {shots.length > 1 && (
+              <div className="gallery-controls">
+                {shots.map((s, i) => (
+                  <button
+                    key={s.src}
+                    aria-label={`${tr("Ver captura")} ${i + 1}: ${tr(s.tag)}`}
+                    aria-pressed={index === i}
+                    onClick={() => setIndex(i)}
+                    className={i === index ? "active" : ""}
+                  >
+                    0{i + 1}
+                  </button>
+                ))}
+                <span className="control-line" />
                 <button
-                  key={s.src}
-                  aria-label={`${tr("Ver captura")} ${i + 1}: ${tr(s.tag)}`}
-                  aria-pressed={index === i}
-                  onClick={() => setIndex(i)}
-                  className={i === index ? "active" : ""}
+                  className="icon-button"
+                  aria-label={tr("Captura anterior")}
+                  onClick={() =>
+                    setIndex((index + shots.length - 1) % shots.length)
+                  }
                 >
-                  0{i + 1}
+                  <ArrowLeft size={17} />
                 </button>
-              ))}
-              <span className="control-line" />
-              <button
-                className="icon-button"
-                aria-label={tr("Captura anterior")}
-                onClick={() =>
-                  setIndex((index + shots.length - 1) % shots.length)
-                }
-              >
-                <ArrowLeft size={17} />
-              </button>
-              <button
-                className="icon-button"
-                aria-label={tr("Siguiente captura")}
-                onClick={() => setIndex((index + 1) % shots.length)}
-              >
-                <ArrowRight size={17} />
-              </button>
-            </div>
+                <button
+                  className="icon-button"
+                  aria-label={tr("Siguiente captura")}
+                  onClick={() => setIndex((index + 1) % shots.length)}
+                >
+                  <ArrowRight size={17} />
+                </button>
+              </div>
+            )}
           </div>
           <AnimatePresence>
             {expanded && (
@@ -190,33 +213,39 @@ export function Gallery() {
                       </motion.div>
                       <div className="dialog-caption">
                         <Dialog.Title>{tr(shot.label)}</Dialog.Title>
-                        <div className="gallery-controls">
-                          <button
-                            className="icon-button"
-                            aria-label={tr("Captura anterior")}
-                            onClick={() =>
-                              setIndex(
-                                (index + shots.length - 1) % shots.length,
-                              )
-                            }
-                          >
-                            <ArrowLeft size={18} />
-                          </button>
-                          <span>
-                            {index + 1} / {shots.length}
-                          </span>
-                          <button
-                            className="icon-button"
-                            aria-label={tr("Siguiente captura")}
-                            onClick={() => setIndex((index + 1) % shots.length)}
-                          >
-                            <ArrowRight size={18} />
-                          </button>
-                        </div>
+                        {shots.length > 1 && (
+                          <div className="gallery-controls">
+                            <button
+                              className="icon-button"
+                              aria-label={tr("Captura anterior")}
+                              onClick={() =>
+                                setIndex(
+                                  (index + shots.length - 1) % shots.length,
+                                )
+                              }
+                            >
+                              <ArrowLeft size={18} />
+                            </button>
+                            <span>
+                              {index + 1} / {shots.length}
+                            </span>
+                            <button
+                              className="icon-button"
+                              aria-label={tr("Siguiente captura")}
+                              onClick={() =>
+                                setIndex((index + 1) % shots.length)
+                              }
+                            >
+                              <ArrowRight size={18} />
+                            </button>
+                          </div>
+                        )}
                       </div>
                       <Dialog.Description className="sr-only">
                         {tr(
-                          "Usa las flechas para cambiar de captura y Escape para cerrar.",
+                          shots.length > 1
+                            ? "Usa las flechas para cambiar de captura y Escape para cerrar."
+                            : "Pulsa Escape para cerrar.",
                         )}
                       </Dialog.Description>
                     </motion.div>

@@ -1,3 +1,4 @@
+import { ModuleExplorer } from "@/components/module-explorer";
 import { getTranslator } from "@/i18n/server";
 import Link from "@/components/locale-link";
 import { PageTitle, DownloadCTA } from "@/components/ui";
@@ -107,6 +108,7 @@ export default async function Selection() {
           </div>
         )}
       </section>
+      <ModuleExplorer />
       <section className="shell section">
         <h2>{tr("Cómo instalar un cliente")}</h2>
         <ol className="instruction-list">

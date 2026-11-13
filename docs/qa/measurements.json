@@ -5,7 +5,7 @@
     "path": "/",
     "status": 200,
     "overflow": false,
-    "navigationMs": 2043,
+    "navigationMs": 1209,
     "errors": []
   },
   {
@@ -14,7 +14,7 @@
     "path": "/caracteristicas",
     "status": 200,
     "overflow": false,
-    "navigationMs": 229,
+    "navigationMs": 200,
     "errors": []
   },
   {
@@ -23,7 +23,7 @@
     "path": "/selection",
     "status": 200,
     "overflow": false,
-    "navigationMs": 96,
+    "navigationMs": 185,
     "errors": []
   },
   {
@@ -32,7 +32,7 @@
     "path": "/novedades",
     "status": 200,
     "overflow": false,
-    "navigationMs": 273,
+    "navigationMs": 258,
     "errors": []
   },
   {
@@ -41,7 +41,7 @@
     "path": "/descargas",
     "status": 200,
     "overflow": false,
-    "navigationMs": 235,
+    "navigationMs": 116,
     "errors": []
   },
   {
@@ -50,7 +50,7 @@
     "path": "/ayuda",
     "status": 200,
     "overflow": false,
-    "navigationMs": 130,
+    "navigationMs": 84,
     "errors": []
   },
   {
@@ -59,7 +59,7 @@
     "path": "/comunidad",
     "status": 200,
     "overflow": false,
-    "navigationMs": 125,
+    "navigationMs": 50,
     "errors": []
   },
   {
@@ -68,7 +68,34 @@
     "path": "/privacidad",
     "status": 200,
     "overflow": false,
-    "navigationMs": 135,
+    "navigationMs": 59,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/legal/aviso-legal",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 69,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/legal/terminos",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 52,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/ayuda/mcp",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 53,
     "errors": []
   },
   {
@@ -77,256 +104,13 @@
     "path": "/novedades/v0.15.3-beta.6",
     "status": 200,
     "overflow": false,
-    "navigationMs": 336,
+    "navigationMs": 177,
     "errors": []
   },
   {
     "device": "desktop",
     "theme": "dark",
     "path": "/ayuda/reportar",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 169,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "dark",
-    "path": "/",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 546,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "dark",
-    "path": "/caracteristicas",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 284,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "dark",
-    "path": "/selection",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 279,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "dark",
-    "path": "/novedades",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 334,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "dark",
-    "path": "/descargas",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 201,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "dark",
-    "path": "/ayuda",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 225,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "dark",
-    "path": "/comunidad",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 175,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "dark",
-    "path": "/privacidad",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 296,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "dark",
-    "path": "/novedades/v0.15.3-beta.6",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 465,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "dark",
-    "path": "/ayuda/reportar",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 238,
-    "errors": []
-  },
-  {
-    "device": "desktop",
-    "theme": "dark",
-    "path": "/en",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 1102,
-    "errors": []
-  },
-  {
-    "device": "desktop",
-    "theme": "dark",
-    "path": "/en/caracteristicas",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 616,
-    "errors": []
-  },
-  {
-    "device": "desktop",
-    "theme": "dark",
-    "path": "/en/selection",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 319,
-    "errors": []
-  },
-  {
-    "device": "desktop",
-    "theme": "dark",
-    "path": "/en/novedades",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 591,
-    "errors": []
-  },
-  {
-    "device": "desktop",
-    "theme": "dark",
-    "path": "/en/descargas",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 143,
-    "errors": []
-  },
-  {
-    "device": "desktop",
-    "theme": "dark",
-    "path": "/en/ayuda",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 87,
-    "errors": []
-  },
-  {
-    "device": "desktop",
-    "theme": "dark",
-    "path": "/en/comunidad",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 75,
-    "errors": []
-  },
-  {
-    "device": "desktop",
-    "theme": "dark",
-    "path": "/en/privacidad",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 60,
-    "errors": []
-  },
-  {
-    "device": "desktop",
-    "theme": "dark",
-    "path": "/en/novedades/v0.15.3-beta.6",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 120,
-    "errors": []
-  },
-  {
-    "device": "desktop",
-    "theme": "dark",
-    "path": "/en/ayuda/reportar",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 66,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "dark",
-    "path": "/en",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 329,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "dark",
-    "path": "/en/caracteristicas",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 117,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "dark",
-    "path": "/en/selection",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 72,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "dark",
-    "path": "/en/novedades",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 107,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "dark",
-    "path": "/en/descargas",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 124,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "dark",
-    "path": "/en/ayuda",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 87,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "dark",
-    "path": "/en/comunidad",
     "status": 200,
     "overflow": false,
     "navigationMs": 50,
@@ -335,7 +119,61 @@
   {
     "device": "mobile",
     "theme": "dark",
-    "path": "/en/privacidad",
+    "path": "/",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 428,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/caracteristicas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 108,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/selection",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 98,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/novedades",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 114,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/descargas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 71,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/ayuda",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 79,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/comunidad",
     "status": 200,
     "overflow": false,
     "navigationMs": 53,
@@ -344,124 +182,43 @@
   {
     "device": "mobile",
     "theme": "dark",
-    "path": "/en/novedades/v0.15.3-beta.6",
+    "path": "/privacidad",
     "status": 200,
     "overflow": false,
-    "navigationMs": 160,
+    "navigationMs": 68,
     "errors": []
   },
   {
     "device": "mobile",
     "theme": "dark",
-    "path": "/en/ayuda/reportar",
+    "path": "/legal/aviso-legal",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 94,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/legal/terminos",
     "status": 200,
     "overflow": false,
     "navigationMs": 67,
     "errors": []
   },
   {
-    "device": "desktop",
-    "theme": "light",
-    "path": "/",
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/ayuda/mcp",
     "status": 200,
     "overflow": false,
-    "navigationMs": 452,
+    "navigationMs": 73,
     "errors": []
   },
   {
-    "device": "desktop",
-    "theme": "light",
-    "path": "/caracteristicas",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 126,
-    "errors": []
-  },
-  {
-    "device": "desktop",
-    "theme": "light",
-    "path": "/selection",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 82,
-    "errors": []
-  },
-  {
-    "device": "desktop",
-    "theme": "light",
-    "path": "/novedades",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 155,
-    "errors": []
-  },
-  {
-    "device": "desktop",
-    "theme": "light",
-    "path": "/descargas",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 129,
-    "errors": []
-  },
-  {
-    "device": "desktop",
-    "theme": "light",
-    "path": "/ayuda",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 81,
-    "errors": []
-  },
-  {
-    "device": "desktop",
-    "theme": "light",
-    "path": "/comunidad",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 80,
-    "errors": []
-  },
-  {
-    "device": "desktop",
-    "theme": "light",
-    "path": "/privacidad",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 77,
-    "errors": []
-  },
-  {
-    "device": "desktop",
-    "theme": "light",
+    "device": "mobile",
+    "theme": "dark",
     "path": "/novedades/v0.15.3-beta.6",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 113,
-    "errors": []
-  },
-  {
-    "device": "desktop",
-    "theme": "light",
-    "path": "/ayuda/reportar",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 145,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "light",
-    "path": "/",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 444,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "light",
-    "path": "/caracteristicas",
     "status": 200,
     "overflow": false,
     "navigationMs": 92,
@@ -469,142 +226,79 @@
   },
   {
     "device": "mobile",
-    "theme": "light",
-    "path": "/selection",
+    "theme": "dark",
+    "path": "/ayuda/reportar",
     "status": 200,
     "overflow": false,
     "navigationMs": 64,
     "errors": []
   },
   {
-    "device": "mobile",
-    "theme": "light",
-    "path": "/novedades",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 121,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "light",
-    "path": "/descargas",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 165,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "light",
-    "path": "/ayuda",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 72,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "light",
-    "path": "/comunidad",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 77,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "light",
-    "path": "/privacidad",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 54,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "light",
-    "path": "/novedades/v0.15.3-beta.6",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 109,
-    "errors": []
-  },
-  {
-    "device": "mobile",
-    "theme": "light",
-    "path": "/ayuda/reportar",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 55,
-    "errors": []
-  },
-  {
     "device": "desktop",
-    "theme": "light",
+    "theme": "dark",
     "path": "/en",
     "status": 200,
     "overflow": false,
-    "navigationMs": 367,
+    "navigationMs": 331,
     "errors": []
   },
   {
     "device": "desktop",
-    "theme": "light",
+    "theme": "dark",
     "path": "/en/caracteristicas",
     "status": 200,
     "overflow": false,
-    "navigationMs": 176,
+    "navigationMs": 136,
     "errors": []
   },
   {
     "device": "desktop",
-    "theme": "light",
+    "theme": "dark",
     "path": "/en/selection",
     "status": 200,
     "overflow": false,
-    "navigationMs": 89,
+    "navigationMs": 106,
     "errors": []
   },
   {
     "device": "desktop",
-    "theme": "light",
+    "theme": "dark",
     "path": "/en/novedades",
     "status": 200,
     "overflow": false,
-    "navigationMs": 159,
+    "navigationMs": 102,
     "errors": []
   },
   {
     "device": "desktop",
-    "theme": "light",
+    "theme": "dark",
     "path": "/en/descargas",
     "status": 200,
     "overflow": false,
-    "navigationMs": 105,
+    "navigationMs": 108,
     "errors": []
   },
   {
     "device": "desktop",
-    "theme": "light",
+    "theme": "dark",
     "path": "/en/ayuda",
     "status": 200,
     "overflow": false,
-    "navigationMs": 73,
+    "navigationMs": 65,
     "errors": []
   },
   {
     "device": "desktop",
-    "theme": "light",
+    "theme": "dark",
     "path": "/en/comunidad",
     "status": 200,
     "overflow": false,
-    "navigationMs": 78,
+    "navigationMs": 49,
     "errors": []
   },
   {
     "device": "desktop",
-    "theme": "light",
+    "theme": "dark",
     "path": "/en/privacidad",
     "status": 200,
     "overflow": false,
@@ -613,44 +307,368 @@
   },
   {
     "device": "desktop",
-    "theme": "light",
-    "path": "/en/novedades/v0.15.3-beta.6",
-    "status": 200,
-    "overflow": false,
-    "navigationMs": 187,
-    "errors": []
-  },
-  {
-    "device": "desktop",
-    "theme": "light",
-    "path": "/en/ayuda/reportar",
+    "theme": "dark",
+    "path": "/en/legal/aviso-legal",
     "status": 200,
     "overflow": false,
     "navigationMs": 72,
     "errors": []
   },
   {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/en/legal/terminos",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 77,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/en/ayuda/mcp",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 54,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/en/novedades/v0.15.3-beta.6",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 97,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "dark",
+    "path": "/en/ayuda/reportar",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 52,
+    "errors": []
+  },
+  {
     "device": "mobile",
-    "theme": "light",
+    "theme": "dark",
     "path": "/en",
     "status": 200,
     "overflow": false,
-    "navigationMs": 407,
+    "navigationMs": 370,
     "errors": []
   },
   {
     "device": "mobile",
-    "theme": "light",
+    "theme": "dark",
     "path": "/en/caracteristicas",
     "status": 200,
     "overflow": false,
-    "navigationMs": 106,
+    "navigationMs": 111,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/en/selection",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 101,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/en/novedades",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 148,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/en/descargas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 87,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/en/ayuda",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 63,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/en/comunidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 47,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/en/privacidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 47,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/en/legal/aviso-legal",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 59,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/en/legal/terminos",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 59,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/en/ayuda/mcp",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 64,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/en/novedades/v0.15.3-beta.6",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 83,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "dark",
+    "path": "/en/ayuda/reportar",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 115,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 521,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/caracteristicas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 120,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/selection",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 113,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/novedades",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 128,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/descargas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 99,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/ayuda",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 52,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/comunidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 71,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/privacidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 58,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/legal/aviso-legal",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 65,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/legal/terminos",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 50,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/ayuda/mcp",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 55,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/novedades/v0.15.3-beta.6",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 96,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/ayuda/reportar",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 50,
     "errors": []
   },
   {
     "device": "mobile",
     "theme": "light",
-    "path": "/en/selection",
+    "path": "/",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 291,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/caracteristicas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 97,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/selection",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 104,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/novedades",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 102,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/descargas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 128,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/ayuda",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 70,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/comunidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 68,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/privacidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 67,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/legal/aviso-legal",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 65,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/legal/terminos",
     "status": 200,
     "overflow": false,
     "navigationMs": 75,
@@ -659,10 +677,181 @@
   {
     "device": "mobile",
     "theme": "light",
+    "path": "/ayuda/mcp",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 68,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/novedades/v0.15.3-beta.6",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 115,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/ayuda/reportar",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 54,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 472,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en/caracteristicas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 110,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en/selection",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 112,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
     "path": "/en/novedades",
     "status": 200,
     "overflow": false,
-    "navigationMs": 150,
+    "navigationMs": 124,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en/descargas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 183,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en/ayuda",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 63,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en/comunidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 62,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en/privacidad",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 80,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en/legal/aviso-legal",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 74,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en/legal/terminos",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 56,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en/ayuda/mcp",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 79,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en/novedades/v0.15.3-beta.6",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 128,
+    "errors": []
+  },
+  {
+    "device": "desktop",
+    "theme": "light",
+    "path": "/en/ayuda/reportar",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 53,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/en",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 316,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/en/caracteristicas",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 123,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/en/selection",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 94,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/en/novedades",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 136,
     "errors": []
   },
   {
@@ -671,7 +860,7 @@
     "path": "/en/descargas",
     "status": 200,
     "overflow": false,
-    "navigationMs": 133,
+    "navigationMs": 124,
     "errors": []
   },
   {
@@ -689,7 +878,7 @@
     "path": "/en/comunidad",
     "status": 200,
     "overflow": false,
-    "navigationMs": 76,
+    "navigationMs": 100,
     "errors": []
   },
   {
@@ -698,7 +887,34 @@
     "path": "/en/privacidad",
     "status": 200,
     "overflow": false,
-    "navigationMs": 94,
+    "navigationMs": 54,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/en/legal/aviso-legal",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 63,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/en/legal/terminos",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 54,
+    "errors": []
+  },
+  {
+    "device": "mobile",
+    "theme": "light",
+    "path": "/en/ayuda/mcp",
+    "status": 200,
+    "overflow": false,
+    "navigationMs": 53,
     "errors": []
   },
   {
@@ -707,7 +923,7 @@
     "path": "/en/novedades/v0.15.3-beta.6",
     "status": 200,
     "overflow": false,
-    "navigationMs": 137,
+    "navigationMs": 106,
     "errors": []
   },
   {
@@ -716,7 +932,7 @@
     "path": "/en/ayuda/reportar",
     "status": 200,
     "overflow": false,
-    "navigationMs": 65,
+    "navigationMs": 59,
     "errors": []
   }
 ]

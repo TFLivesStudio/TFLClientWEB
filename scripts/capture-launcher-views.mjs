@@ -38,6 +38,14 @@ async function open(hasInstance = false) {
               env_vars: {},
             };
           if (command === "get_current_user") return null;
+          if (command === "mcp_status")
+            return {
+              enabled: true,
+              sidecar_path: "C:\\TFLClient\\tflclient-mcp.exe",
+              clients: [],
+              plans: [],
+              audit: [],
+            };
           if (command === "get_instances" && hasInstance)
             return [
               {
@@ -95,11 +103,26 @@ async function capture(page, name) {
   );
 }
 const page = await open();
+if (process.env.LAUNCHER_MCP_ONLY) {
+  await page.getByRole("button", { name: "Personalizar Inicio" }).click();
+  await page.getByText("Integraciones", { exact: true }).click();
+  await page
+    .getByRole("heading", { name: "TFL Client MCP", exact: true })
+    .waitFor();
+  await capture(page, "mcp");
+  await browser.close();
+  process.exit(0);
+}
 await capture(page, "welcome");
 await page.getByRole("button", { name: "Personalizar Inicio" }).click();
 await capture(page, "settings");
 await page.getByText("Consola y monitoreo", { exact: true }).click();
 await capture(page, "console");
+await page.getByText("Integraciones", { exact: true }).click();
+await page
+  .getByRole("heading", { name: "TFL Client MCP", exact: true })
+  .waitFor();
+await capture(page, "mcp");
 await page.close();
 const instance = await open(true);
 await instance.getByText("Demostración", { exact: true }).first().click();

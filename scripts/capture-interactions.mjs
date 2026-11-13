@@ -92,6 +92,41 @@ await fallback
   .waitFor({ state: "detached" });
 if (errors.length) throw new Error(JSON.stringify(errors));
 await compatible.close();
+for (const theme of ["dark", "light"]) {
+  const ctx = await browser.newContext({
+    viewport: { width: 1440, height: 1000 },
+  });
+  await ctx.addInitScript((theme) => {
+    localStorage.setItem("tfl-theme", theme);
+    localStorage.setItem("tfl-motion", "reduced");
+  }, theme);
+  const page = await ctx.newPage();
+  await page.goto(base);
+  await page
+    .getByRole("button", { name: "Abrir imagen de MCP", exact: true })
+    .click();
+  await page.getByRole("dialog").waitFor();
+  await page.evaluate(() => document.fonts.ready);
+  await page
+    .getByRole("dialog")
+    .locator(`img.theme-${theme}`)
+    .evaluate((img) => img.decode());
+  await page.screenshot({ path: `docs/qa/mcp-dialog-${theme}.png` });
+  await ctx.close();
+}
+const modulePage = await browser.newPage({
+  viewport: { width: 1440, height: 1000 },
+});
+await modulePage.addInitScript(() =>
+  localStorage.setItem("tfl-motion", "reduced"),
+);
+await modulePage.goto(base + "/selection");
+await modulePage
+  .getByRole("searchbox", { name: "Buscar módulos de TFL Core" })
+  .fill("zoom");
+await modulePage.locator(".module-explorer").scrollIntoViewIfNeeded();
+await modulePage.screenshot({ path: "docs/qa/modules-search.png" });
+await modulePage.close();
 console.log(
   "Centered dialogs, English mobile menu and animated theme transition captured without JS errors",
 );

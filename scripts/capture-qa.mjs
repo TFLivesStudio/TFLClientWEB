@@ -31,6 +31,9 @@ for (const [device, width, height] of [
     ["ayuda", "/ayuda"],
     ["comunidad", "/comunidad"],
     ["privacidad", "/privacidad"],
+    ["aviso-legal", "/legal/aviso-legal"],
+    ["terminos", "/legal/terminos"],
+    ["mcp", "/ayuda/mcp"],
     ["release", "/novedades/v0.15.3-beta.6"],
     ["guia", "/ayuda/reportar"],
   ]) {

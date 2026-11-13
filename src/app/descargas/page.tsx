@@ -1,3 +1,4 @@
+import { ScanSection } from "@/components/scan-section";
 import { getTranslator } from "@/i18n/server";
 import { PageTitle } from "@/components/ui";
 import { Downloads } from "@/components/downloads";
@@ -38,6 +39,7 @@ export default async function Page() {
           )}
         </div>
       </section>
+      <ScanSection />
     </>
   );
 }
