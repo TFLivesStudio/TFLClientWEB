@@ -5,14 +5,20 @@ export type ReleaseSummary = Pick<
 > & { excerpt: string };
 export function summarizeRelease(release: Release): ReleaseSummary {
   const { name, tag, date, channel, inconsistent } = release;
+  // The opening paragraph is the editorial summary shared with GitHub.
+  // Keep channel metadata, headings and detailed lists in the article.
+  const opening =
+    release.body
+      .trim()
+      .split(/\r?\n\s*\r?\n/, 1)[0]
+      ?.replace(/\r?\n/g, " ") || "";
   return {
     name,
     tag,
     date,
     channel,
     inconsistent,
-    excerpt:
-      release.body.slice(0, 260) + (release.body.length > 260 ? "…" : ""),
+    excerpt: opening.slice(0, 260) + (opening.length > 260 ? "…" : ""),
   };
 }
 export function historyState(

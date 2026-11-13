@@ -1,0 +1,53 @@
+{
+  "checkedOn": "2026-11-13",
+  "scenarios": [
+    {
+      "name": "history-desktop-dark",
+      "path": "/novedades",
+      "theme": "dark",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "status": "passed",
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "name": "release-desktop-dark",
+      "path": "/novedades/v0.15.3-beta.6",
+      "theme": "dark",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "status": "passed",
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "name": "history-mobile-light",
+      "path": "/en/novedades",
+      "theme": "light",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": "passed",
+      "horizontalOverflow": false,
+      "pageErrors": []
+    },
+    {
+      "name": "release-mobile-light",
+      "path": "/en/novedades/v0.8.0",
+      "theme": "light",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "status": "passed",
+      "horizontalOverflow": false,
+      "pageErrors": []
+    }
+  ]
+}

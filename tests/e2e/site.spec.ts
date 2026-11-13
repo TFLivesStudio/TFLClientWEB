@@ -4,7 +4,9 @@ test("home, gallery, keyboard dialog and FAQ", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/");
-  await expect(page.locator("h1")).toHaveText("TFL Client");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    "TFL Client",
+  );
   await expect(page.locator("body")).toHaveCSS(
     "background-color",
     "rgb(4, 5, 6)",
@@ -84,7 +86,9 @@ test("verified Selection and local help search", async ({ page }) => {
   await page.locator(".help-grid>a").first().click();
   await expect(page.locator(".article-layout h1")).toBeVisible();
   await page.goto("/inexistente");
-  await expect(page.locator("h1")).toContainText("Página no encontrada");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText(
+    "Página no encontrada",
+  );
 });
 test("mobile navigation, site motion preference and page widths", async ({
   page,
@@ -150,7 +154,9 @@ test("without WebGL there is no Canvas 2D replacement", async ({ page }) => {
   await expect(
     page.locator(".ambient canvas, .silk-static, [data-renderer=canvas2d]"),
   ).toHaveCount(0);
-  await expect(page.locator("h1")).toHaveText("TFL Client");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    "TFL Client",
+  );
 });
 test("metadata, sitemap, robots and accessible primary routes", async ({
   page,
@@ -272,7 +278,8 @@ test("English routes, translated help, locale links, Discord and memory table", 
     ["novedades", "Version history"],
   ]) {
     await page.goto("/en/" + path);
-    await expect(page.locator("h1")).toHaveText(title);
+    // The theme reveal briefly keeps an inert, aria-hidden viewport copy.
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(title);
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth,
@@ -296,7 +303,9 @@ test("English routes, translated help, locale links, Discord and memory table", 
   await page.goto("/en/ayuda");
   await page.getByLabel("Search help").fill("sharing");
   await page.locator(".help-grid>a").first().click();
-  await expect(page.locator("h1")).toHaveText("Share logs and issues safely");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+    "Share logs and issues safely",
+  );
   await expect(page.locator(".prose")).toContainText("Review before sharing");
   await page.evaluate(() =>
     history.replaceState(null, "", location.pathname + "?from=help#reading"),
@@ -672,10 +681,16 @@ test("full-height hero, smooth anchor navigation, wheel input and modal scroll l
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
   await expect(page.locator("html")).toHaveClass(/lenis/);
-  const heroBottom = await page
-    .locator(".hero")
-    .evaluate((el) => el.getBoundingClientRect().bottom);
-  expect(Math.abs(heroBottom - 1000)).toBeLessThan(2);
+  await expect
+    .poll(async () =>
+      Math.abs(
+        (await page
+          .getByRole("main")
+          .locator(".hero")
+          .evaluate((el) => el.getBoundingClientRect().bottom)) - 1000,
+      ),
+    )
+    .toBeLessThan(2);
   await page
     .getByRole("link", { name: "Explora el launcher", exact: true })
     .click();
@@ -703,13 +718,16 @@ test("full-height hero, smooth anchor navigation, wheel input and modal scroll l
   await expect(page.locator("html")).not.toHaveClass(/lenis-stopped/);
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
-  expect(
-    Math.abs(
-      (await page
-        .locator(".hero")
-        .evaluate((el) => el.getBoundingClientRect().bottom)) - 844,
-    ),
-  ).toBeLessThan(2);
+  await expect
+    .poll(async () =>
+      Math.abs(
+        (await page
+          .getByRole("main")
+          .locator(".hero")
+          .evaluate((el) => el.getBoundingClientRect().bottom)) - 844,
+      ),
+    )
+    .toBeLessThan(2);
 });
 
 test("Selection channel cards provide padding and readable wrapping in both themes", async ({
@@ -820,11 +838,11 @@ test("Rust and MCP features use actual theme-specific screenshots and an accessi
   ).toHaveAttribute("src", /launcher-mcp-light.webp/);
   await page.keyboard.press("Escape");
   await page.goto("/en/ayuda/mcp");
-  await expect(page.locator("h1")).toHaveCount(1);
-  await expect(page.locator("h1")).toHaveText(
+  await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
     "Connect a local assistant using MCP",
   );
-  await expect(page.locator("main")).toContainText("local client");
+  await expect(page.getByRole("main")).toContainText("local client");
 });
 
 test("Core catalog has 82 modules, working search and category filters, and independent smooth scrolling", async ({
@@ -883,9 +901,9 @@ test("launcher legal pages are bilingual, linked in the footer and accessible", 
     ["/en/legal/terminos", "Terms of Service"],
   ]) {
     await page.goto(path);
-    await expect(page.locator("h1")).toHaveText(heading);
-    await expect(page.locator("main")).toContainText("contact@tflives.com");
-    await expect(page.locator("main")).toContainText("tflives@outlook.com");
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(heading);
+    await expect(page.getByRole("main")).toContainText("contact@tflives.com");
+    await expect(page.getByRole("main")).toContainText("tflives@outlook.com");
     expect(
       (
         await new AxeBuilder({ page })

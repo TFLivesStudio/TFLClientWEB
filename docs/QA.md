@@ -105,3 +105,33 @@ PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH=/usr/bin/chromium node scripts/capture-inter
 ```
 
 La variable de proxy corresponde solo a esta máquina cloud. Vercel publica mediante su integración Git al integrar `main`; no se realiza despliegue manual.
+
+## Notas de publicación — 13 de noviembre de 2026
+
+Se revisaron y publicaron las 85 descripciones de TFL Client en GitHub. La fuente
+editorial y su registro de evidencia están en
+[TFLClient/docs/releases](https://github.com/TFLivesStudio/TFLClient/tree/main/docs/releases).
+La web sigue utilizando esa API; no se añadió una copia local de los textos.
+
+Las tarjetas de Novedades utilizan el primer párrafo como resumen, con un máximo
+de 260 caracteres. El canal, los apartados y las instrucciones permanecen en el
+artículo completo. Las pruebas unitarias cubren párrafos separados, saltos de
+línea Windows y notas largas, conservando el envío de resúmenes sin cuerpos ni
+assets completos al navegador.
+
+Validación: `npm test` (18 pruebas), TypeScript, ESLint, build de producción y la
+suite completa de Playwright (26 pruebas) correctos. El build local se ejecutó
+con `NODE_USE_ENV_PROXY=1` para que el sitemap incluyera las releases de GitHub.
+Los selectores de navegador usan los elementos accesibles y esperan el layout
+real, evitando confundir la captura inerte del cambio de tema con la página.
+
+Se comprobaron los resúmenes contra los textos publicados, los apartados del
+artículo, los enlaces de archivos y la ausencia de errores de página y overflow
+horizontal en cuatro vistas:
+
+- [Historial, escritorio oscuro](qa/release-notes/history-desktop-dark.png).
+- [Artículo, escritorio oscuro](qa/release-notes/release-desktop-dark.png).
+- [Historial, móvil claro en inglés](qa/release-notes/history-mobile-light.png).
+- [Artículo histórico, móvil claro en inglés](qa/release-notes/release-mobile-light.png).
+
+[Registro de las cuatro comprobaciones](qa/release-notes/verification.json).

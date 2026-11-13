@@ -137,6 +137,22 @@ test("release summaries omit full notes/assets and URL state clamps malformed or
   assert.equal(summary.excerpt.length, 261);
   assert.ok(!("body" in summary));
   assert.ok(!("assets" in summary));
+  const editorialSummary =
+    "La consola conserva el foco y permite detener el juego.";
+  assert.equal(
+    summarizeRelease({
+      ...release,
+      body: `${editorialSummary}\n\n**Canal:** Beta\n\n## Correcciones\n\n- Detalles del cambio.`,
+    }).excerpt,
+    editorialSummary,
+  );
+  assert.equal(
+    summarizeRelease({
+      ...release,
+      body: "Resumen con una\r\nlínea continuada.\r\n\r\n## Mejoras\r\n\r\n- Cambio.",
+    }).excerpt,
+    "Resumen con una línea continuada.",
+  );
   const rows = Array.from({ length: 30 }, (_, i) => ({
     ...summary,
     tag: `v${i}`,
