@@ -20,14 +20,34 @@ export function platformAssets(assets: ReleaseAsset[], platform: string) {
   return assets.filter((a) => p[platform]?.test(a.name));
 }
 export function assetDetails(name: string) {
-  const arch = /aarch64|arm64/i.test(name)
-    ? "ARM64"
-    : /amd64|x86_64|x64/i.test(name)
-      ? "x64"
-      : /i686|ia32/i.test(name)
-        ? "x86"
-        : "Arquitectura no indicada en el nombre";
+  const arch = assetArchitecture(name) ?? "Arquitectura no indicada en el nombre";
   return `${arch} · ${name.split(".").at(-1)}`;
+}
+export function assetArchitecture(name: string) {
+  return /(?:^|[_.-])(?:aarch64|arm64)(?=[_.-]|$)/i.test(name)
+    ? "ARM64"
+    : /(?:^|[_.-])(?:amd64|x86_64|x64)(?=[_.-]|$)/i.test(name)
+      ? "x64"
+      : /(?:^|[_.-])(?:i686|ia32|x86)(?=[_.-]|$)/i.test(name)
+        ? "x86"
+        : null;
+}
+const downloadFormats = [
+  "EXE", "MSI", "DMG", "PKG", "DEB", "RPM", "AppImage",
+] as const;
+export type DownloadFormat = (typeof downloadFormats)[number];
+export function groupedPlatformAssets(assets: ReleaseAsset[], platform: string) {
+  const available = platformAssets(assets, platform);
+  return downloadFormats.flatMap((format) => {
+    const files = available
+      .filter((asset) =>
+        asset.name.toLowerCase().endsWith(`.${format.toLowerCase()}`),
+      )
+      .sort((a, b) =>
+        Number(!assetArchitecture(a.name)) - Number(!assetArchitecture(b.name)),
+      );
+    return files.length ? [{ format, assets: files }] : [];
+  });
 }
 export const releasePath = (tag: string) =>
   `/novedades/${encodeURIComponent(tag)}`;

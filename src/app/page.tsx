@@ -1,5 +1,6 @@
 import { ScanSection } from "@/components/scan-section";
 import { LauncherFeatures } from "@/components/launcher-features";
+import { EcosystemFlow } from "@/components/ecosystem-flow";
 import { ArrowDown } from "lucide-react";
 import { getTranslator } from "@/i18n/server";
 import { MemoryComparison } from "@/components/memory-comparison";
@@ -7,7 +8,8 @@ import Link from "@/components/locale-link";
 import { LauncherImage } from "@/components/launcher-image";
 import { Ambient } from "@/components/ambient";
 import { Gallery } from "@/components/gallery";
-import { DownloadCTA, FAQ } from "@/components/ui";
+import { DownloadCTA, EndCTA, FAQ } from "@/components/ui";
+import { summarizeRelease } from "@/lib/history-model";
 import { getReleases, releasePath } from "@/lib/releases";
 import { StructuredData } from "@/components/structured-data";
 import { localeUrl } from "@/i18n/shared";
@@ -124,13 +126,10 @@ export default async function Home() {
             alt={tr("Panel de apariencia del frontend oficial de TFL Client")}
             width={1440}
             height={900}
-            sizes="(max-width:760px) 100vw, 60vw"
+            sizes="(max-width:760px) calc(100vw - 40px), (max-width:1280px) 55vw, 680px"
           />
         </div>
       </section>
-      <LauncherFeatures />
-      <MemoryComparison />
-      <ScanSection />
       <section className="shell section selection-overview">
         <span className="eyebrow">{tr("DISTRIBUCIÓN OFICIAL")}</span>
         <h2>{tr("TFL Selection: la biblioteca de clientes de TFLives")}</h2>
@@ -139,6 +138,7 @@ export default async function Home() {
             "Desde la biblioteca TFL Selection eliges TFLClient, el cliente modificado de Minecraft. TFL Client es el launcher que lo instala y lo abre.",
           )}
         </p>
+        <EcosystemFlow />
         <div className="comparison-table">
           <div>
             <h3>{tr("Instalación normal")}</h3>
@@ -179,10 +179,7 @@ export default async function Home() {
                 <Link href={releasePath(stable.tag)}>{stable.tag}</Link>
               </h3>
               <p>
-                {stable.body
-                  ? stable.body.slice(0, 220) +
-                    (stable.body.length > 220 ? "…" : "")
-                  : tr("La publicación no incluye notas.")}
+                {summarizeRelease(stable).excerpt || tr("La publicación no incluye notas.")}
               </p>
               <Link className="text-link" href={releasePath(stable.tag)}>
                 {tr("Notas y archivos →")}
@@ -201,7 +198,8 @@ export default async function Home() {
           </Link>
         </div>
       </section>
-      <section className="shell section">
+      <section className="shell section getting-started">
+        <span className="eyebrow">{tr("DE LA DESCARGA A TU PRIMERA INSTALACIÓN")}</span>
         <h2>{tr("Primeros pasos")}</h2>
         <ol className="steps">
           <li>
@@ -231,6 +229,9 @@ export default async function Home() {
           {tr("Guías de instalación y ayuda →")}
         </Link>
       </section>
+      <LauncherFeatures />
+      <MemoryComparison />
+      <ScanSection />
       <section className="shell section faq-section">
         <div>
           <span className="eyebrow">{tr("ANTES DE DESCARGAR")}</span>
@@ -238,6 +239,7 @@ export default async function Home() {
         </div>
         <FAQ />
       </section>
+      <EndCTA />
     </>
   );
 }

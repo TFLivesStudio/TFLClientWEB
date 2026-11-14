@@ -19,16 +19,16 @@ export default async function Features() {
   const tr = await getTranslator();
   return (
     <>
-      <PageTitle
+      <div className="shell feature-lead">
+        <PageTitle
         label={tr("FUNCIONES DEL LAUNCHER")}
         title={tr("Instalaciones y contenido, separados por perfil")}
         description={tr(
           "TFL Client reúne la preparación de Minecraft y la gestión de cada instalación. Estas funciones corresponden al launcher, no a los mods que se ejecutan dentro del juego.",
         )}
       />
-      <section className="shell">
         <Gallery />
-      </section>
+      </div>
       <section className="shell section capabilities">
         {[
           [

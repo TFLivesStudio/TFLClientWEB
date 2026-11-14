@@ -1,9 +1,10 @@
-import en from "./en.json";
 export type Locale = "es" | "en";
-export const translate = (key: string, locale: Locale) =>
-  locale === "en"
-    ? ((en as Record<string, string>)[key.replace(/\s+/g, " ").trim()] ?? key)
-    : key;
+export type Dictionary = Readonly<Record<string, string>>;
+export function translate(key: string, locale: Locale, dictionary: Dictionary) {
+  if (locale === "es") return key;
+  const normalized = key.replace(/\s+/g, " ").trim();
+  return Object.hasOwn(dictionary, normalized) ? dictionary[normalized] : key;
+}
 export const stripLocale = (path: string) =>
   path.replace(/^\/en(?=\/|$)/, "") || "/";
 export const localizedPath = (path: string, locale: Locale) =>
@@ -20,6 +21,6 @@ export function languageHref(
   const current = new URL(currentUrl);
   return localized + current.search + current.hash;
 }
-export function translator(locale: Locale) {
-  return Object.assign((key: string) => translate(key, locale), { locale });
+export function translator(locale: Locale, dictionary: Dictionary) {
+  return Object.assign((key: string) => translate(key, locale, dictionary), { locale });
 }

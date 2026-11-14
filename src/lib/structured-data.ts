@@ -1,4 +1,5 @@
-import { localeUrl, translate, type Locale } from "@/i18n/shared";
+import { localeUrl, type Locale } from "@/i18n/shared";
+import { translate } from "@/i18n/server-dictionary";
 import { articles } from "./help";
 import { origin, socialImage } from "./seo";
 export const serializeJsonLd = (data: unknown) =>

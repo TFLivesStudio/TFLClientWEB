@@ -433,5 +433,20 @@
   "Minecraft y TFLClient": "Minecraft and TFLClient",
   "Glosario": "Glossary",
   "¿Qué diferencia hay entre TFL Client y TFLClient?": "What is the difference between TFL Client and TFLClient?",
-  "TFL Client, con espacio, es el launcher. TFLClient, sin espacio, es el cliente modificado de Minecraft. Lo encuentras en TFL Selection, la biblioteca de clientes de TFLives.": "TFL Client, with a space, is the launcher. TFLClient, without a space, is the modified Minecraft client. Find it in TFL Selection, the TFLives client library."
+  "TFL Client, con espacio, es el launcher. TFLClient, sin espacio, es el cliente modificado de Minecraft. Lo encuentras en TFL Selection, la biblioteca de clientes de TFLives.": "TFL Client, with a space, is the launcher. TFLClient, without a space, is the modified Minecraft client. Find it in TFL Selection, the TFLives client library.",
+  "Instalar": "Install",
+  "Elegir": "Choose",
+  "Jugar": "Play",
+  "Cliente": "Client",
+  "Instalar, elegir y jugar": "Install, choose and play",
+  "DE LA DESCARGA A TU PRIMERA INSTALACIÓN": "FROM DOWNLOAD TO YOUR FIRST INSTALLATION",
+  "Observaciones de un solo equipo; no es un benchmark independiente ni una promesa de consumo.": "Observations from one computer; not an independent benchmark or a promise of memory usage.",
+  "Instalador de Windows. Revisa la arquitectura antes de descargar.": "Windows installer. Check the architecture before downloading.",
+  "Paquete de instalación de Windows. Comprueba sus requisitos en las notas.": "Windows installation package. Check its requirements in the release notes.",
+  "Imagen de disco de macOS. Elige la arquitectura de tu Mac.": "macOS disk image. Choose your Mac’s architecture.",
+  "Paquete de instalación de macOS. Comprueba sus requisitos en las notas.": "macOS installation package. Check its requirements in the release notes.",
+  "Para Debian, Ubuntu y distribuciones compatibles con paquetes DEB.": "For Debian, Ubuntu and distributions compatible with DEB packages.",
+  "Para distribuciones que utilizan paquetes RPM. Consulta los requisitos de la publicación.": "For distributions that use RPM packages. Check the release requirements.",
+  "Formato AppImage para Linux. Consulta los requisitos de tu distribución antes de abrirlo.": "AppImage format for Linux. Check your distribution’s requirements before opening it.",
+  "Elige el formato y la arquitectura de tu equipo. Los nombres de archivo se conservan tal como fueron publicados.": "Choose your computer’s format and architecture. File names appear exactly as published."
 }

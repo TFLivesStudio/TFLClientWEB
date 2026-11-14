@@ -1,0 +1,3 @@
+# Signature verification depends on the exact upstream bytes on every OS.
+tests/fixtures/catalog.json -text
+tests/fixtures/catalog.sig -text

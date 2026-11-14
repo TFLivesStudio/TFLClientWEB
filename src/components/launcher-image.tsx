@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { launcherShots } from "@/lib/launcher-shots";
 import { useTheme } from "next-themes";
 import { useSyncExternalStore, type ComponentProps } from "react";
 const subscribe = () => () => {};
@@ -28,7 +29,8 @@ export function LauncherImage({
           {...props}
           alt={alt}
           key={theme}
-          src={theme === "light" ? src.replace(/(\.[^/.]+)$/, "-light$1") : src}
+          src={launcherShots[src as keyof typeof launcherShots]?.[theme] ??
+            (theme === "light" ? src.replace(/(\.[^/.]+)$/, "-light$1") : src)}
           className={`${className} launcher-theme-image theme-${theme}${markActive && mounted && selectedTheme === theme ? " product-shot" : ""}`}
         />
       ))}

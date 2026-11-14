@@ -17,7 +17,7 @@ export async function generateMetadata() {
 export default async function Help() {
   const tr = await getTranslator();
   return (
-    <>
+    <div className="help-hub">
       <PageTitle
         label={tr("DOCUMENTACIÓN DE TFL CLIENT")}
         title={tr("Centro de ayuda")}
@@ -42,6 +42,6 @@ export default async function Help() {
           </a>
         </div>
       </section>
-    </>
+    </div>
   );
 }

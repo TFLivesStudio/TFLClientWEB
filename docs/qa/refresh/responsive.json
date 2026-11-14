@@ -1,0 +1,2011 @@
+{
+  "base": "http://127.0.0.1:3000",
+  "results": [
+    {
+      "route": "/",
+      "width": 1440,
+      "theme": "dark",
+      "status": 200,
+      "height": 7500,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/caracteristicas",
+      "width": 1440,
+      "theme": "dark",
+      "status": 200,
+      "height": 3903,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/selection",
+      "width": 1440,
+      "theme": "dark",
+      "status": 200,
+      "height": 3485,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/descargas",
+      "width": 1440,
+      "theme": "dark",
+      "status": 200,
+      "height": 2140,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/novedades",
+      "width": 1440,
+      "theme": "dark",
+      "status": 200,
+      "height": 4775,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/ayuda",
+      "width": 1440,
+      "theme": "dark",
+      "status": 200,
+      "height": 2942,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/comunidad",
+      "width": 1440,
+      "theme": "dark",
+      "status": 200,
+      "height": 1380,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/privacidad",
+      "width": 1440,
+      "theme": "dark",
+      "status": 200,
+      "height": 4697,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/legal/aviso-legal",
+      "width": 1440,
+      "theme": "dark",
+      "status": 200,
+      "height": 2334,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/legal/terminos",
+      "width": 1440,
+      "theme": "dark",
+      "status": 200,
+      "height": 3374,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/ayuda/mcp",
+      "width": 1440,
+      "theme": "dark",
+      "status": 200,
+      "height": 1688,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/novedades/v0.15.2",
+      "width": 1440,
+      "theme": "dark",
+      "status": 200,
+      "height": 2405,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "width": 1024,
+      "theme": "dark",
+      "status": 200,
+      "height": 7319,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "width": 820,
+      "theme": "dark",
+      "status": 200,
+      "height": 8513,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "theme": "dark",
+      "status": 200,
+      "height": 8489,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "theme": "dark",
+      "status": 200,
+      "height": 9967,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/caracteristicas",
+      "width": 390,
+      "theme": "dark",
+      "status": 200,
+      "height": 5464,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/selection",
+      "width": 390,
+      "theme": "dark",
+      "status": 200,
+      "height": 4698,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/descargas",
+      "width": 390,
+      "theme": "dark",
+      "status": 200,
+      "height": 2924,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/novedades",
+      "width": 390,
+      "theme": "dark",
+      "status": 200,
+      "height": 6506,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/ayuda",
+      "width": 390,
+      "theme": "dark",
+      "status": 200,
+      "height": 5102,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/comunidad",
+      "width": 390,
+      "theme": "dark",
+      "status": 200,
+      "height": 1996,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/privacidad",
+      "width": 390,
+      "theme": "dark",
+      "status": 200,
+      "height": 7802,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/legal/aviso-legal",
+      "width": 390,
+      "theme": "dark",
+      "status": 200,
+      "height": 3615,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/legal/terminos",
+      "width": 390,
+      "theme": "dark",
+      "status": 200,
+      "height": 5266,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/ayuda/mcp",
+      "width": 390,
+      "theme": "dark",
+      "status": 200,
+      "height": 2506,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/novedades/v0.15.2",
+      "width": 390,
+      "theme": "dark",
+      "status": 200,
+      "height": 3415,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "width": 320,
+      "theme": "dark",
+      "status": 200,
+      "height": 10747,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema claro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "theme": "light",
+      "status": 200,
+      "height": 7500,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/caracteristicas",
+      "width": 1440,
+      "theme": "light",
+      "status": 200,
+      "height": 3903,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/selection",
+      "width": 1440,
+      "theme": "light",
+      "status": 200,
+      "height": 3485,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/descargas",
+      "width": 1440,
+      "theme": "light",
+      "status": 200,
+      "height": 2140,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/novedades",
+      "width": 1440,
+      "theme": "light",
+      "status": 200,
+      "height": 4775,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/ayuda",
+      "width": 1440,
+      "theme": "light",
+      "status": 200,
+      "height": 2942,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/comunidad",
+      "width": 1440,
+      "theme": "light",
+      "status": 200,
+      "height": 1380,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/privacidad",
+      "width": 1440,
+      "theme": "light",
+      "status": 200,
+      "height": 4697,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/legal/aviso-legal",
+      "width": 1440,
+      "theme": "light",
+      "status": 200,
+      "height": 2334,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/legal/terminos",
+      "width": 1440,
+      "theme": "light",
+      "status": 200,
+      "height": 3374,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/ayuda/mcp",
+      "width": 1440,
+      "theme": "light",
+      "status": 200,
+      "height": 1688,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/novedades/v0.15.2",
+      "width": 1440,
+      "theme": "light",
+      "status": 200,
+      "height": 2405,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "width": 1024,
+      "theme": "light",
+      "status": 200,
+      "height": 7319,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Usar tema del sistema",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 125.015625,
+          "height": 38
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "width": 820,
+      "theme": "light",
+      "status": 200,
+      "height": 8514,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "theme": "light",
+      "status": 200,
+      "height": 8489,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "theme": "light",
+      "status": 200,
+      "height": 9968,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/caracteristicas",
+      "width": 390,
+      "theme": "light",
+      "status": 200,
+      "height": 5464,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/selection",
+      "width": 390,
+      "theme": "light",
+      "status": 200,
+      "height": 4698,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/descargas",
+      "width": 390,
+      "theme": "light",
+      "status": 200,
+      "height": 2924,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/novedades",
+      "width": 390,
+      "theme": "light",
+      "status": 200,
+      "height": 6506,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/ayuda",
+      "width": 390,
+      "theme": "light",
+      "status": 200,
+      "height": 5102,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/comunidad",
+      "width": 390,
+      "theme": "light",
+      "status": 200,
+      "height": 1996,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/privacidad",
+      "width": 390,
+      "theme": "light",
+      "status": 200,
+      "height": 7802,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/legal/aviso-legal",
+      "width": 390,
+      "theme": "light",
+      "status": 200,
+      "height": 3615,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/legal/terminos",
+      "width": 390,
+      "theme": "light",
+      "status": 200,
+      "height": 5266,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/ayuda/mcp",
+      "width": 390,
+      "theme": "light",
+      "status": 200,
+      "height": 2506,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/novedades/v0.15.2",
+      "width": 390,
+      "theme": "light",
+      "status": 200,
+      "height": 3415,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Descargar",
+          "width": 44,
+          "height": 38
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "width": 320,
+      "theme": "light",
+      "status": 200,
+      "height": 10747,
+      "overflow": false,
+      "h1": 1,
+      "headerTargets": [
+        {
+          "label": "ES",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "EN",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Activar tema oscuro",
+          "width": 44,
+          "height": 44
+        },
+        {
+          "label": "Abrir menú",
+          "width": 44,
+          "height": 44
+        }
+      ]
+    }
+  ]
+}

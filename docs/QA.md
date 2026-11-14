@@ -162,3 +162,71 @@ Revisión visual adicional:
 [Registro de las cuatro comprobaciones](qa/product-names/verification.json).
 La terminología que deben conservar próximas actualizaciones está documentada en
 [PRODUCT_NAMES.md](PRODUCT_NAMES.md) y AGENTS.md.
+
+## Refinamiento tras auditoría — 14 de noviembre de 2026
+
+La auditoría adjunta se contrastó con el código y la web publicada en
+`becb319deb1dc8a1750227d6e8c936913ad8da52`. Sus propuestas de diseño se usaron
+como evidencia; las decisiones vigentes de identidad y producto se conservaron.
+
+Cambios: recorrido principal antes de Rust/MCP/memoria, composición lateral de
+MCP con ampliación, contexto metodológico junto a la tabla de RAM, secuencia
+Instalar → Elegir → Jugar con nombres oficiales, primera captura de bienvenida,
+resumen legible de la estable, cierre con descarga/ayuda y CTA apilados a 320 px.
+Los controles compactos tienen superficies de 44 px; a 320 px la descarga de la
+cabecera se ofrece dentro del menú para conservar espacio. Características
+presenta producto e introducción juntos, Ayuda destaca la búsqueda y Descargas
+agrupa formatos con orientación conservando todos los archivos oficiales.
+
+Optimización: importaciones estáticas con hash de las diez capturas originales
+y de los iconos, `sizes` por contexto, precarga de todas las diapositivas y temas
+al acercarse a cada galería (1200 px de margen), sin prioridad global para MCP.
+Las imágenes siguen presentes antes de hidratar para respetar el tema persistido.
+El diccionario inglés sale del bundle cliente: el servidor envía `{}` en ES y
+el catálogo en EN, con traducciones inmediatas en SSR e hidratación. Se comprobó
+la ausencia de frases exclusivas del diccionario en `.next/static/chunks`.
+No se recodificaron los originales ni se cambiaron DPR, FPS, shader o transición
+circular. O06/O07 permanecen como hipótesis que requieren perfilado independiente.
+
+Verificación final en Windows, Node 24.11.1, Next.js 16.4.6/Turbopack y Chromium:
+
+| Comprobación | Resultado |
+|---|---|
+| `npm run build` normal | PASS |
+| `npm run typecheck` | PASS |
+| `npm run lint` | PASS |
+| `npm test` | PASS · 23/23 |
+| Playwright | PASS · 27/27 |
+| Axe en rutas y temas de la suite | Sin infracciones en las comprobaciones ejecutadas |
+| Matriz visual | 56 combinaciones de ruta/ancho/tema, HTTP 200, un H1, sin overflow |
+| Revisión independiente | Corregidos extractos con identificadores y niveles de encabezado; sin bloqueos restantes |
+
+La matriz cubre Inicio a 1440, 1024, 820, 768, 390 y 320 px en ambos temas, y
+otras once rutas a 1440/390 px en ambos temas. Las capturas utilizan reducción
+explícita para hacer reproducible la inspección; la suite también comprueba
+animaciones activadas, seis segundos del carrusel, WebGL, fallback circular,
+teclado, foco, Escape, bloqueo de scroll y tema persistido. Se corrigieron
+selectores de pruebas que dependían de nombres de archivo sin hash o de contenido
+oculto, y la espera del ancla. La comprobación de precarga se acota a la galería
+principal: MCP ya no debe descargarse antes de acercarse a su sección.
+
+Los fixtures firmados conservan exactamente los blobs originales. `.gitattributes`
+evita que Git transforme sus saltos de línea en Windows; no cambia la clave ni
+la verificación. No se midieron Lighthouse, FPS sostenidos, móviles físicos ni
+Safari/Firefox. No se atribuye una mejora porcentual de rendimiento a la revisión.
+
+Evidencia y reproducción:
+
+- [Resultados de la matriz](qa/refresh/responsive.json).
+- [Playwright](qa/refresh/playwright.log), [build](qa/refresh/build.log),
+  [TypeScript](qa/refresh/typecheck.log), [ESLint](qa/refresh/lint.log),
+  [unitarias](qa/refresh/test.log).
+- [Inicio oscuro](qa/refresh/inicio-1440-dark.jpg),
+  [inicio a 320 px](qa/refresh/inicio-320-dark.jpg),
+  [Selection claro](qa/refresh/selection-1440-light.jpg),
+  [Características](qa/refresh/caracteristicas-1440-dark.jpg),
+  [Descargas móvil](qa/refresh/descargas-390-light.jpg).
+- Tras iniciar el build: `node scripts/qa-refresh.mjs`.
+
+Publicación: integración Git en `main`; la verificación del SHA y del estado de
+producción en Vercel se registra en la entrega de esta actualización.

@@ -3,6 +3,7 @@ import { useMotionPreference } from "./motion-preference";
 import { useT } from "@/i18n/provider";
 import { languageHref, stripLocale } from "@/i18n/shared";
 import Image from "next/image";
+import tflMark from "../../public/icons/launchers/tfl.png";
 import Link from "@/components/locale-link";
 import { usePathname } from "next/navigation";
 import {
@@ -37,7 +38,7 @@ export function Brand() {
   const tr = useT();
   return (
     <Link className="brand" href="/" aria-label={tr("TFL Client, inicio")}>
-      <Image src="/icons/launchers/tfl.png" alt="" width={38} height={30} />
+      <Image src={tflMark} alt="" width={38} height={30} />
       <span>
         TFL<span className="brand-light">CLIENT</span>
       </span>
@@ -185,6 +186,10 @@ export function Header() {
                 exit={{ opacity: 0, y: reduce ? 0 : -8 }}
               >
                 {links.map((item) => navLink(item, false))}
+                <Link href="/descargas" className="button mobile-download" onClick={() => setOpen(false)}>
+                  <ArrowDownToLine size={16} aria-hidden="true" />
+                  {tr("Descargar TFL Client")}
+                </Link>
                 <div className="mobile-theme-settings">
                   <span>{tr("Apariencia")}</span>
                   <ThemeToggle />

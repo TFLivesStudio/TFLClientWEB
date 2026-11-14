@@ -5,7 +5,8 @@ import { useState, useSyncExternalStore } from "react";
 import { Download, ArrowUpRight, CircleAlert } from "lucide-react";
 import {
   assetDetails,
-  platformAssets,
+  groupedPlatformAssets,
+  type DownloadFormat,
   type Release,
 } from "@/lib/release-model";
 const subscribe = () => () => {};
@@ -21,6 +22,15 @@ import { PlatformIcon } from "./platform-icon";
 import Link from "@/components/locale-link";
 import { releasePath } from "@/lib/release-model";
 const systems = [{ name: "Windows" }, { name: "macOS" }, { name: "Linux" }];
+const formatGuidance: Record<DownloadFormat, string> = {
+  EXE: "Instalador de Windows. Revisa la arquitectura antes de descargar.",
+  MSI: "Paquete de instalación de Windows. Comprueba sus requisitos en las notas.",
+  DMG: "Imagen de disco de macOS. Elige la arquitectura de tu Mac.",
+  PKG: "Paquete de instalación de macOS. Comprueba sus requisitos en las notas.",
+  DEB: "Para Debian, Ubuntu y distribuciones compatibles con paquetes DEB.",
+  RPM: "Para distribuciones que utilizan paquetes RPM. Consulta los requisitos de la publicación.",
+  AppImage: "Formato AppImage para Linux. Consulta los requisitos de tu distribución antes de abrirlo.",
+};
 export function Downloads({
   release,
   status,
@@ -40,7 +50,7 @@ export function Downloads({
     () => "Windows",
   );
   const platform = chosen ?? detected;
-  const assets = platformAssets(selected?.assets ?? [], platform);
+  const groups = groupedPlatformAssets(selected?.assets ?? [], platform);
   return (
     <div className={`download-panel channel-${channel}`}>
       <AnimatedTabs
@@ -92,22 +102,41 @@ export function Downloads({
                     )}
               </p>
             )}
-            {assets.length ? (
-              assets.map((a) => (
-                <a className="download-file" key={a.url} href={a.url}>
-                  <Download size={18} />
-                  <span>
-                    {a.name}
-                    <small>
-                      {assetDetails(a.name).replace(
-                        "Arquitectura no indicada en el nombre",
-                        tr("Arquitectura no indicada en el nombre"),
-                      )}{" "}
-                      · {(a.size / 1024 / 1024).toFixed(1)} MB
-                    </small>
-                  </span>
-                </a>
-              ))
+            {groups.length ? (
+              <div className="download-groups">
+                <p className="download-guidance">
+                  {tr(
+                    "Elige el formato y la arquitectura de tu equipo. Los nombres de archivo se conservan tal como fueron publicados.",
+                  )}
+                </p>
+                {groups.map(({ format, assets }) => (
+                  <section
+                    className="download-format"
+                    key={format}
+                    aria-label={format}
+                  >
+                    <div className="download-group-heading">
+                      <h3>{format}</h3>
+                      <p>{tr(formatGuidance[format])}</p>
+                    </div>
+                    {assets.map((a) => (
+                      <a className="download-file" key={a.url} href={a.url}>
+                        <Download size={18} aria-hidden="true" />
+                        <span>
+                          {a.name}
+                          <small>
+                            {assetDetails(a.name).replace(
+                              "Arquitectura no indicada en el nombre",
+                              tr("Arquitectura no indicada en el nombre"),
+                            )}{" "}
+                            · {(a.size / 1024 / 1024).toFixed(1)} MB
+                          </small>
+                        </span>
+                      </a>
+                    ))}
+                  </section>
+                ))}
+              </div>
             ) : (
               <div className="notice">
                 {selected

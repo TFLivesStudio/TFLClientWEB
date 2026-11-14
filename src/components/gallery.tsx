@@ -5,7 +5,7 @@ import { LauncherImage } from "./launcher-image";
 import * as Dialog from "@radix-ui/react-dialog";
 import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 import { Hint } from "./animated-ui";
-import { useEffect, useId, useState, useSyncExternalStore } from "react";
+import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
 import { Expand, X, ArrowLeft, ArrowRight } from "lucide-react";
 const subscribeVisibility = (fn: () => void) => {
   document.addEventListener("visibilitychange", fn);
@@ -13,10 +13,10 @@ const subscribeVisibility = (fn: () => void) => {
 };
 const launcherShots = [
   {
-    src: "/images/launcher-console.webp",
-    label: "Consola y monitoreo · datos de demostración",
-    tag: "CONSOLA",
-    alt: "Vista previa de consola del launcher con datos de demostración",
+    src: "/images/launcher-welcome.webp",
+    label: "Inicio del launcher · instalación sin perfiles",
+    tag: "EL LAUNCHER",
+    alt: "Interfaz oficial del launcher TFL Client, pantalla de bienvenida",
   },
   {
     src: "/images/launcher-instance.webp",
@@ -25,16 +25,16 @@ const launcherShots = [
     alt: "Configuración de una instancia de demostración en el frontend oficial",
   },
   {
-    src: "/images/launcher-welcome.webp",
-    label: "Inicio del launcher · instalación sin perfiles",
-    tag: "EL LAUNCHER",
-    alt: "Interfaz oficial del launcher TFL Client, pantalla de bienvenida",
-  },
-  {
     src: "/images/launcher-settings.webp",
     label: "Panel de apariencia y configuración",
     tag: "PERSONALIZACIÓN",
     alt: "Panel de apariencia de la interfaz oficial de TFL Client",
+  },
+  {
+    src: "/images/launcher-console.webp",
+    label: "Consola y monitoreo · datos de demostración",
+    tag: "CONSOLA",
+    alt: "Vista previa de consola del launcher con datos de demostración",
   },
 ];
 const mcpShots = [
@@ -54,6 +54,22 @@ export function Gallery({
   const id = useId();
   const { reduced: reduce } = useMotionPreference();
   const [expanded, setExpanded] = useState(false);
+  const gallery = useRef<HTMLDivElement>(null);
+  const [near, setNear] = useState(false);
+  useEffect(() => {
+    const node = gallery.current;
+    if (!node) return;
+    // Prepare every slide in both themes before it is reached; manual controls
+    // and the theme reveal must never depend on a newly mounted image.
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setNear(true);
+        observer.disconnect();
+      }
+    }, { rootMargin: "1200px" });
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
   const hidden = useSyncExternalStore(
     subscribeVisibility,
     () => document.hidden,
@@ -69,6 +85,7 @@ export function Gallery({
     <Dialog.Root open={expanded} onOpenChange={setExpanded}>
       <LayoutGroup id={id}>
         <div
+          ref={gallery}
           className="gallery"
           role="region"
           aria-label={tr(
@@ -115,8 +132,10 @@ export function Gallery({
                   aria-hidden={i !== index}
                   width={1440}
                   height={900}
-                  priority={i === 0}
-                  loading={i === 0 ? undefined : "eager"}
+                  loading={near || expanded ? "eager" : "lazy"}
+                  sizes={kind === "mcp"
+                    ? "(max-width:900px) calc(100vw - 40px), (max-width:1280px) 55vw, 660px"
+                    : "(max-width:760px) calc(100vw - 40px), (max-width:1200px) calc(100vw - 80px), 1120px"}
                   markActive={kind === "launcher" && i === index}
                   className={`gallery-shot${i === index ? " is-active" : ""}`}
                 />
@@ -209,6 +228,7 @@ export function Gallery({
                           width={1440}
                           height={900}
                           priority
+                          sizes="(max-width:1232px) calc(100vw - 56px), 1176px"
                         />
                       </motion.div>
                       <div className="dialog-caption">

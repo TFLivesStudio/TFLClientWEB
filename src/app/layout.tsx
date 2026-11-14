@@ -1,4 +1,5 @@
 import { getTranslator } from "@/i18n/server";
+import { dictionaryForLocale } from "@/i18n/server-dictionary";
 import { SiteProviders } from "@/components/site-providers";
 import { LocaleProvider } from "@/i18n/provider";
 import { headers } from "next/headers";
@@ -64,7 +65,10 @@ export default async function RootLayout({
     >
       <body>
         <StructuredData data={siteStructuredData(tr.locale, path)} />
-        <LocaleProvider locale={tr.locale}>
+        <LocaleProvider
+          locale={tr.locale}
+          dictionary={dictionaryForLocale(tr.locale)}
+        >
           <SiteProviders>
             <a href="#contenido" className="skip-link">
               {tr("Saltar al contenido")}

@@ -1,4 +1,5 @@
-import { localeUrl, translate, type Locale } from "@/i18n/shared";
+import { localeUrl, type Locale } from "@/i18n/shared";
+import { translate } from "@/i18n/server-dictionary";
 import type { Metadata } from "next";
 export const origin = "https://launcher.tflives.com";
 export function socialImage(locale: Locale) {

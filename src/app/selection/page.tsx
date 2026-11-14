@@ -1,4 +1,5 @@
 import { ModuleExplorer } from "@/components/module-explorer";
+import { EcosystemFlow } from "@/components/ecosystem-flow";
 import { getTranslator } from "@/i18n/server";
 import Link from "@/components/locale-link";
 import { PageTitle, DownloadCTA } from "@/components/ui";
@@ -28,6 +29,7 @@ export default async function Selection() {
           "TFL Selection es la biblioteca donde TFLives publica sus clientes modificados de Minecraft. TFLClient es el cliente; TFL Client es el launcher desde el que lo instalas.",
         )}
       />
+      <div className="shell selection-flow"><EcosystemFlow headingLevel={2} /></div>
       <section className="shell section selection-intro">
         <div>
           <h2>{tr("Una biblioteca, un cliente y un launcher")}</h2>
@@ -41,30 +43,6 @@ export default async function Selection() {
               "La biblioteca muestra las versiones que TFLives ha publicado. Consulta la descripción y el canal de TFLClient antes de instalarlo.",
             )}
           </p>
-          <dl className="ecosystem-terms">
-            <div>
-              <dt>TFL Client</dt>
-              <dd>
-                {tr("El launcher: instala, actualiza y abre tus instancias.")}
-              </dd>
-            </div>
-            <div>
-              <dt>TFL Selection</dt>
-              <dd>
-                {tr(
-                  "La biblioteca: reúne los clientes modificados que publica TFLives.",
-                )}
-              </dd>
-            </div>
-            <div>
-              <dt>TFLClient</dt>
-              <dd>
-                {tr(
-                  "El cliente: la experiencia modificada que utilizas dentro de Minecraft.",
-                )}
-              </dd>
-            </div>
-          </dl>
           <Link href="/ayuda/glosario" className="text-link">
             {tr("Aprende los nombres y términos de TFL →")}
           </Link>

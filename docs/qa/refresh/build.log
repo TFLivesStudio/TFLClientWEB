@@ -1,0 +1,47 @@
+
+> tfl-client-web@0.1.0 build
+> next build
+
+▲ Next.js 16.4.6 (Turbopack)
+✓ Running next.config.ts took 59ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 1259ms
+  Running TypeScript ...
+  Finished TypeScript in 2.9s ...
+  Collecting page data using 15 workers ...
+  Generating static pages using 15 workers (0/25) ...
+  Generating static pages using 15 workers (6/25) 
+  Generating static pages using 15 workers (12/25) 
+  Generating static pages using 15 workers (18/25) 
+✓ Generating static pages using 15 workers (25/25) in 653ms
+  Finalizing page optimization ...
+
+Route (app)             Revalidate  Expire
+┌ ƒ /
+├ ƒ /_not-found
+├ ƒ /ayuda
+├ ƒ /ayuda/[slug]
+├ ƒ /caracteristicas
+├ ƒ /comunidad
+├ ƒ /descargas
+├ ○ /icon.png
+├ ƒ /legal/aviso-legal
+├ ƒ /legal/terminos
+├ ƒ /novedades
+├ ƒ /novedades/[tag]
+├ ƒ /privacidad
+├ ○ /robots.txt
+├ ƒ /selection
+└ ○ /sitemap.xml               15m      1y
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+⚠ Warning: Next.js ignored package-lock.json in C:\Users\saenz because it is outside the current Git repository (C:\Users\saenz\Documents\Codex\2026-11-14\quiero-que-trabajes-fuertemente-la-pagina\work\TFLClientWEB).
+ To use this directory, set `turbopack.root` in your Next.js config.
+

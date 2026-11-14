@@ -2,7 +2,7 @@ import { getScan } from "@/lib/virustotal";
 import { ScanCard } from "./scan-card";
 export async function ScanSection() {
   return (
-    <section className="shell section">
+    <section className="shell section scan-section">
       <ScanCard result={await getScan()} />
     </section>
   );

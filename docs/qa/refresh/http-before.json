@@ -1,0 +1,117 @@
+{
+  "base": "https://launcher.tflives.com",
+  "html": {
+    "transferred": 15574,
+    "decoded": 82208
+  },
+  "resources": [
+    {
+      "url": "https://launcher.tflives.com/_next/static/immutable/chunks/3u8jpzpu6nm2f.css",
+      "status": 200,
+      "transferred": 12880,
+      "decoded": 52837,
+      "encoding": "br"
+    },
+    {
+      "url": "https://launcher.tflives.com/_next/static/immutable/chunks/3ev1avsl3_mxd.js",
+      "status": 200,
+      "transferred": 2123,
+      "decoded": 5600,
+      "encoding": "br"
+    },
+    {
+      "url": "https://launcher.tflives.com/_next/static/immutable/chunks/18depg0rervso.js",
+      "status": 200,
+      "transferred": 7962,
+      "decoded": 29127,
+      "encoding": "br"
+    },
+    {
+      "url": "https://launcher.tflives.com/_next/static/immutable/chunks/0l6v96jvbgo5a.js",
+      "status": 200,
+      "transferred": 73244,
+      "decoded": 229544,
+      "encoding": "br"
+    },
+    {
+      "url": "https://launcher.tflives.com/_next/static/immutable/chunks/1-w3zpy6gup21.js",
+      "status": 200,
+      "transferred": 47220,
+      "decoded": 169434,
+      "encoding": "br"
+    },
+    {
+      "url": "https://launcher.tflives.com/_next/static/immutable/chunks/turbopack-3xd-7z66s-4wg.js",
+      "status": 200,
+      "transferred": 4089,
+      "decoded": 9974,
+      "encoding": "br"
+    },
+    {
+      "url": "https://launcher.tflives.com/_next/static/immutable/chunks/0hj4uade3eff0.js",
+      "status": 200,
+      "transferred": 19135,
+      "decoded": 54263,
+      "encoding": "br"
+    },
+    {
+      "url": "https://launcher.tflives.com/_next/static/immutable/chunks/184u7uzg1lqqd.js",
+      "status": 200,
+      "transferred": 10168,
+      "decoded": 35167,
+      "encoding": "br"
+    },
+    {
+      "url": "https://launcher.tflives.com/_next/static/immutable/chunks/0vvt52rnd_1nk.js",
+      "status": 200,
+      "transferred": 96576,
+      "decoded": 281593,
+      "encoding": "br"
+    },
+    {
+      "url": "https://launcher.tflives.com/_next/static/immutable/chunks/1_u5fqkjy15j0.js",
+      "status": 200,
+      "transferred": 13347,
+      "decoded": 34118,
+      "encoding": "br"
+    },
+    {
+      "url": "https://launcher.tflives.com/_next/static/immutable/chunks/32mc7y3enryfl.js",
+      "status": 200,
+      "transferred": 662,
+      "decoded": 662
+    },
+    {
+      "url": "https://launcher.tflives.com/_next/static/immutable/chunks/1vqt-l03rr0vb.js",
+      "status": 200,
+      "transferred": 1769,
+      "decoded": 3643,
+      "encoding": "br"
+    },
+    {
+      "url": "https://launcher.tflives.com/_next/static/immutable/chunks/2224221b8x8e_.js",
+      "status": 200,
+      "transferred": 23022,
+      "decoded": 73645,
+      "encoding": "br"
+    },
+    {
+      "url": "https://launcher.tflives.com/_next/static/immutable/chunks/1rxltis0ogj21.js",
+      "status": 200,
+      "transferred": 9054,
+      "decoded": 24732,
+      "encoding": "br"
+    },
+    {
+      "url": "https://launcher.tflives.com/_next/static/immutable/chunks/0c0hxoamwjsbw.js",
+      "status": 200,
+      "transferred": 41343,
+      "decoded": 112594,
+      "encoding": "br"
+    }
+  ],
+  "totals": {
+    "transferred": 362594,
+    "decoded": 1116933
+  }
+}

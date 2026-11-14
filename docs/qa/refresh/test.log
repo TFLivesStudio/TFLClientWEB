@@ -1,0 +1,36 @@
+
+> tfl-client-web@0.1.0 test
+> tsx --test tests/*.test.ts tests/*.test.tsx
+
+✔ download groups retain official files, prioritize explicit architecture and exclude signatures (5.5444ms)
+✔ architecture labels use explicit filename tokens without inferring from platform or substrings (0.5487ms)
+✔ release previews remove Markdown and channel metadata, keeping readable words (2.4762ms)
+✔ Spanish sends an empty dictionary while English translations are available on the first server render (21.7545ms)
+✔ all help categories, titles, summaries and sections have explicit English translations (21.8701ms)
+✔ switching language keeps the current page, query and hash without doubling /en (0.9053ms)
+✔ Markdown blocks executable HTML and unsafe links while retaining notes (25.3141ms)
+✔ VirusTotal preserves detections, checks hash and rejects impossible reports (7.9954ms)
+✔ VirusTotal needs a server key and fails without fabricating zero detections (23.1288ms)
+✔ the 82-module candidate catalog is unique, bilingual and honest about unavailable services (0.781ms)
+✔ legal documents cover the launcher, community contacts and actual privacy boundaries in both languages (0.4817ms)
+✔ release summaries omit full notes/assets and URL state clamps malformed or excessive pages (1.3222ms)
+✔ legacy catalog labels display the client brand without changing signed data (1.7927ms)
+✔ stable, beta, alpha, rc and inconsistent tags retain original identity (6.3601ms)
+✔ rejects unsafe metadata and asset URLs (1.5604ms)
+✔ fetches multiple API pages, excludes drafts, sorts and deduplicates (25.0136ms)
+✔ distinguishes empty history, rate limits and failures, without partial history (2.4616ms)
+✔ verifies real official raw catalog bytes and dynamic published channels (5.357ms)
+✔ fails closed on tampered bytes, bad signature and unknown key (1.833ms)
+✔ rejects correctly signed but invalid schemas and generation zero (3.8794ms)
+✔ localized share metadata exposes PNG previews and canonical language pairs (1.9375ms)
+✔ JSON-LD cannot close its script and breadcrumbs describe the actual localized guide (0.6939ms)
+✔ release modification dates survive parsing without replacing publication order (3.3084ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1115.9725
+

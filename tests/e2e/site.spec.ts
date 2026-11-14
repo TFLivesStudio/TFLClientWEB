@@ -5,7 +5,7 @@ test("product names distinguish the library, client and launcher in both languag
 }) => {
   for (const prefix of ["", "/en"]) {
     await page.goto(prefix + "/selection");
-    await expect(page.locator(".ecosystem-terms dt")).toHaveText([
+    await expect(page.locator(".ecosystem-flow .ecosystem-name")).toHaveText([
       "TFL Client",
       "TFL Selection",
       "TFLClient",
@@ -52,7 +52,7 @@ test("home, gallery, keyboard dialog and FAQ", async ({ page }) => {
   await page.getByRole("button", { name: /Ver captura 1/ }).click();
   await expect(page.locator(".product-shot")).toHaveAttribute(
     "src",
-    /launcher-console/,
+    /launcher-welcome/,
   );
   await page.getByRole("button", { name: "Ampliar captura" }).click();
   await expect(page.getByRole("dialog")).toBeVisible();
@@ -229,7 +229,7 @@ test("metadata, sitemap, robots and accessible primary routes", async ({
   expect(await robots.text()).toContain("Disallow: /");
 });
 
-test("WebGL remains active, images preload, carousel advances every six seconds and pauses only while expanded", async ({
+test("WebGL remains active, launcher images preload, carousel advances every six seconds and pauses only while expanded", async ({
   page,
 }) => {
   test.setTimeout(45000);
@@ -242,7 +242,7 @@ test("WebGL remains active, images preload, carousel advances every six seconds 
   await expect
     .poll(() =>
       page
-        .locator(".gallery-shot")
+        .locator("#launcher-preview .gallery-shot")
         .evaluateAll((images) =>
           images.every(
             (img) =>
@@ -486,11 +486,11 @@ test("lower concurrency keeps Pattern Waves at lower resolution, respects motion
     .click();
   await expect(page.locator('.silk-gpu [data-motion="static"]')).toBeVisible();
   for (const icon of [
-    "tfl.png",
-    "prism.svg",
-    "cmclient.png",
-    "labymod.png",
-    "lunar.png",
+    "tfl.",
+    "prism.",
+    "cmclient.",
+    "labymod.",
+    "lunar.",
   ])
     await expect(page.locator(`.memory-table img[src*="${icon}"]`)).toHaveCount(
       1,
@@ -588,7 +588,7 @@ test("light launcher screenshots switch with the theme in gallery, detail and fu
   await expect(page.locator(".gallery .product-shot:visible")).toHaveCount(1);
   await expect(page.locator(".gallery .product-shot:visible")).toHaveAttribute(
     "src",
-    /launcher-console-light/,
+    /launcher-welcome-light/,
   );
   await expect(
     page.locator(".themed-product-image img.theme-light"),
@@ -609,7 +609,7 @@ test("light launcher screenshots switch with the theme in gallery, detail and fu
     .click();
   await expect(page.locator(".gallery .product-shot:visible")).toHaveAttribute(
     "src",
-    /launcher-console.webp/,
+    /launcher-welcome\.[\w-]+\.webp/,
   );
 });
 
@@ -730,11 +730,9 @@ test("full-height hero, smooth anchor navigation, wheel input and modal scroll l
   await expect
     .poll(() => page.evaluate(() => location.hash))
     .toBe("#launcher-preview");
-  const galleryTop = await page
-    .locator("#launcher-preview")
-    .evaluate((el) => el.getBoundingClientRect().top);
-  expect(galleryTop).toBeGreaterThanOrEqual(90);
-  expect(galleryTop).toBeLessThan(110);
+  await expect.poll(() => page.locator("#launcher-preview")
+    .evaluate((el) => Math.abs(el.getBoundingClientRect().top - 100)))
+    .toBeLessThan(10);
   const start = await page.evaluate(() => scrollY);
   await page.mouse.wheel(0, 240);
   await expect
@@ -857,7 +855,7 @@ test("Rust and MCP features use actual theme-specific screenshots and an accessi
     .click();
   await expect(
     page.getByRole("dialog").locator("img.theme-dark"),
-  ).toHaveAttribute("src", /launcher-mcp.webp/);
+  ).toHaveAttribute("src", /launcher-mcp\.[\w-]+\.webp/);
   await page.keyboard.press("Escape");
   await page
     .getByRole("button", { name: "Activar tema claro", exact: true })
@@ -868,7 +866,7 @@ test("Rust and MCP features use actual theme-specific screenshots and an accessi
     .click();
   await expect(
     page.getByRole("dialog").locator("img.theme-light"),
-  ).toHaveAttribute("src", /launcher-mcp-light.webp/);
+  ).toHaveAttribute("src", /launcher-mcp-light\.[\w-]+\.webp/);
   await page.keyboard.press("Escape");
   await page.goto("/en/ayuda/mcp");
   await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
@@ -916,7 +914,8 @@ test("Core catalog has 82 modules, working search and category filters, and inde
   await page
     .getByRole("searchbox", { name: "Search TFLClient modules" })
     .fill("reach");
-  await expect(page.locator(".module-card")).toContainText(
+  await expect(page.getByRole("region", { name: "TFLClient module catalog" }).locator(".module-card")).toHaveCount(1);
+  await expect(page.getByRole("region", { name: "TFLClient module catalog" }).locator(".module-card")).toContainText(
     "without increasing reach",
   );
 });

@@ -1,24 +1,48 @@
 import type { Release } from "./release-model";
+
+/** A plain editorial preview; full Markdown is only rendered in the article. */
+export function releaseExcerpt(body: string, limit = 260) {
+  const inlineCode: string[] = [];
+  const plain = body
+    .replace(/```[\s\S]*?```|~~~[\s\S]*?~~~/g, "")
+    .split(/\r?\n\s*\r?\n/)
+    .map((block) => block
+      .replace(/(`+)([^`]*?)\1/g, (_, _delimiter, content: string) => {
+        inlineCode.push(content);
+        return `\u0000${inlineCode.length - 1}\u0000`;
+      })
+      .split(/\r?\n/)
+      .filter((line) => !/^\s*(#{1,6}\s|\*\*(?:Canal|Channel):?\*\*|<!--)/i.test(line))
+      .join(" ")
+      .replace(/!\[([^\]]*)\]\([^)]*\)/g, "$1")
+      .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+      .replace(/<[^>]*>/g, "")
+      .replace(/(?:^|\s)(?:[-+*]|\d+\.)\s+/g, " ")
+      .replace(/\*\*([^*]+)\*\*|__([^_]+)__|~~([^~]+)~~/g, (_, bold, underline, strike) => bold ?? underline ?? strike)
+      .replace(/(^|\s)\*([^*]+)\*(?=\W|$)/g, "$1$2")
+      .replace(/(^|\s)_([^_]+)_(?=\W|$)/g, "$1$2")
+      .replace(/\u0000(\d+)\u0000/g, (_, i) => inlineCode[Number(i)])
+      .replace(/\s+/g, " ").trim())
+    .find(Boolean) || "";
+  if (plain.length <= limit) return plain;
+  const head = plain.slice(0, limit);
+  const boundary = head.lastIndexOf(" ");
+  const complete = /\s/.test(plain[limit]) || /\s$/.test(head);
+  return (complete ? head.trimEnd() : boundary > 0 ? head.slice(0, boundary) : head) + "…";
+}
 export type ReleaseSummary = Pick<
   Release,
   "name" | "tag" | "date" | "channel" | "inconsistent"
 > & { excerpt: string };
 export function summarizeRelease(release: Release): ReleaseSummary {
   const { name, tag, date, channel, inconsistent } = release;
-  // The opening paragraph is the editorial summary shared with GitHub.
-  // Keep channel metadata, headings and detailed lists in the article.
-  const opening =
-    release.body
-      .trim()
-      .split(/\r?\n\s*\r?\n/, 1)[0]
-      ?.replace(/\r?\n/g, " ") || "";
   return {
     name,
     tag,
     date,
     channel,
     inconsistent,
-    excerpt: opening.slice(0, 260) + (opening.length > 260 ? "…" : ""),
+    excerpt: releaseExcerpt(release.body),
   };
 }
 export function historyState(
